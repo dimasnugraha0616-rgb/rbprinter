@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b5cab">
+<title>RB HOME PRINT MEDIA — V11 OCR Offline</title>
+<style>
+:root{--blue:#0b5cab;--blue2:#0e78d5;--orange:#f28c28;--orange2:#ffad42;--bg:#eef4fa;--card:#fff;--text:#101820;--muted:#687686;--line:#d7e0e8;--ok:#18864b;--danger:#d94d55;--shadow:0 8px 24px rgba(18,54,84,.09);--r:16px;--legacy:#f6f8fa}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button{touch-action:manipulation}
+.app{max-width:760px;margin:auto;min-height:100vh}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);padding:12px 15px 8px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px}.mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(145deg,var(--blue),#073d78);color:#fff;display:grid;place-items:center;font-weight:950;font-size:16px;border:2px solid #fff;box-shadow:0 3px 10px #0b5cab33;overflow:hidden}.mark img{width:100%;height:100%;object-fit:contain;display:block}
+h1{font-size:17px;letter-spacing:.2px;margin:0}.sub{font-size:10px;color:var(--muted);margin-top:2px;font-weight:700}
+.ticker{margin-top:8px;background:#0d3152;color:#fff;border-radius:7px;padding:6px 10px;overflow:hidden;white-space:nowrap;font-size:10px;font-weight:800;border-left:4px solid var(--orange)}
+.ticker span{display:inline-block;min-width:100%;animation:run 16s linear infinite}@keyframes run{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+main{padding:10px 15px 110px}.page{display:none;animation:fade .15s ease}.page.active{display:block}@keyframes fade{from{opacity:.35;transform:translateY(3px)}to{opacity:1;transform:none}}
+.pageHead{padding:8px 2px 13px}.pageHead h2{font-size:23px;margin:0;letter-spacing:-.3px}.pageHead p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:15px;margin-bottom:13px}.card h3{font-size:14px;margin:0 0 12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.full{grid-column:1/-1}
+label{display:block;font-size:11px;font-weight:850;color:#445364;margin:0 0 6px}
+input,textarea,select{width:100%;border:1px solid #cfd9e2;background:#fbfcfd;border-radius:10px;padding:11px 12px;color:var(--text);outline:none}textarea{min-height:74px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #0b5cab18}
+input:disabled{background:#eef2f5;color:#6c7883}
+.btn{border:0;border-radius:10px;padding:11px 14px;font-weight:850;cursor:pointer}.primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff}.secondary{background:#e9f2fb;color:var(--blue)}.orange{background:linear-gradient(135deg,var(--orange),var(--orange2));color:#fff}.ghost{background:#eef1f4;color:#37424d}.danger{background:#fff0f1;color:var(--danger)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.row .auto{flex:0 0 auto}.divider{border-top:1px dashed var(--line);margin:14px 0}.small{font-size:10px;color:var(--muted)}
+.hero{background:linear-gradient(135deg,#083f78,#0e78d5);color:#fff;border-radius:18px;padding:18px;margin-bottom:13px;box-shadow:0 12px 28px #0b5cab2b;border-bottom:4px solid var(--orange)}.hero .big{font-size:22px;font-weight:950}.hero p{margin:5px 0 0;opacity:.86;font-size:11px}
+.menuGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px}.menuBtn{background:var(--legacy);border:1px solid #cbd6df;border-radius:12px;padding:13px 7px;text-align:center;cursor:pointer;box-shadow:inset 0 1px 0 #fff,0 3px 8px #12344d12}.menuBtn:active{transform:translateY(1px)}
+.menuBtn .ico{width:40px;height:40px;margin:0 auto 7px;border-radius:9px;background:linear-gradient(145deg,#e8f3ff,#fff1df);color:var(--blue);display:grid;place-items:center;border:1px solid #c7d6e4}.menuBtn .ico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.menuBtn b{font-size:11px}.menuBtn span{display:block;font-size:9px;color:var(--muted);margin-top:2px}
+.previewWrap{background:#dfe6ec;border-radius:13px;padding:12px;overflow:auto}.receipt{background:#fff;color:#111;width:100%;max-width:390px;margin:auto;padding:16px 14px;font-family:"Courier New",ui-monospace,monospace;font-size:13px;line-height:1.32;font-weight:800;box-shadow:0 4px 15px #00000012}.receipt.printText{white-space:pre-wrap;text-align:left;overflow-wrap:normal;word-break:normal;tab-size:4}.rlogo{max-width:65px;max-height:40px;object-fit:contain;display:block;margin-left:auto;margin-right:auto;margin-bottom:9px}.receiptText{display:block;margin:0;white-space:pre-wrap;text-align:left;overflow-wrap:normal;word-break:normal;font:inherit;line-height:inherit;color:inherit}.rcenter{text-align:center}.rbold{font-weight:900}.rsep{border-top:2px solid #111;margin:9px 0}.rdash{border-top:2px dashed #111;margin:9px 0}.rgrid{display:grid;grid-template-columns:1fr auto;gap:4px}.rgrid .val{text-align:right;max-width:62%;overflow-wrap:anywhere}.token{font-size:18px;font-weight:950;letter-spacing:1px;text-align:center;margin:7px 0;line-height:1.45}.shopNamePrint{display:block;font-size:var(--shop-font-size,18px);font-weight:900;line-height:1.08;text-align:center;width:100%;white-space:pre-wrap};margin:0 auto!important;box-sizing:border-box;overflow-wrap:anywhere.shopNamePrint.shop-small{font-size:14px!important}.shopNamePrint.shop-medium{font-size:19px!important}.shopNamePrint.shop-large{font-size:27px!important}.tokenPrintLine{display:block;font-size:200%;font-weight:950;line-height:1.05;letter-spacing:0;text-align:center;width:100%;white-space:pre-wrap}
+
+.receipt.mode-minimal{font-family:Arial,Helvetica,sans-serif;font-weight:700}
+.receipt.mode-minimal .receiptText{line-height:1.26}
+.receipt.mode-modern{font-family:Arial,Helvetica,sans-serif;font-weight:800}
+.receipt.mode-modern .receiptText{line-height:1.28}
+.mode-select-card{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.mode-select-card label{margin:0;flex:0 0 auto}
+.mode-select-card select{flex:1;min-width:180px}
+
+.photoDrop{border:2px dashed #b8c8d7;border-radius:12px;padding:14px;text-align:center;background:#f8fafc}.photoDrop .photoIcon{width:42px;height:42px;margin:0 auto 6px;border-radius:10px;background:#e6f0fa;color:var(--blue);display:grid;place-items:center}.photoDrop svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.photoPreview{display:none;width:100%;max-height:250px;object-fit:contain;border-radius:9px;margin-top:10px;border:1px solid var(--line);background:#fff}.photoPreview.show{display:block}.photoMeta{margin-top:7px;font-size:10px;color:var(--muted)}
+.status{padding:9px 11px;border-radius:9px;background:#f0f3f6;font-size:11px;color:#53606d}.status.ok{background:#eaf8ef;color:#167440}.status.warn{background:#fff5e7;color:#8b5a0a}
+.logoBox{border:2px dashed #bdcbd7;border-radius:13px;min-height:115px;display:grid;place-items:center;background:#f8fafc;margin-bottom:9px}.logoBox img{max-width:80%;max-height:100px;object-fit:contain}.fileBtn{display:inline-block;padding:10px 13px;border-radius:10px;background:#e9f2fb;color:var(--blue);font-weight:850;cursor:pointer}.fileBtn input{display:none}
+.checkRow{display:flex;align-items:center;gap:8px;background:#f5f8fa;border:1px solid var(--line);padding:10px;border-radius:10px}.checkRow input{width:18px;height:18px;accent-color:var(--blue)}.checkRow label{margin:0;flex:1}
+.license{text-align:center;border-top:1px dashed var(--line);padding-top:13px;margin-top:7px;color:#52606d;font-size:10px;font-weight:800}
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.98);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:6px max(8px,calc((100vw - 760px)/2 + 8px)) calc(6px + env(safe-area-inset-bottom))}.nav{max-width:744px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:3px}.nav button{border:1px solid transparent;background:transparent;color:#6d7781;padding:5px 2px;border-radius:9px;cursor:pointer;font-size:8px;font-weight:850}.nav button.active{color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue2));border-color:transparent;box-shadow:0 3px 10px #0b5cab2b}.nav svg{display:block;margin:auto auto 3px;width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fab{position:fixed;right:18px;bottom:87px;z-index:25;width:52px;height:52px;border:0;border-radius:13px;background:var(--orange);color:#fff;box-shadow:0 9px 22px #f28c2850;font-size:21px;cursor:pointer}
+.hidden{display:none!important}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.menuGrid{grid-template-columns:1fr 1fr}.receipt{max-width:100%}}
+@media print{
+ @page{size:80mm auto;margin:0}
+ html,body{width:var(--print-width,80mm)!important;min-width:0!important;margin:0!important;padding:0!important;background:#fff!important}
+ body{font-family:"Courier New",ui-monospace,monospace!important}
+ .app{width:var(--print-width,80mm)!important;max-width:none!important;margin:0!important}
+ .top,.bottom,.fab,main>.page:not(#page-print){display:none!important}
+ main{padding:0!important;margin:0!important;width:var(--print-width,80mm)!important}
+ #page-print{display:block!important;width:var(--print-width,80mm)!important;margin:0!important;padding:0!important}
+ .previewWrap{padding:0!important;background:#fff!important;border:0!important}
+ .app{min-height:0!important;height:auto!important}
+ body{min-height:0!important;height:auto!important;overflow:visible!important}
+ main{min-height:0!important;height:auto!important}
+ #page-print{min-height:0!important;height:auto!important}
+ .previewWrap{min-height:0!important;height:auto!important;overflow:visible!important}
+ .receipt{box-shadow:none!important;width:var(--print-width,80mm)!important;max-width:none!important;margin:0!important;padding:3mm 2.5mm 4mm!important;font-weight:800!important;line-height:1.22!important;break-inside:avoid;page-break-inside:avoid;overflow:visible!important}.receiptText{white-space:pre-wrap!important}.rlogo{max-width:17mm!important;max-height:10mm!important;height:auto!important;object-fit:contain!important;margin:0 auto 2.5mm!important}
+ .rgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:2px!important;width:100%!important}
+ .rgrid>div{min-width:0!important;overflow-wrap:break-word!important;word-break:normal!important}
+ .rgrid .val{text-align:right!important;max-width:none!important;white-space:normal!important;overflow-wrap:break-word!important;word-break:normal!important}
+ .shopNamePrint{font-weight:900!important;line-height:1.08!important;display:block!important;width:100%!important;text-align:center!important;margin:0 auto!important;box-sizing:border-box!important;white-space:pre-wrap!important}.shopNamePrint.shop-small{font-size:14px!important}.shopNamePrint.shop-medium{font-size:19px!important}.shopNamePrint.shop-large{font-size:27px!important}.tokenPrintLine{font-size:200%!important;font-weight:950!important;line-height:1.05!important;letter-spacing:0!important;display:block!important;width:100%!important;text-align:center!important;white-space:pre-wrap!important}
+ .rcenter{width:100%!important;text-align:center!important;overflow-wrap:break-word!important;word-break:normal!important}
+ .rsep,.rdash{break-inside:avoid;page-break-inside:avoid}
+ img{break-inside:avoid;page-break-inside:avoid}
+ #printReceipt{width:var(--print-width,80mm)!important;max-width:none!important;margin:0!important;padding:3mm 2.5mm 4mm!important;font-family:"Courier New",ui-monospace,monospace!important;font-size:11px!important;font-weight:800!important;line-height:1.22!important;white-space:pre-wrap!important;overflow-wrap:normal!important;word-break:normal!important;text-align:left!important;box-shadow:none!important}
+ #printReceipt.printText{white-space:pre-wrap!important}
+ @page{size:auto;margin:0}
+}
+
+/* V11 PATCH: visual/print regression guards only. Existing formatter remains unchanged. */
+.shopNamePrint{display:block!important;width:100%!important;max-width:100%!important;margin:0 auto!important;box-sizing:border-box!important;text-align:center!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:normal!important;transform:none!important;zoom:1!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}
+.shopNamePrint.shop-small{font-size:14px!important}.shopNamePrint.shop-medium{font-size:19px!important}.shopNamePrint.shop-large{font-size:27px!important}
+.tokenPrintLine{display:block!important;width:100%!important;margin:7px 0!important;font-family:"Courier New",ui-monospace,monospace!important;font-size:26px!important;font-weight:950!important;line-height:1.05!important;letter-spacing:0!important;text-align:center!important;white-space:pre-wrap!important;overflow-wrap:normal!important;word-break:normal!important;transform:none!important;zoom:1!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}
+.ocrTools{margin-top:10px}.ocrPanel{margin-top:10px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fbfcfd}.ocrPanelHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.ocrRaw{min-height:160px;font-family:"Courier New",ui-monospace,monospace;font-size:11px;line-height:1.35;background:#f4f7f9}.ocrScanBtn[disabled],.ocrApplyBtn[disabled]{opacity:.6;cursor:wait}
+@media print{.shopNamePrint{display:block!important;width:100%!important;margin:0 auto!important;box-sizing:border-box!important;text-align:center!important;transform:none!important;zoom:1!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}.tokenPrintLine{font-size:26px!important;display:block!important;width:100%!important;text-align:center!important;transform:none!important;zoom:1!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}}
+</style>
+</head>
+<body>
+<!-- V11: additive OCR offline-first patch on V10; existing print/Bluetooth formatter preserved -->
+<div class="app">
+<header class="top">
+ <div class="brand"><div class="mark" id="appLogoMark">RB</div><div><h1>RB HOME PRINT MEDIA</h1><div class="sub">TRANSAKSI • OCR READY • PRINTER THERMAL</div></div></div>
+ <div class="ticker"><span id="runningTextView">RB HOME PRINT MEDIA • CETAK CEPAT • STRUK THERMAL</span></div>
+</header>
+<main>
+<section class="page active" id="page-home">
+ <div class="pageHead"><h2>Beranda</h2><p>Pusat transaksi dan pencetakan struk.</p></div>
+ <div class="hero"><div class="big">Siap mencetak.</div><p>Pilih transaksi, upload foto sumber bila perlu, edit rincian, lalu cetak.</p></div>
+ <div class="menuGrid">
+  <button class="menuBtn" onclick="go('bill')"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div><b>Tagihan</b><span>Pembayaran</span></button>
+  <button class="menuBtn" onclick="go('token')"><div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 8-11h-6z"/></svg></div><b>Token</b><span>Listrik</span></button>
+  <button class="menuBtn" onclick="go('transfer')"><div class="ico"><svg viewBox="0 0 24 24"><path d="M7 7h10l-3-3M17 17H7l3 3"/><path d="M17 7 14 4M7 17l3 3"/></svg></div><b>Transfer</b><span>Bukti transfer</span></button>
+ </div>
+ <div class="card"><h3>🖨️ Status Printer</h3><div id="homePrinter" class="status">Belum terhubung</div></div>
+ <div class="card"><h3>Identitas Toko</h3><div class="small">Nama toko</div><div id="homeShop" style="font-weight:900;margin-top:4px">—</div><div class="divider"></div><button class="btn secondary" onclick="go('settings')">Buka Pengaturan</button></div>
+</section>
+
+<section class="page" id="page-bill">
+ <div class="pageHead"><h2>🧾 Pembayaran Tagihan</h2><p>Edit rincian sebelum dicetak.</p></div>
+ <div class="mode-select-card"><label for="bill_mode">Mode Print</label><select id="bill_mode"><option value="standard">Standar</option><option value="ppob">PPOB</option></select></div>
+ <div class="card"><h3>📷 Foto sumber</h3><div class="photoDrop"><div class="photoIcon"><svg viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div style="font-weight:850;font-size:12px">Upload foto struk / bukti transaksi</div><div class="small" style="margin-top:3px">Siap dijadikan input AI Vision pada tahap berikutnya.</div><label class="fileBtn" style="margin-top:9px">Pilih Foto / PDF<input id="bill_photo" type="file" accept="image/*,.pdf,application/pdf"></label><img id="bill_photo_preview" class="photoPreview"><div id="bill_photo_meta" class="photoMeta"></div></div></div>
+   <div class="ocrTools" data-ocr-type="bill">
+    <div class="row" style="margin-top:10px">
+     <button type="button" class="btn secondary auto ocrScanBtn" data-ocr-type="bill">🔎 Baca Sumber (OCR)</button>
+     <div id="bill_ocr_status" class="status">Siap — OCR dijalankan hanya saat diminta.</div>
+    </div>
+    <div id="bill_ocr_panel" class="ocrPanel hidden">
+     <div class="ocrPanelHead"><div><b>Review Hasil OCR</b><div class="small">OCR adalah bahan bantu. Periksa dan koreksi sebelum diterapkan ke transaksi.</div></div></div>
+     <div class="status warn" style="margin:9px 0">Foto diproses di browser/client. Tidak ada API AI/cloud transaksi yang dipanggil oleh patch ini.</div>
+     <div class="grid">
+      <div><label>Jenis Terbaca</label><select id="bill_ocr_type"><option value="bill">Tagihan</option><option value="token">Token Listrik</option><option value="transfer">Transfer</option><option value="unknown">Belum dikenali</option></select></div>
+      <div><label>Tanggal</label><input id="bill_ocr_date" type="date"></div>
+      <div><label>Waktu</label><input id="bill_ocr_time" type="text" inputmode="numeric" placeholder="HH:MM:SS"></div>
+      <div><label>Nomor Transaksi</label><input id="bill_ocr_tx" type="text"></div>
+      <div><label>Nama</label><input id="bill_ocr_name" type="text"></div>
+      <div><label>IDPEL</label><input id="bill_ocr_idpel" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Meter</label><input id="bill_ocr_meter" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Pelanggan</label><input id="bill_ocr_customer" type="text" inputmode="numeric"></div>
+      <div><label>Nominal</label><input id="bill_ocr_nominal" type="text" inputmode="numeric"></div>
+      <div><label>Admin</label><input id="bill_ocr_admin" type="text" inputmode="numeric"></div>
+      <div><label>Total</label><input id="bill_ocr_total" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Referensi</label><input id="bill_ocr_ref" type="text"></div>
+      <div><label>Bank</label><input id="bill_ocr_bank" type="text"></div>
+      <div><label>No Rekening</label><input id="bill_ocr_account" type="text" inputmode="numeric"></div>
+      <div class="full"><label>Layanan / Produk</label><input id="bill_ocr_service" type="text"></div>
+      <div class="full"><label>Periode</label><input id="bill_ocr_period" type="text"></div>
+      <div><label>Tarif / Daya</label><input id="bill_ocr_tariff" type="text"></div>
+      <div><label>JML KWH</label><input id="bill_ocr_kwh" type="text" inputmode="decimal"></div>
+      <div class="full"><label>Token</label><textarea id="bill_ocr_token" spellcheck="false"></textarea></div>
+      <div class="full"><label>Raw OCR</label><textarea id="bill_ocr_raw" class="ocrRaw" readonly spellcheck="false"></textarea></div>
+     </div>
+     <div class="row" style="margin-top:10px">
+      <button type="button" class="btn primary auto ocrApplyBtn" data-ocr-type="bill">Terapkan ke Transaksi</button>
+      <button type="button" class="btn ghost auto ocrClearBtn" data-ocr-type="bill">Kosongkan Review</button>
+     </div>
+    </div>
+   </div>
+ <div class="card"><h3>Rincian Transaksi</h3><div class="grid">
+  <div><label>Tanggal</label><input id="bill_date" type="date"></div><div><label>Layanan</label><input id="bill_service"></div><div><label>No Pel</label><input id="bill_pel"></div><div><label>Nama</label><input id="bill_name"></div><div class="full"><label>Periode</label><input id="bill_period"></div><div><label>Tagihan</label><input id="bill_tagihan" type="number"></div><div><label>Admin</label><input id="bill_admin" type="number"></div><div><label>REF</label><input id="bill_ref"></div>
+ </div></div>
+ <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>Preview Struk</h3><button class="btn orange" onclick="printThermal()">Cetak</button></div><div class="previewWrap"><div id="receipt-bill" class="receipt"></div></div></div>
+</section>
+
+<section class="page" id="page-token">
+ <div class="pageHead"><h2>⚡ Pembelian Token</h2><p>Edit rincian token listrik sebelum dicetak.</p></div>
+ <div class="mode-select-card"><label for="token_mode">Mode Print</label><select id="token_mode"><option value="token">Token Listrik</option><option value="postpaid">Tagihan Listrik</option></select></div>
+ <div class="card"><h3>📷 Foto sumber</h3><div class="photoDrop"><div class="photoIcon"><svg viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div style="font-weight:850;font-size:12px">Upload foto struk / token</div><div class="small" style="margin-top:3px">Foto hanya dipreview di aplikasi untuk sekarang.</div><label class="fileBtn" style="margin-top:9px">Pilih Foto / PDF<input id="token_photo" type="file" accept="image/*,.pdf,application/pdf"></label><img id="token_photo_preview" class="photoPreview"><div id="token_photo_meta" class="photoMeta"></div></div></div>
+   <div class="ocrTools" data-ocr-type="token">
+    <div class="row" style="margin-top:10px">
+     <button type="button" class="btn secondary auto ocrScanBtn" data-ocr-type="token">🔎 Baca Sumber (OCR)</button>
+     <div id="token_ocr_status" class="status">Siap — OCR dijalankan hanya saat diminta.</div>
+    </div>
+    <div id="token_ocr_panel" class="ocrPanel hidden">
+     <div class="ocrPanelHead"><div><b>Review Hasil OCR</b><div class="small">OCR adalah bahan bantu. Periksa dan koreksi sebelum diterapkan ke transaksi.</div></div></div>
+     <div class="status warn" style="margin:9px 0">Foto diproses di browser/client. Tidak ada API AI/cloud transaksi yang dipanggil oleh patch ini.</div>
+     <div class="grid">
+      <div><label>Jenis Terbaca</label><select id="token_ocr_type"><option value="bill">Tagihan</option><option value="token">Token Listrik</option><option value="transfer">Transfer</option><option value="unknown">Belum dikenali</option></select></div>
+      <div><label>Tanggal</label><input id="token_ocr_date" type="date"></div>
+      <div><label>Waktu</label><input id="token_ocr_time" type="text" inputmode="numeric" placeholder="HH:MM:SS"></div>
+      <div><label>Nomor Transaksi</label><input id="token_ocr_tx" type="text"></div>
+      <div><label>Nama</label><input id="token_ocr_name" type="text"></div>
+      <div><label>IDPEL</label><input id="token_ocr_idpel" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Meter</label><input id="token_ocr_meter" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Pelanggan</label><input id="token_ocr_customer" type="text" inputmode="numeric"></div>
+      <div><label>Nominal</label><input id="token_ocr_nominal" type="text" inputmode="numeric"></div>
+      <div><label>Admin</label><input id="token_ocr_admin" type="text" inputmode="numeric"></div>
+      <div><label>Total</label><input id="token_ocr_total" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Referensi</label><input id="token_ocr_ref" type="text"></div>
+      <div><label>Bank</label><input id="token_ocr_bank" type="text"></div>
+      <div><label>No Rekening</label><input id="token_ocr_account" type="text" inputmode="numeric"></div>
+      <div class="full"><label>Layanan / Produk</label><input id="token_ocr_service" type="text"></div>
+      <div class="full"><label>Periode</label><input id="token_ocr_period" type="text"></div>
+      <div><label>Tarif / Daya</label><input id="token_ocr_tariff" type="text"></div>
+      <div><label>JML KWH</label><input id="token_ocr_kwh" type="text" inputmode="decimal"></div>
+      <div class="full"><label>Token</label><textarea id="token_ocr_token" spellcheck="false"></textarea></div>
+      <div class="full"><label>Raw OCR</label><textarea id="token_ocr_raw" class="ocrRaw" readonly spellcheck="false"></textarea></div>
+     </div>
+     <div class="row" style="margin-top:10px">
+      <button type="button" class="btn primary auto ocrApplyBtn" data-ocr-type="token">Terapkan ke Transaksi</button>
+      <button type="button" class="btn ghost auto ocrClearBtn" data-ocr-type="token">Kosongkan Review</button>
+     </div>
+    </div>
+   </div>
+ <div class="card"><h3>Rincian Transaksi</h3><div class="grid">
+  <div><label>Tanggal</label><input id="token_date" type="date"></div><div><label>ID Pel</label><input id="token_pel"></div><div><label>No Meter</label><input id="token_meter"></div><div><label>Nama</label><input id="token_name"></div><div><label>Tarif / Daya</label><input id="token_tariff"></div><div><label>JML KWH</label><input id="token_kwh"></div><div class="full"><label>Token</label><textarea id="token_token"></textarea></div><div><label>Nominal</label><input id="token_nominal" type="number"></div><div><label>Admin</label><input id="token_admin" type="number"></div><div><label>REF</label><input id="token_ref"></div>
+ </div></div>
+ <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>Preview Struk</h3><button class="btn orange" onclick="printThermal()">Cetak</button></div><div class="previewWrap"><div id="receipt-token" class="receipt"></div></div></div>
+</section>
+
+<section class="page" id="page-transfer">
+ <div class="pageHead"><h2>💸 Bukti Transfer</h2><p>Buat bukti transfer dengan rincian yang bisa diedit.</p></div>
+ <div class="mode-select-card"><label for="transfer_mode">Mode Print</label><select id="transfer_mode"><option value="standard">Standar</option><option value="minimal">Minimalis</option><option value="modern">Modern</option></select></div>
+ <div class="card"><h3>📷 Foto sumber</h3><div class="photoDrop"><div class="photoIcon"><svg viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div style="font-weight:850;font-size:12px">Upload foto bukti transfer</div><div class="small" style="margin-top:3px">Siap dihubungkan ke AI Vision untuk ekstraksi data.</div><label class="fileBtn" style="margin-top:9px">Pilih Foto / PDF<input id="transfer_photo" type="file" accept="image/*,.pdf,application/pdf"></label><img id="transfer_photo_preview" class="photoPreview"><div id="transfer_photo_meta" class="photoMeta"></div></div></div>
+   <div class="ocrTools" data-ocr-type="transfer">
+    <div class="row" style="margin-top:10px">
+     <button type="button" class="btn secondary auto ocrScanBtn" data-ocr-type="transfer">🔎 Baca Sumber (OCR)</button>
+     <div id="transfer_ocr_status" class="status">Siap — OCR dijalankan hanya saat diminta.</div>
+    </div>
+    <div id="transfer_ocr_panel" class="ocrPanel hidden">
+     <div class="ocrPanelHead"><div><b>Review Hasil OCR</b><div class="small">OCR adalah bahan bantu. Periksa dan koreksi sebelum diterapkan ke transaksi.</div></div></div>
+     <div class="status warn" style="margin:9px 0">Foto diproses di browser/client. Tidak ada API AI/cloud transaksi yang dipanggil oleh patch ini.</div>
+     <div class="grid">
+      <div><label>Jenis Terbaca</label><select id="transfer_ocr_type"><option value="bill">Tagihan</option><option value="token">Token Listrik</option><option value="transfer">Transfer</option><option value="unknown">Belum dikenali</option></select></div>
+      <div><label>Tanggal</label><input id="transfer_ocr_date" type="date"></div>
+      <div><label>Waktu</label><input id="transfer_ocr_time" type="text" inputmode="numeric" placeholder="HH:MM:SS"></div>
+      <div><label>Nomor Transaksi</label><input id="transfer_ocr_tx" type="text"></div>
+      <div><label>Nama</label><input id="transfer_ocr_name" type="text"></div>
+      <div><label>IDPEL</label><input id="transfer_ocr_idpel" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Meter</label><input id="transfer_ocr_meter" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Pelanggan</label><input id="transfer_ocr_customer" type="text" inputmode="numeric"></div>
+      <div><label>Nominal</label><input id="transfer_ocr_nominal" type="text" inputmode="numeric"></div>
+      <div><label>Admin</label><input id="transfer_ocr_admin" type="text" inputmode="numeric"></div>
+      <div><label>Total</label><input id="transfer_ocr_total" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Referensi</label><input id="transfer_ocr_ref" type="text"></div>
+      <div><label>Bank</label><input id="transfer_ocr_bank" type="text"></div>
+      <div><label>No Rekening</label><input id="transfer_ocr_account" type="text" inputmode="numeric"></div>
+      <div class="full"><label>Layanan / Produk</label><input id="transfer_ocr_service" type="text"></div>
+      <div class="full"><label>Periode</label><input id="transfer_ocr_period" type="text"></div>
+      <div><label>Tarif / Daya</label><input id="transfer_ocr_tariff" type="text"></div>
+      <div><label>JML KWH</label><input id="transfer_ocr_kwh" type="text" inputmode="decimal"></div>
+      <div class="full"><label>Token</label><textarea id="transfer_ocr_token" spellcheck="false"></textarea></div>
+      <div class="full"><label>Raw OCR</label><textarea id="transfer_ocr_raw" class="ocrRaw" readonly spellcheck="false"></textarea></div>
+     </div>
+     <div class="row" style="margin-top:10px">
+      <button type="button" class="btn primary auto ocrApplyBtn" data-ocr-type="transfer">Terapkan ke Transaksi</button>
+      <button type="button" class="btn ghost auto ocrClearBtn" data-ocr-type="transfer">Kosongkan Review</button>
+     </div>
+    </div>
+   </div>
+ <div class="card"><h3>Rincian Transaksi</h3><div class="grid">
+  <div><label>Tanggal</label><input id="transfer_date" type="date"></div><div><label>Kode Referensi</label><input id="transfer_ref"></div><div><label>Bank Tujuan</label><input id="transfer_bank"></div><div><label>No Rekening</label><input id="transfer_account"></div><div><label>Penerima</label><input id="transfer_receiver"></div><div><label>Nominal</label><input id="transfer_nominal" type="number"></div><div><label>Admin</label><input id="transfer_admin" type="number"></div>
+ </div></div>
+ <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>Preview Struk</h3><button class="btn orange" onclick="printThermal()">Cetak</button></div><div class="previewWrap"><div id="receipt-transfer" class="receipt"></div></div></div>
+</section>
+
+<section class="page" id="page-settings">
+ <div class="pageHead"><h2>⚙️ Pengaturan</h2><p>Identitas toko, admin otomatis, running text, dan printer.</p></div>
+ <div class="card"><h3>🏪 Identitas Toko & Struk</h3>
+  <div class="card" style="margin:0 0 10px;padding:12px"><h4 style="margin:0 0 9px;font-size:12px">Logo Aplikasi <span class="small">(berwarna)</span></h4><div class="logoBox"><img id="appLogoPreview" alt="Logo aplikasi"></div><div class="row"><label class="fileBtn auto">Upload Logo Aplikasi<input id="appLogoInput" type="file" accept="image/*"></label><button class="btn danger auto" id="removeAppLogo">Hapus</button></div></div>
+  <div class="card" style="margin:0 0 10px;padding:12px"><h4 style="margin:0 0 9px;font-size:12px">Logo Print <span class="small">(otomatis hitam-putih)</span></h4><div class="logoBox"><img id="printLogoPreview" alt="Logo print hitam putih"></div><div class="row"><label class="fileBtn auto">Upload Logo Print<input id="printLogoInput" type="file" accept="image/*"></label><button class="btn danger auto" id="removePrintLogo">Hapus</button></div><div class="small" style="margin-top:7px">Logo ini yang dipakai di preview dan hasil print. File akan dikonversi ke hitam-putih secara otomatis.</div></div>
+  <div class="divider"></div>
+  <div class="grid">
+   <div><label>Nama Usaha / Toko</label><input id="shopName"></div><div><label>Ukuran Font Toko</label><select id="shopFont"><option value="small">Kecil</option><option value="medium">Sedang</option><option value="large">Besar</option></select></div>
+   <div class="full"><label>Alamat Toko</label><textarea id="shopAddress"></textarea></div><div><label>Nomor Kontak</label><input id="shopContact" inputmode="tel"></div><div><label>Lebar Struk</label><select id="paperWidth"><option value="58">58 mm</option><option value="80">80 mm</option></select></div>
+   <div class="full"><label>Pesan Footer <span class="small">(masuk ke isi struk, bukan footer lisensi)</span></label><textarea id="receiptFooter"></textarea></div>
+  </div>
+ </div>
+ <div class="card"><h3>💰 Admin Otomatis</h3>
+  <div class="grid"><div><label>Nilai Admin Default (Rp)</label><input id="adminDefault" type="number" min="0" step="1"></div><div><label>Status</label><div id="adminModeStatus" class="status">Manual</div></div></div>
+  <div class="checkRow" style="margin-top:10px"><input id="adminAuto" type="checkbox"><label for="adminAuto"><b>Gunakan admin otomatis</b><div class="small">Jika aktif, field Admin pada Tagihan, Token, dan Transfer mengikuti nilai default.</div></label></div>
+ </div>
+ <div class="card"><h3>📢 Running Text</h3><label>Teks yang berjalan di bagian atas aplikasi</label><textarea id="runningText" placeholder="Contoh: RB HOME PRINT MEDIA • CETAK CEPAT • TERIMA KASIH"></textarea><div class="small" style="margin-top:6px">Animasi ini hanya tampilan aplikasi; tidak ikut tercetak sebagai footer lisensi.</div></div>
+ <button class="btn primary" style="width:100%;margin-bottom:8px" onclick="saveAll()">Simpan Pengaturan</button>
+ <div class="card"><h3>🖨️ Koneksi Printer Bluetooth</h3><div id="btStatus" class="status">Belum terhubung</div><p class="small">Untuk printer thermal Bluetooth BLE yang mendukung Web Bluetooth/ESC-POS. Dukungan bergantung pada browser dan tipe printer.</p><div class="row"><button class="btn primary" id="connectBtn">Cari & Hubungkan</button><button class="btn secondary" id="testBtn">Test Print</button></div><div class="divider"></div><label>Preset Bluetooth</label><select id="blePreset"><option value="auto">Auto / umum</option><option value="18f0">18F0 / 2AF1</option><option value="ffe0">FFE0 / FFE1</option><option value="ff00">FF00 / FF02</option></select><div id="printerName" class="status" style="margin-top:8px">Printer: —</div></div>
+ <div class="license">© 2026 RBHome Media — All Rights Reserved</div>
+</section>
+
+<section class="page" id="page-print"><div class="previewWrap"><div id="printReceipt" class="receipt"></div></div></section>
+</main>
+<button class="fab" onclick="quickPrint()" title="Cetak">🖨️</button>
+<nav class="bottom"><div class="nav">
+ <button data-page="home" class="active" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Beranda</button>
+ <button data-page="bill" onclick="go('bill')"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>Tagihan</button>
+ <button data-page="token" onclick="go('token')"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 8-11h-6z"/></svg>Token</button>
+ <button data-page="transfer" onclick="go('transfer')"><svg viewBox="0 0 24 24"><path d="M7 7h10l-3-3M17 17H7l3 3"/><path d="M17 7 14 4M7 17l3 3"/></svg>Transfer</button>
+ <button data-page="settings" onclick="go('settings')"><svg viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="m19 13 1.2 1-.9 1.7-1.5-.3a6.8 6.8 0 0 1-1.2 1.2l.3 1.5-1.7.9-1-1.2a7 7 0 0 1-1.6.2l-.8 1.3h-2l-.8-1.3a7 7 0 0 1-1.6-.2l-1 1.2-1.7-.9.3-1.5a6.8 6.8 0 0 1-1.2-1.2l-1.5.3-.9-1.7 1.2-1a7 7 0 0 1 0-1.9l-1.2-1 .9-1.7 1.5.3a6.8 6.8 0 0 1 1.2-1.2l-.3-1.5 1.7-.9 1 1.2a7 7 0 0 1 1.6-.2L10 5h2l.8 1.3a7 7 0 0 1 1.6.2l1-1.2 1.7.9-.3 1.5a6.8 6.8 0 0 1 1.2 1.2l1.5-.3.9 1.7-1.2 1a7 7 0 0 1 0 1.9z"/></svg>Pengaturan</button>
+</div></nav>
+</div>
+<script>
+const KEY="rbhome_print_media_v3";
+const today=new Date().toISOString().slice(0,10);
+const defaults={settings:{shopName:"RB HOME MEDIA",shopFont:"large",appLogo:"",printLogo:"",shopAddress:"Wonosari Gg 2 Rt01/10 No. 10",shopContact:"",receiptFooter:"- Terima Kasih -",paperWidth:"80",logo:"",adminDefault:"0",adminAuto:true,runningText:"RB HOME PRINT MEDIA • CETAK CEPAT • STRUK THERMAL"},bill:{date:today,service:"RB HOME BASIC",pel:"26000061001",name:"AZKA",period:"19/09/26 - 19/10/26",tagihan:"120000",admin:"0",ref:"00006042",mode:"standard"},token:{date:today,pel:"-",meter:"524510781657",name:"ANA LINDAWATI",tariff:"R1/450",kwh:"43.90",token:"6600 0498 1033 6811 5242",nominal:"20000",admin:"0",ref:"00006042",mode:"token"},transfer:{date:today,ref:"00006042",bank:"",account:"",receiver:"AZKA",nominal:"120000",admin:"0",mode:"standard"}};
+let stored=null;try{stored=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+let data=stored||structuredClone(defaults);data.settings=Object.assign({},defaults.settings,data.settings||{});data.bill=Object.assign({},defaults.bill,data.bill||{});data.token=Object.assign({},defaults.token,data.token||{});data.transfer=Object.assign({},defaults.transfer,data.transfer||{});if(!data.settings.appLogo)data.settings.appLogo="";if(!data.settings.printLogo)data.settings.printLogo="";let current="home",bleDevice=null,bleChar=null;
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>\"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const rp=n=>"Rp "+Number(String(n??0).replace(/\D/g,"")||0).toLocaleString("id-ID");
+function center(x){x=String(x||"");return x.length>=32?x.slice(0,32):" ".repeat(Math.floor((32-x.length)/2))+x}
+function go(page){current=page;document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+page));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="home")updateHome();window.scrollTo({top:0,behavior:"smooth"})}
+function bindGroup(group,prefix){const d=data[group];Object.keys(d).forEach(k=>{const el=$(prefix+"_"+k);if(!el)return;el.value=d[k]??"";el.oninput=()=>{d[k]=el.value;renderReceipt(group)}})}
+function fontPx(){const narrow=data.settings.paperWidth==="58";return data.settings.shopFont==="large"?(narrow?18:22):data.settings.shopFont==="medium"?(narrow?15:18):(narrow?12:14)}
+function logoForPrint(){return data.settings.printLogo||data.settings.logo||""}
+function receiptMarkup(type){
+ const logo=logoForPrint();
+ const text=buildPrintText(type);
+ const lines=text.split("\n");
+ const shopClass=`shopNamePrint shop-${data.settings.shopFont||"medium"}`;
+ const mode=(type==="transfer"?data.transfer.mode:type==="token"?data.token.mode:data.bill.mode)||"standard";
+ const modeClass=mode==="minimal"?" mode-minimal":mode==="modern"?" mode-modern":"";
+ let body=lines.map((x,i)=>i===0?`<span class="${shopClass}">${esc(x.trim())}</span>`:esc(x)).join("\n");
+ if(type==="token"){
+   const tokenIdx=lines.findIndex((x,i)=>x.trim()==="TOKEN"&&i<lines.length-1);
+   if(tokenIdx>=0){
+     let tokenLineIdx=tokenIdx+1;
+     while(tokenLineIdx<lines.length&&!lines[tokenLineIdx].trim())tokenLineIdx++;
+     if(tokenLineIdx<lines.length){
+       body=lines.map((x,i)=>{
+         if(i===0)return `<span class="${shopClass}">${esc(x.trim())}</span>`;
+         if(i===tokenLineIdx)return `<span class="tokenPrintLine">${esc(x.trim())}</span>`;
+         return esc(x);
+       }).join("\n");
+     }
+   }
+ }
+ return `${logo?`<img class="rlogo" src="${logo}" alt="Logo print">`:""}<pre class="receiptText">${body}</pre>`;
+}
+function setAppLogo(){const el=$("appLogoMark");const src=data.settings.appLogo||"";el.innerHTML=src?`<img src="${src}" alt="RB">`:"RB"}
+
+function rows(obj){return Object.entries(obj).map(([k,v])=>`<div>${esc(k)}</div><div class="val">${esc(v)}</div>`).join("")}
+function renderReceipt(type){
+ const el=$("receipt-"+type);if(!el)return;
+ el.innerHTML=receiptMarkup(type);
+ const mode=(type==="transfer"?data.transfer.mode:type==="token"?data.token.mode:data.bill.mode)||"standard";
+ el.className="receipt"+(mode==="minimal"?" mode-minimal":mode==="modern"?" mode-modern":"");
+ el.dataset.mode=mode;
+ el.style.width=(data.settings.paperWidth==="58"?"58mm":"80mm");
+ el.style.maxWidth=(data.settings.paperWidth==="58"?"58mm":"80mm");
+ el.style.setProperty("--shop-font-size",fontPx()+"px");
+ setAppLogo()
+}
+function renderAllReceiptsOnly(){["bill","token","transfer"].forEach(renderReceipt);updateHome()}
+function syncAdminFields(){const s=data.settings;["bill","token","transfer"].forEach(t=>{const el=$(t+"_admin");if(!el)return;if(s.adminAuto){data[t].admin=String(s.adminDefault||0);el.value=data[t].admin;el.disabled=true}else{el.disabled=false}});$('adminModeStatus').textContent=s.adminAuto?"Otomatis: "+rp(s.adminDefault):"Manual";$('adminModeStatus').className="status "+(s.adminAuto?"ok":"")}
+function bindSettings(){["shopName","shopFont","shopAddress","shopContact","paperWidth","receiptFooter","adminDefault","runningText"].forEach(id=>{const el=$(id);if(!el)return;el.value=data.settings[id]??"";el.oninput=()=>{data.settings[id]=el.value;renderAllReceiptsOnly();if(id==="runningText")$('runningTextView').textContent=el.value||"RB HOME PRINT MEDIA";if(id==="adminDefault")syncAdminFields()}});$('adminAuto').checked=!!data.settings.adminAuto;$('adminAuto').onchange=()=>{data.settings.adminAuto=$('adminAuto').checked;syncAdminFields();renderAllReceiptsOnly()};$('appLogoPreview').src=data.settings.appLogo||"";$('appLogoPreview').style.display=data.settings.appLogo?"block":"none";$('printLogoPreview').src=logoForPrint();$('printLogoPreview').style.display=logoForPrint()?"block":"none";$('runningTextView').textContent=data.settings.runningText||"RB HOME PRINT MEDIA";setAppLogo();syncAdminFields()}
+function updateHome(){$('homeShop').textContent=data.settings.shopName||"—";const connected=!!bleChar;$('homePrinter').textContent=connected?"Terhubung ke printer BLE":"Belum terhubung";$('homePrinter').className="status "+(connected?"ok":"")}
+function saveAll(){localStorage.setItem(KEY,JSON.stringify(data));renderAllReceiptsOnly();alert("Pengaturan tersimpan di perangkat.")}
+function readImageData(file,done){const r=new FileReader();r.onload=()=>done(r.result);r.readAsDataURL(file)}
+function toBlackWhite(dataUrl,done){const img=new Image();img.onload=()=>{const c=document.createElement("canvas"),ctx=c.getContext("2d",{willReadFrequently:true});c.width=img.naturalWidth;c.height=img.naturalHeight;ctx.drawImage(img,0,0);const im=ctx.getImageData(0,0,c.width,c.height),d=im.data;for(let i=0;i<d.length;i+=4){const a=d[i+3],lum=(0.299*d[i]+0.587*d[i+1]+0.114*d[i+2]);const v=lum>=185?255:0;d[i]=d[i+1]=d[i+2]=v;d[i+3]=a}ctx.putImageData(im,0,0);done(c.toDataURL("image/png"))};img.src=dataUrl}
+$('appLogoInput').onchange=e=>{const f=e.target.files[0];if(!f)return;if(!f.type.startsWith("image/") && f.type!=="application/pdf" && !/\.pdf$/i.test(f.name)){alert("Pilih foto atau PDF.");return}readImageData(f,src=>{data.settings.appLogo=src;bindSettings();renderAllReceiptsOnly()})};
+$('removeAppLogo').onclick=()=>{data.settings.appLogo="";bindSettings();renderAllReceiptsOnly()};
+$('printLogoInput').onchange=e=>{const f=e.target.files[0];if(!f)return;if(!f.type.startsWith("image/") && f.type!=="application/pdf" && !/\.pdf$/i.test(f.name)){alert("Pilih foto atau PDF.");return}readImageData(f,src=>toBlackWhite(src,bw=>{data.settings.printLogo=bw;bindSettings();renderAllReceiptsOnly()}))};
+$('removePrintLogo').onclick=()=>{data.settings.printLogo="";bindSettings();renderAllReceiptsOnly()};
+function setupPhoto(type){const input=$(type+"_photo"),preview=$(type+"_photo_preview"),meta=$(type+"_photo_meta");input.onchange=()=>{const f=input.files[0];if(!f)return;if(!f.type.startsWith("image/")&&f.type!=="application/pdf"&&!/\.pdf$/i.test(f.name)){alert("Pilih foto atau PDF.");input.value="";return}if(f.type==="application/pdf"||/\.pdf$/i.test(f.name)){preview.removeAttribute("src");preview.classList.remove("show");meta.textContent=f.name+" • "+Math.round(f.size/1024)+" KB • PDF";return}const url=URL.createObjectURL(f);preview.src=url;preview.classList.add("show");meta.textContent=f.name+" • "+Math.round(f.size/1024)+" KB • Foto"}}
+function printWrap(text,width){const out=[];String(text??"").split(/\r?\n/).forEach(line=>{let x=line.trimEnd();if(!x){out.push("");return}while(x.length>width){let cut=x.lastIndexOf(" ",width);if(cut<1)cut=width;out.push(x.slice(0,cut).trimEnd());x=x.slice(cut).trimStart()}out.push(x)});return out.join("\n")}
+function printCenter(text,width){return printWrap(text,width).split("\n").map(x=>{if(x.length>=width)return x.slice(0,width);return " ".repeat(Math.floor((width-x.length)/2))+x}).join("\n")}
+function printPair(label,value,width){const l=String(label??""),v=String(value??"—"),gap=2;const room=Math.max(8,width-l.length-gap);const words=printWrap(v,room).split("\n");const first=words.shift()||"";const line=l+" ".repeat(Math.max(1,width-l.length-first.length))+first;return [line,...words.map(w=>" ".repeat(Math.min(width-1,l.length+gap))+w)].join("\n")}
+function formatTokenGroups(value){
+ const raw=String(value??"").replace(/\D/g,"");
+ if(!raw)return "—";
+ const groups=raw.match(/.{1,4}/g)||[];
+ return groups.join(" ");
+}
+function buildPrintText(type){
+ const d=data[type],s=data.settings,width=32,lines=[];
+ if(s.shopName)lines.push(printCenter(s.shopName.toUpperCase(),width));
+ if(s.shopAddress)lines.push(...printWrap(s.shopAddress.toUpperCase(),width).split("\n").map(x=>printCenter(x,width)));
+ if(s.shopContact)lines.push(printCenter(s.shopContact,width));
+ lines.push("=".repeat(width));
+
+ if(type==="bill"){
+  if(d.mode==="ppob"){
+   lines.push(
+    printCenter("STRUK PEMBAYARAN PPOB",width),
+    "=".repeat(width),
+    printPair("TANGGAL",d.date,width),
+    printPair("LAYANAN",d.service||"PPOB",width),
+    printPair("NO PEL",d.pel,width),
+    printPair("NAMA",d.name,width),
+    printPair("PERIODE",d.period,width),
+    "-".repeat(width),
+    printPair("TAGIHAN",rp(d.tagihan),width),
+    printPair("ADMIN",rp(d.admin),width),
+    "=".repeat(width),
+    printPair("TOTAL",rp(+d.tagihan+(+d.admin||0)),width),
+    "=".repeat(width),
+    printPair("REF",d.ref,width),
+    printCenter("STATUS : LUNAS",width)
+   );
+  }else{
+   lines.push(printCenter("STRUK PEMBAYARAN TAGIHAN",width),"=".repeat(width),printPair("TANGGAL",d.date,width),"-".repeat(width),printPair("LAYANAN",d.service,width),printPair("NO PEL",d.pel,width),printPair("NAMA",d.name,width),printPair("PERIODE",d.period,width),"-".repeat(width),printPair("TAGIHAN",rp(d.tagihan),width),printPair("ADMIN",rp(d.admin),width),"=".repeat(width),printPair("TOTAL",rp(+d.tagihan+(+d.admin||0)),width),"=".repeat(width),printPair("REF",d.ref,width),printCenter("** TRANSAKSI BERHASIL **",width));
+  }
+ }else if(type==="token"){
+  if(d.mode==="postpaid"){
+   lines.push(
+    printCenter("STRUK PEMBAYARAN TAGIHAN",width),
+    printCenter("LISTRIK PLN",width),
+    "=".repeat(width),
+    printPair("TANGGAL",d.date,width),
+    "-".repeat(width),
+    printPair("ID PEL",d.pel,width),
+    printPair("NO METER",d.meter,width),
+    printPair("NAMA",d.name,width),
+    printPair("TARIF/DAYA",d.tariff,width),
+    printPair("JML KWH",d.kwh,width),
+    "-".repeat(width),
+    printPair("TAGIHAN",rp(d.nominal),width),
+    printPair("ADMIN",rp(d.admin),width),
+    "=".repeat(width),
+    printPair("TOTAL BAYAR",rp(+d.nominal+(+d.admin||0)),width),
+    "=".repeat(width),
+    printPair("REF",d.ref,width),
+    printCenter("STATUS : LUNAS",width)
+   );
+  }else{
+   lines.push(printCenter("STRUK PEMBELIAN TOKEN LISTRIK",width),"=".repeat(width),printPair("TANGGAL",d.date,width),"-".repeat(width),printPair("ID PEL",d.pel,width),printPair("NO METER",d.meter,width),printPair("NAMA",d.name,width),printPair("TARIF/DAYA",d.tariff,width),printPair("JML KWH",d.kwh,width),"-".repeat(width),printCenter("TOKEN",width),"",printCenter(formatTokenGroups(d.token),width),"-".repeat(width),printPair("NOMINAL",rp(d.nominal),width),printPair("ADMIN",rp(d.admin),width),"=".repeat(width),printPair("TOTAL",rp(+d.nominal+(+d.admin||0)),width),"=".repeat(width),printPair("REF",d.ref,width));
+  }
+ }else{
+  if(d.mode==="minimal"){
+   lines.push(
+    printCenter("BUKTI TRANSFER",width),
+    "-".repeat(width),
+    printPair("TANGGAL",d.date,width),
+    printPair("REF",d.ref,width),
+    "",
+    printPair("BANK",d.bank||"—",width),
+    printPair("NO REK",d.account||"—",width),
+    printPair("PENERIMA",d.receiver,width),
+    "",
+    printPair("NOMINAL",rp(d.nominal),width),
+    printPair("ADMIN",rp(d.admin),width),
+    "=".repeat(width),
+    printPair("TOTAL",rp(+d.nominal+(+d.admin||0)),width)
+   );
+  }else if(d.mode==="modern"){
+   lines.push(
+    printCenter("BUKTI TRANSFER",width),
+    "=".repeat(width),
+    printCenter("TRANSAKSI BERHASIL",width),
+    "-".repeat(width),
+    printPair("TANGGAL",d.date,width),
+    printPair("REF",d.ref,width),
+    "-".repeat(width),
+    printCenter("DATA PENERIMA",width),
+    printPair("BANK TUJUAN",d.bank||"—",width),
+    printPair("NO REKENING",d.account||"—",width),
+    printPair("PENERIMA",d.receiver,width),
+    "-".repeat(width),
+    printPair("NOMINAL",rp(d.nominal),width),
+    printPair("ADMIN",rp(d.admin),width),
+    "=".repeat(width),
+    printPair("TOTAL",rp(+d.nominal+(+d.admin||0)),width)
+   );
+  }else{
+   lines.push(printCenter("BUKTI TRANSFER",width),"=".repeat(width),printPair("TANGGAL",d.date,width),"-".repeat(width),printCenter("KODE REFERENSI",width),printCenter(d.ref,width),"-".repeat(width),printCenter("DATA PENERIMA",width),printPair("BANK TUJUAN",d.bank||"—",width),printPair("NO REKENING",d.account||"—",width),printPair("PENERIMA",d.receiver,width),"-".repeat(width),printPair("NOMINAL",rp(d.nominal),width),printPair("ADMIN",rp(d.admin),width),"=".repeat(width),printPair("TOTAL",rp(+d.nominal+(+d.admin||0)),width),"=".repeat(width));
+  }
+ }
+ if(s.receiptFooter)lines.push("=".repeat(width),...printWrap(s.receiptFooter,width).split("\n").map(x=>printCenter(x,width)));
+ return lines.join("\n");
+}
+
+function printBrowser(){
+ const type=current;
+ if(!["bill","token","transfer"].includes(type))return;
+ const pr=$("printReceipt");
+ pr.innerHTML=receiptMarkup(type);
+ pr.className="receipt";
+ pr.style.setProperty("--shop-font-size",fontPx()+"px");
+ const mm=data.settings.paperWidth==="58"?"58mm":"80mm";
+ pr.style.width=mm;
+ document.documentElement.style.setProperty("--print-width",mm);
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ $("page-print").classList.add("active");
+ window.print();
+ setTimeout(()=>go(type),700);
+}
+async function printThermal(){
+ const type=current;
+ if(!["bill","token","transfer"].includes(type))return;
+ try{
+  if(!bleChar){alert("Hubungkan printer Bluetooth terlebih dahulu di Pengaturan.");return}
+  const bytes=await escposReceipt(type);
+  await writeChunks(bytes);
+ }catch(e){alert("Gagal mencetak ke printer thermal.\n\n"+e.message)}
+}
+function quickPrint(){if(["bill","token","transfer"].includes(current))printThermal();else go("bill")}
+function presets(){const p=$('blePreset').value;if(p==="18f0")return [["000018f0-0000-1000-8000-00805f9b34fb","00002af1-0000-1000-8000-00805f9b34fb"]];if(p==="ffe0")return [["0000ffe0-0000-1000-8000-00805f9b34fb","0000ffe1-0000-1000-8000-00805f9b34fb"]];if(p==="ff00")return [["0000ff00-0000-1000-8000-00805f9b34fb","0000ff02-0000-1000-8000-00805f9b34fb"]];return [["000018f0-0000-1000-8000-00805f9b34fb","00002af1-0000-1000-8000-00805f9b34fb"],["0000ffe0-0000-1000-8000-00805f9b34fb","0000ffe1-0000-1000-8000-00805f9b34fb"],["0000ff00-0000-1000-8000-00805f9b34fb","0000ff02-0000-1000-8000-00805f9b34fb"]]}
+async function connectBluetooth(){if(!navigator.bluetooth){alert("Browser ini belum mendukung Web Bluetooth. Coba Chrome Android/desktop yang mendukung Web Bluetooth.");return}try{bleDevice=await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:presets().map(x=>x[0])});$('printerName').textContent="Printer: "+(bleDevice.name||"Tanpa nama");const server=await bleDevice.gatt.connect();let found=null;for(const [svc,chr] of presets()){try{const service=await server.getPrimaryService(svc);found=await service.getCharacteristic(chr);break}catch(e){}}if(!found)throw Error("Service/characteristic printer tidak ditemukan.");bleChar=found;$('btStatus').textContent="Terhubung";$('btStatus').className="status ok";updateHome();bleDevice.addEventListener('gattserverdisconnected',()=>{bleChar=null;$('btStatus').textContent="Terputus";$('btStatus').className="status warn";updateHome()})}catch(e){$('btStatus').textContent="Gagal / batal";$('btStatus').className="status warn";alert("Printer belum terhubung.\n\n"+e.message)}}
+function escposText(type=current){const text=buildPrintText(type),header="\x1b\x40\x1b\x45\x01",footer="\x1b\x45\x00\n\n\n",lines=text.split("\n");if(lines.length){const shop=lines[0].trim();const size=data.settings.shopFont==="large"?"\x1b\x21\x30":data.settings.shopFont==="medium"?"\x1b\x21\x10":"\x1b\x21\x00";lines[0]="\x1b\x61\x01"+size+shop+"\x1b\x21\x00\x1b\x61\x00"}if(type!=="token")return new TextEncoder().encode(header+lines.join("\n")+"\n"+footer);const idx=lines.findIndex((x,i)=>x.replace(/\x1b\[[0-9;]*[A-Za-z]/g,"").trim()==="TOKEN"&&i<lines.length-1);if(idx<0)return new TextEncoder().encode(header+lines.join("\n")+"\n"+footer);let tokenIdx=idx+1;while(tokenIdx<lines.length&&!lines[tokenIdx].trim())tokenIdx++;if(tokenIdx>=lines.length)return new TextEncoder().encode(header+lines.join("\n")+"\n"+footer);const tokenLine=formatTokenGroups(lines[tokenIdx].replace(/^\s+|\s+$/g,""));lines[tokenIdx]="\x1b\x61\x01\x1b\x21\x30"+tokenLine+"\x1b\x21\x00\x1b\x61\x00";if(idx+1>=lines.length||lines[idx+1].trim())lines.splice(idx+1,0,"");return new TextEncoder().encode(header+lines.join("\n")+"\n"+footer)}
+async function escposLogo(){
+ const src=logoForPrint();
+ if(!src)return new Uint8Array();
+ const img=await new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(Error("Logo print gagal dimuat."));i.src=src});
+ const maxDots=data.settings.paperWidth==="58"?192:288;
+ const scale=Math.min(1,maxDots/img.naturalWidth);
+ const w=Math.max(8,Math.floor(img.naturalWidth*scale/8)*8),h=Math.max(1,Math.floor(img.naturalHeight*scale));
+ const c=document.createElement("canvas"),ctx=c.getContext("2d",{willReadFrequently:true});c.width=w;c.height=h;ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);
+ const im=ctx.getImageData(0,0,w,h).data,bytesPerRow=w/8,out=new Uint8Array(11+w*h/8+3);
+ out.set([0x1b,0x61,0x01,0x1d,0x76,0x30,0x00,bytesPerRow&255,(bytesPerRow>>8)&255,h&255,(h>>8)&255],0);
+ let p=11;
+ for(let y=0;y<h;y++){for(let x=0;x<w;x+=8){let b=0;for(let bit=0;bit<8;bit++){const i=((y*w)+(x+bit))*4,lum=0.299*im[i]+0.587*im[i+1]+0.114*im[i+2],a=im[i+3];if(a>30&&lum<185)b|=(0x80>>bit)}out[p++]=b}}
+ out[p++]=0x1b;out[p++]=0x61;out[p++]=0x00;
+ return out;
+}
+async function escposReceipt(type=current){const logo=await escposLogo(),text=escposText(type);const gap=logo.length?new Uint8Array([0x0a]):new Uint8Array();const out=new Uint8Array(logo.length+gap.length+text.length);out.set(logo,0);out.set(gap,logo.length);out.set(text,logo.length+gap.length);return out}
+async function writeChunks(bytes){if(!bleChar)throw Error("Printer belum terhubung.");for(let i=0;i<bytes.length;i+=180){await bleChar.writeValue(bytes.slice(i,i+180));await new Promise(r=>setTimeout(r,25))}}
+$('connectBtn').onclick=connectBluetooth;$('testBtn').onclick=async()=>{try{if(!bleChar)await connectBluetooth();if(bleChar){const width=data.settings.paperWidth==="58"?32:42;const t="\x1b\x40\x1b\x45\x01"+printCenter(data.settings.shopName||"RB HOME MEDIA",width)+"\n"+printCenter("TEST PRINT BERHASIL",width)+"\n\x1b\x45\x00\n\n\n";await writeChunks(new TextEncoder().encode(t))}}catch(e){alert(e.message)}};
+["bill","token","transfer"].forEach(setupPhoto);
+renderAllReceiptsOnly();
+bindGroup("bill","bill");
+bindGroup("token","token");
+bindGroup("transfer","transfer");
+["bill","token","transfer"].forEach(t=>{const m=$(t+"_mode");if(m)m.value=data[t].mode||"standard"});
+bindSettings();
+
+/* ========================= V12 PARSER / MAPPING PATCH ========================= */
+const OCR_VERSION="V13-PDF-TokenParser-1";
+const OCR_MAX_PASSES=3; // OCR sengaja dibatasi: parser/mapping adalah fokus utama.
+const OCR_FIELDS=["name","idpel","meter","customerNumber","nominal","admin","total","token","reference","date","time","transactionNumber","bank","account","service","period","tariff","kwh"];
+const OCR_TYPE_LABEL={bill:"Tagihan",token:"Token Listrik",transfer:"Transfer",unknown:"Belum dikenali"};
+const OCR_CDN={script:"https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js",worker:"https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/worker.min.js",core:"https://cdn.jsdelivr.net/npm/tesseract.js-core@7.0.0",lang:"https://cdn.jsdelivr.net/npm/@tesseract.js-data/eng@1.0.0/4.0.0_best_int"};
+let ocrWorker=null,ocrWorkerPromise=null,ocrBusy=false;
+if(!data.ocr)data.ocr={bill:null,token:null,transfer:null};
+function ocrStatus(type,text,kind=""){const el=$(type+"_ocr_status");if(!el)return;el.textContent=text;el.className="status"+(kind?" "+kind:"")}
+const OCR_INPUT_ALIASES={transactionNumber:"tx",reference:"ref",customerNumber:"customer"};
+function ocrInput(type,key){return $(type+"_ocr_"+(OCR_INPUT_ALIASES[key]||key))}
+function ocrSetField(type,key,value){const el=ocrInput(type,key);if(el)el.value=value??""}
+function ocrGetField(type,key){const el=ocrInput(type,key);return el?String(el.value??"").trim():""}
+function ocrShowPanel(type,show=true){const p=$(type+"_ocr_panel");if(p)p.classList.toggle("hidden",!show)}
+function ocrKnown(v){return v!==null&&v!==undefined&&String(v).trim()!==""}
+function ocrClean(s){return String(s??"").replace(/[\u0000-\u001f]+/g," ").replace(/[ \t]+/g," ").trim()}
+function ocrDigits(s){return String(s??"").replace(/\D/g,"")}
+function ocrNormLine(s){return ocrClean(String(s??"").replace(/[|¦]/g," ").replace(/[“”]/g,'"').replace(/[‘’]/g,"'"))}
+function ocrUniqueLines(raw){
+ const src=String(raw??"").replace(/\r/g,"\n").replace(/[\u00a0]/g," ").split(/\n+/).map(ocrNormLine).filter(Boolean);
+ const out=[],seen=new Set();
+ for(const line of src){
+  const key=line.toUpperCase().replace(/\s+/g," ").trim();
+  if(!key||seen.has(key))continue;
+  // buang duplikasi ringan akibat beberapa pass OCR, tetapi jangan menghapus baris yang hanya mirip.
+  if(out.some(x=>x.toUpperCase().replace(/\s+/g," ").trim()===key))continue;
+  seen.add(key);out.push(line);
+ }
+ return out;
+}
+function ocrAfterLabel(lines,regex){for(const raw of lines){const line=raw.trim();const m=line.match(regex);if(m&&ocrKnown(m[1]))return ocrClean(m[1])}return ""}
+function ocrAfterLabelValue(lines,labelPattern){
+ const reStart=new RegExp("^(?:"+labelPattern+")\\s*(?:[:=\\-]\\s*)?(.+)$","i");
+ const reAnywhere=new RegExp("(?:^|\\s)(?:"+labelPattern+")\\s*(?:[:=\\-]\\s*)?(.+)$","i");
+ for(const line of lines){let m=line.match(reStart)||line.match(reAnywhere);if(m&&ocrKnown(m[1]))return ocrClean(m[1])}return "";
+}
+function ocrNormalizeMoneyToken(raw){
+ let s=String(raw??"").replace(/[^0-9.,]/g,"");if(!s)return"";
+ const dots=(s.match(/\./g)||[]).length,commas=(s.match(/,/g)||[]).length;
+ if(dots&&commas){const lastDot=s.lastIndexOf("."),lastComma=s.lastIndexOf(",");const dec=lastDot>lastComma?".":",";const thou=dec==="."?",":".";s=s.replace(new RegExp("\\"+thou,"g"),"");s=s.split(dec)[0]}
+ else if(dots||commas){const sep=dots?".":",";const parts=s.split(sep);if(parts.length>2)s=parts.join("");else if(parts.length===2){if(parts[1].length===3)s=parts.join("");else s=parts[0]}}
+ return s.replace(/\D/g,"");
+}
+function ocrMoneyCandidates(value){
+ const s=String(value??"");const out=[];const re=/(?:Rp\s*|IDR\s*)?([0-9][0-9.,]*)/gi;let m;
+ while((m=re.exec(s))){const raw=m[1];const digits=ocrNormalizeMoneyToken(raw);if(digits)out.push(digits)}
+ return out;
+}
+function ocrBestMoney(value){
+ const c=ocrMoneyCandidates(value); if(!c.length)return "";
+ // nominal/tagihan/admin harus angka rupiah bulat; abaikan angka desimal kecil di belakang koma.
+ return c.sort((a,b)=>Number(b)-Number(a))[0];
+}
+function ocrToISODate(value){
+ const s=ocrClean(value).replace(/\./g,"/");
+ let m=s.match(/\b(\d{4})[-\/]?(\d{2})[-\/]?(\d{2})\b/);if(m)return `${m[1]}-${m[2]}-${m[3]}`;
+ m=s.match(/\b(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2}|\d{4})\b/);if(m){let y=m[3];if(y.length===2)y="20"+y;return `${y}-${m[2].padStart(2,"0")}-${m[1].padStart(2,"0")}`}
+ return "";
+}
+function ocrDateCandidates(text){return (String(text??"").match(/\b(?:\d{4}[-\/]\d{1,2}[-\/]\d{1,2}|\d{1,2}[\/\-.]\d{1,2}[\/\-.](?:\d{2}|\d{4}))\b/g)||[]).map(ocrToISODate).filter(Boolean)}
+function ocrFindDate(text,lines,type){
+ const labeled=[];
+ for(const line of lines){if(/\b(TANGGAL|DATE|TGL|TRANSACTION DATE|PAID DATE)\b/i.test(line)){const d=ocrToISODate(line);if(d)labeled.push(d)}}
+ if(labeled[0])return labeled[0];
+ if(type==="bill"){for(const line of lines){if(/\bTEMPO\b|\bDUE DATE\b/i.test(line)){const d=ocrToISODate(line);if(d)return d}}}
+ return ocrDateCandidates(text)[0]||"";
+}
+function ocrFindTime(text,lines){for(const line of lines){if(/\b(WAKTU|TIME|JAM)\b/i.test(line)){const m=line.match(/\b([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?\b/);if(m)return m[3]?`${m[1].padStart(2,"0")}:${m[2]}:${m[3]}`:`${m[1].padStart(2,"0")}:${m[2]}`}}const m=String(text).match(/\b([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?\b/);return m?(m[3]?`${m[1].padStart(2,"0")}:${m[2]}:${m[3]}`:`${m[1].padStart(2,"0")}:${m[2]}`):""}
+function ocrFindToken(text,lines){
+ const candidates=[]; for(const line of lines){if(/TOKEN|STROOM|VOUCHER/i.test(line)||/\bPLN\b/i.test(line)){const m=line.match(/(?:\d[\s-]?){16,24}/g)||[];m.forEach(x=>candidates.push(x))}}
+ const all=String(text).match(/\b(?:\d[\s-]?){16,24}\b/g)||[];candidates.push(...all);
+ for(const c of candidates){const d=ocrDigits(c);if(d.length>=16&&d.length<=24)return formatTokenGroups(d)} return "";
+}
+function ocrFindLabeledMoney(lines,labelPattern){
+ for(const line of lines){if(new RegExp(labelPattern,"i").test(line)){const m=ocrBestMoney(line);if(m)return m}}
+ return "";
+}
+function ocrFindReference(lines){return ocrAfterLabelValue(lines,"NO\\s*REF(?:ERENSI)?|REF(?:ERENCE)?|KODE\\s*REFERENSI|REFERENSI")}
+function ocrFindTransactionNumber(lines){return ocrAfterLabelValue(lines,"NO\\s*TRANSAKSI|NOMOR\\s*TRANSAKSI|TRANSACTION\\s*ID|ID\\s*TRANSAKSI")}
+function ocrFindBank(lines){
+ let v=ocrAfterLabelValue(lines,"BANK(?:\\s+TUJUAN)?|BANK TUJUAN|BANK PENERIMA");
+ if(v)return v.replace(/\s+(?:NO|NOMOR)\s+(?:REK|REKENING).*$/i,"").trim();
+ const known=/\b(BCA|BRI|BNI|MANDIRI|CIMB|DANAMON|PERMATA|BSI|BTN|SEABANK|BANK JAGO|OVO|DANA|GOPAY|GO-PAY|SHOPEEPAY|LINKAJA|QRIS|DOKU)\b/i;
+ for(const line of lines){const m=line.match(known);if(m)return m[1]}
+ return "";
+}
+function ocrFindAccount(lines,text){
+ const patterns=["NO\\s*REK(?:ENING)?","NOMOR\\s*REK(?:ENING)?","REKENING","ACCOUNT(?:\\s+NUMBER)?","VIRTUAL\\s*ACCOUNT","VA\\s*NUMBER","NOMOR\\s*TUJUAN","NO\\.?\\s*TUJUAN","NO\\.?\\s*HP","NOMOR\\s*HP","NO\\.?\\s*KARTU","NOMOR\\s*KARTU","ID\\s*PELANGGAN"];
+ for(const line of lines){if(patterns.some(p=>new RegExp("(?:^|\\b)"+p+"\\b","i").test(line))){const digits=(line.match(/(?:\\+?62|0)[0-9\\s-]{7,18}|[0-9][0-9\\s-]{7,20}/)||[])[0];if(digits)return ocrDigits(digits)}}
+ // E-wallet/kartu sering hanya menampilkan nomor tanpa label; cari baris yang jelas menyebut provider/tujuan.
+ for(const line of lines){if(/DANA|GOPAY|GO-PAY|OVO|SHOPEEPAY|LINKAJA|QRIS|E-?WALLET|KARTU|CARD/i.test(line)){const digits=(line.match(/(?:\\+?62|0)[0-9\\s-]{7,18}|[0-9][0-9\\s-]{7,20}/)||[])[0];if(digits)return ocrDigits(digits)}}
+ return "";
+}
+function ocrFindName(lines,type){
+ if(type==="bill"){
+  const i=lines.findIndex(x=>/TAGIHAN\s+KEPADA/i.test(x)); if(i>=0){for(let j=i+1;j<Math.min(lines.length,i+5);j++){const x=lines[j];if(/^(?:DETAIL|ID\s*:|NO\s*:|PERIODE|TEMPO|\+?62|08\d)/i.test(x))continue;if(/[A-Za-z]{2,}/.test(x)&&!/(JALAN|JL\.?|ALAMAT|DESKRIPSI|INTERNET|TOTAL|TAGIHAN)/i.test(x)){return ocrClean(x.split(/\b(?:Periode|Tempo)\s*:/i)[0])}}}
+ }
+ for(const line of lines){const v=ocrAfterLabel([line],/^(?:NAMA(?:\s+PELANGGAN)?|CUSTOMER\s+NAME|NAMA\s+PEMILIK|PENERIMA|ATAS\s+NAMA)\s*(?:[:=\-]\s*)?(.+)$/i);if(v)return v}
+ return "";
+}
+function ocrFindIdpel(lines){const v=ocrAfterLabelValue(lines,"ID\s*PEL(?:ANGGAN)?|IDPEL|ID\s*PEL");const m=String(v).match(/\d{6,20}/);return m?m[0]:ocrDigits(v)}
+function ocrFindMeter(lines){const v=ocrAfterLabelValue(lines,"NO\.?\s*METER|NOMOR\s*METER|METER\s*(?:NO|NUMBER)?");const m=String(v).match(/\d{10,15}/);return m?m[0]:ocrDigits(v)}
+function ocrFindCustomer(lines){const v=ocrAfterLabelValue(lines,"NO\s*PELANGGAN|NOMOR\s*PELANGGAN|CUSTOMER\s*NUMBER|CUSTOMER\s*NO");const m=String(v).match(/\d{6,20}/);return m?m[0]:ocrDigits(v)}
+function ocrFindService(lines,type){
+ if(type==="bill"){
+  const i=lines.findIndex(x=>/DESKRIPSI/i.test(x));
+  if(i>=0){for(let j=i+1;j<Math.min(lines.length,i+7);j++){const x=lines[j];if(/TOTAL|SUDAH DIBAYAR|SISA TAGIHAN|HARGA SUDAH/i.test(x))continue;if(/INTERNET|PAKET|BROADBAND|PRODUK|LAYANAN/i.test(x)){return x.replace(/\s*(?:Rp|IDR)\s*[0-9.,]+.*$/i,"").trim()}}}
+  for(const x of lines){if(/INTERNET|PAKET|BROADBAND/i.test(x)&&/(?:Rp|IDR)\s*[0-9]/i.test(x))return x.replace(/\s*(?:Rp|IDR)\s*[0-9.,]+.*$/i,"").trim()}
+ }
+ return ocrAfterLabelValue(lines,"LAYANAN|SERVICE|PRODUK|PRODUCT")
+}
+function ocrFindPeriod(lines){return ocrAfterLabelValue(lines,"PERIODE|PERIOD|BULAN")}
+function ocrFindTariff(lines){return ocrAfterLabelValue(lines,"TARIF\\s*(?:/\\s*DAYA)?|DAYA")}
+function ocrFindKwh(lines){return ocrAfterLabelValue(lines,"JML\\s*KWH|JUMLAH\\s*KWH|KWH")}
+function ocrFindNominal(lines,type){
+ if(type==="bill"){
+  for(const line of lines){if(/TOTAL\s+TAGIHAN/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+  for(const line of lines){if(/(?:Rp|IDR)\s*[0-9]/i.test(line)&&/INTERNET|PAKET|PRODUK|LAYANAN|HARGA/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+  return ocrFindLabeledMoney(lines,"NOMINAL|JUMLAH|TAGIHAN|BAYAR");
+ }
+ if(type==="token"){
+  for(const line of lines){if(/(?:HARGA|NOMINAL|SUB\s*TOTAL|TOTAL)\b/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+  for(const line of lines){if(/TOKEN\s+(?:LISTRIK|PLN)|TOKEN\b/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+  return ocrFindLabeledMoney(lines,"NOMINAL|JUMLAH|HARGA|BAYAR");
+ }
+ // transfer: prioritaskan label nominal/jumlah transfer, bukan angka desimal seperti 43.90.
+ for(const line of lines){if(/\b(NOMINAL|JUMLAH|AMOUNT|TOTAL\s+TRANSFER|TRANSFER)\b/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+ return "";
+}
+function ocrFindAdmin(lines){return ocrFindLabeledMoney(lines,"ADMIN|BIAYA ADMIN|FEE|SERVICE FEE")}
+function ocrFindTotal(lines,type){
+ for(const line of lines){if(/TOTAL\s*(?:TAGIHAN|BAYAR|PAYMENT|TRANSFER)?\b/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+ return type==="transfer"?ocrFindLabeledMoney(lines,"TOTAL"):"";
+}
+function ocrDetectType(text,fields){
+ const u=text.toUpperCase();
+ const tokenScore=(fields.token?5:0)+[/TOKEN|STROOM/.test(u),/NO\s*METER|METER\b/.test(u),/KWH|PLN/.test(u)].filter(Boolean).length;
+ const transferScore=(fields.account?2:0)+[/BI[\s-]?FAST|TRANSFER|TRANFER|MOBILE BANKING|M?BANKING/.test(u),/PENERIMA|ATAS\s+NAMA/.test(u),/NO\s*REK|REKENING|VIRTUAL ACCOUNT|E-?WALLET|QRIS/.test(u)].filter(Boolean).length;
+ const billScore=(fields.idpel?2:0)+[/TAGIHAN|PEMBAYARAN|PEMBAYAR/.test(u),/PERIODE|TEMPO/.test(u),/TOTAL TAGIHAN/.test(u)].filter(Boolean).length;
+ if(tokenScore>=3)return "token";if(transferScore>=3&&tokenScore<3)return "transfer";if(billScore>=3&&tokenScore<3&&transferScore<3)return "bill";return "unknown";
+}
+function parseOCRText(raw){
+ const lines=ocrUniqueLines(raw),text=lines.join("\n");
+ // Dua tahap: deteksi kasar dulu, lalu field yang formatnya tergantung jenis.
+ const rough={token:ocrFindToken(text,lines),idpel:ocrFindIdpel(lines),account:ocrFindAccount(lines,text),total:ocrFindTotal(lines,"unknown")};
+ const type=ocrDetectType(text,rough);
+ const f={type,name:ocrFindName(lines,type),idpel:ocrFindIdpel(lines),meter:ocrFindMeter(lines),customerNumber:ocrFindCustomer(lines),nominal:ocrFindNominal(lines,type),admin:ocrFindAdmin(lines),total:ocrFindTotal(lines,type),token:ocrFindToken(text,lines),reference:ocrFindReference(lines),date:ocrFindDate(text,lines,type),time:ocrFindTime(text,lines),transactionNumber:ocrFindTransactionNumber(lines),bank:ocrFindBank(lines),account:ocrFindAccount(lines,text),service:ocrFindService(lines,type),period:ocrFindPeriod(lines),tariff:ocrFindTariff(lines),kwh:ocrFindKwh(lines)};
+ if(type==="bill"){if(!f.idpel){const m=text.match(/\bID\s*[:=]?\s*(\d{6,20})\b/i);if(m)f.idpel=m[1]}if(!f.reference){const m=text.match(/\bNo\s*[:=]\s*(RB[-A-Z0-9]+)/i);if(m)f.reference=m[1]}}
+ // Mapping/validasi lintas-field.
+ if(type==="bill"&&f.total&&!f.nominal)f.nominal=f.total;
+ if(type==="bill"&&f.idpel&&!/^\d{6,20}$/.test(ocrDigits(f.idpel)))f.idpel="";
+ if(type==="token"){
+  // Token PLN: TOKEN/NAMA/R1/000000450/43.90
+  const meterLine=lines.find(x=>/(?:NO\.?\s*METER|NOMOR\s*METER|ID\s*PEL(?:ANGGAN)?|IDPEL)/i.test(x))||"";
+  const nums=(meterLine.match(/\b\d{10,15}\b/g)||[]);if(nums[0]&&!f.meter)f.meter=nums[0];if(nums[0]&&!f.idpel)f.idpel=nums[0];
+  const catatan=lines.find(x=>/CATATAN/i.test(x))||"";
+  const tokenTupleSource=catatan || lines.find(x=>/\b(?:\d[\s-]?){16,24}\s*\/\s*[A-Z][A-Z .'-]{2,}\s*\/\s*R\d?\s*\//i.test(x)) || "";
+  if(tokenTupleSource){
+   const body=tokenTupleSource.replace(/^.*?CATATAN\s*[:=-]?\s*/i,"").trim();
+   const tm=body.match(/(?:^|\s)((?:\d[\s-]?){16,24})\s*\/\s*([^\/]+?)\s*\/\s*(R\d?\s*\/\s*\d{2,9})\s*\/\s*(\d+(?:[.,]\d+)?)/i);
+   if(tm){const tok=ocrDigits(tm[1]);if(!f.token&&tok.length>=16&&tok.length<=24)f.token=formatTokenGroups(tok);if(!f.name)f.name=ocrClean(tm[2]);if(!f.tariff)f.tariff=tm[3].replace(/\s+/g,"");if(!f.kwh)f.kwh=tm[4].replace(",",".")}
+   else{
+    if(!f.name){const nm=body.match(/(?:^|\s)(?:\d[\d\s-]*\/)?\s*([^\/]+?)\s*\/\s*R\d?\s*\//i);if(nm)f.name=ocrClean(nm[1])}
+    if(!f.tariff){const tr=body.match(/\b(R\d?\s*\/\s*\d{2,9})\b/i);if(tr)f.tariff=tr[1].replace(/\s+/g,"")}
+    if(!f.kwh){const kw=body.match(/\b(\d+(?:[.,]\d+)?)\s*$/);if(kw)f.kwh=kw[1].replace(",",".")}
+   }
+  }
+  if(!f.name){const nm=ocrAfterLabelValue(lines,"NAMA(?:\s+PELANGGAN)?|NAMA\s+PEMILIK|PELANGGAN");if(nm)f.name=nm}
+  if(!f.tariff){const tr=ocrAfterLabelValue(lines,"TARIF\s*(?:/\s*DAYA)?|DAYA");if(tr){const m=tr.match(/\bR\d?\s*\/\s*\d{2,9}\b/i);f.tariff=(m?m[0]:tr).replace(/\s+/g,"")}}
+  if(!f.kwh){const kw=ocrAfterLabelValue(lines,"JML\s*KWH|JUMLAH\s*KWH|KWH");if(kw){const m=kw.match(/\d+(?:[.,]\d+)?/);if(m)f.kwh=m[0].replace(",",".")}}
+  if(!f.idpel&&f.customerNumber)f.idpel=f.customerNumber;if(f.token)f.token=formatTokenGroups(f.token)
+ }
+ if(type==="transfer"&&f.total&&!f.nominal)f.nominal=f.total;
+ return f;
+}
+function ocrPopulateReview(type,result){ocrShowPanel(type,true);ocrSetField(type,"type",result.type||"unknown");for(const k of OCR_FIELDS)ocrSetField(type,k,result[k]||"");ocrSetField(type,"raw",result.raw||"")}
+function ocrReadReview(type){const result={version:OCR_VERSION,type:ocrGetField(type,"type")||"unknown",raw:ocrGetField(type,"raw")};OCR_FIELDS.forEach(k=>result[k]=ocrGetField(type,k));return result}
+function persistOCR(type,result){data.ocr[type]=result;try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+function loadExternalScript(url){return new Promise((resolve,reject)=>{if(window.Tesseract)return resolve();const s=document.createElement("script");s.src=url;s.async=true;s.onload=()=>resolve();s.onerror=()=>reject(Error("Engine OCR gagal dimuat dari sumber pertama."));document.head.appendChild(s)})}
+async function tryNativeTextDetector(image){if(typeof TextDetector!=="function")return "";try{const detector=new TextDetector();const items=await detector.detect(image);return (items||[]).map(x=>String(x.rawValue||x.text||"").trim()).filter(Boolean).join("\n")}catch(e){return ""}}
+async function ensureOCRWorker(type){
+ if(ocrWorker)return ocrWorker;
+ if(!ocrWorkerPromise){ocrWorkerPromise=(async()=>{if(!window.Tesseract){try{await loadExternalScript(OCR_CDN.script)}catch(e){throw Error("Engine OCR belum tersedia di perangkat. Hubungkan internet sekali untuk memuat engine, lalu coba scan lagi.")}}
+  const worker=await Tesseract.createWorker("eng",1,{workerPath:OCR_CDN.worker,corePath:OCR_CDN.core,langPath:OCR_CDN.lang,logger:m=>{if(m&&m.status){const pct=typeof m.progress==="number"?Math.round(m.progress*100):null;ocrStatus(type,pct!==null?`${m.status} ${pct}%`:m.status,pct!==null&&pct>=100?"ok":"")}}});
+  await worker.setParameters({preserve_interword_spaces:"1",user_defined_dpi:"260",tessedit_pageseg_mode:"6"});ocrWorker=worker;return worker;})().catch(e=>{ocrWorkerPromise=null;throw e})}
+ return ocrWorkerPromise;
+}
+function preprocessOCR(file,mode=0){return new Promise((resolve,reject)=>{const fr=new FileReader();fr.onerror=()=>reject(Error("Foto tidak dapat dibaca."));fr.onload=()=>{const img=new Image();img.onerror=()=>reject(Error("Format foto tidak dapat diproses."));img.onload=()=>{try{const max=1900,scale=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));const c=document.createElement("canvas");c.width=Math.max(1,Math.round(img.naturalWidth*scale));c.height=Math.max(1,Math.round(img.naturalHeight*scale));const ctx=c.getContext("2d",{willReadFrequently:true});ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,c.width,c.height);if(mode>0){const im=ctx.getImageData(0,0,c.width,c.height),d=im.data;for(let i=0;i<d.length;i+=4){const lum=.299*d[i]+.587*d[i+1]+.114*d[i+2];let v=mode===1?Math.max(0,Math.min(255,Math.round((lum-128)*1.25+128))):(lum<150?0:255);d[i]=d[i+1]=d[i+2]=v}ctx.putImageData(im,0,0)}resolve(c)}catch(e){reject(e)}};img.src=fr.result};fr.readAsDataURL(file)})}
+function ocrQuality(raw,fields){let s=0;if(raw.length>80)s+=1;if(fields.date)s+=2;if(fields.name)s+=1;if(fields.total||fields.nominal)s+=2;if(fields.idpel||fields.meter||fields.account)s+=1;if(fields.token)s+=2;if(fields.service)s+=1;if(fields.tariff)s+=1;if(fields.kwh)s+=1;return s}
+function loadPdfJs(){return new Promise((resolve,reject)=>{if(window.pdfjsLib)return resolve(window.pdfjsLib);const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";s.async=true;s.onload=()=>window.pdfjsLib?resolve(window.pdfjsLib):reject(Error("PDF engine belum siap."));s.onerror=()=>reject(Error("Engine PDF gagal dimuat. Hubungkan internet lalu coba lagi."));document.head.appendChild(s)})}
+async function extractPdfText(file,type){
+ const pdfjs=await loadPdfJs();if(pdfjs.GlobalWorkerOptions)pdfjs.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";const buf=await file.arrayBuffer(),pdf=await pdfjs.getDocument({data:buf}).promise,pages=[];
+ for(let i=1;i<=pdf.numPages;i++){
+  const page=await pdf.getPage(i),content=await page.getTextContent(),items=(content.items||[]).filter(x=>String(x.str||"").trim());const rows=[];
+  for(const item of items){const y=Number(item.transform&&item.transform[5]||0),x=Number(item.transform&&item.transform[4]||0),str=String(item.str||"").trim();let row=rows.find(r=>Math.abs(r.y-y)<=3);if(!row){row={y,items:[]};rows.push(row)}row.items.push({x,str})}
+  rows.sort((a,b)=>b.y-a.y);const lines=rows.map(r=>r.items.sort((a,b)=>a.x-b.x).map(x=>x.str).join(" ").replace(/\s{2,}/g," ").trim()).filter(Boolean);if(lines.length)pages.push(lines.join("\n"));
+ }
+ return {text:pages.join("\n"),numPages:pdf.numPages}
+}
+async function renderPdfPagesForOCR(file,type,maxPages=3){const pdfjs=await loadPdfJs();if(pdfjs.GlobalWorkerOptions)pdfjs.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";const buf=await file.arrayBuffer(),pdf=await pdfjs.getDocument({data:buf}).promise,parts=[],limit=Math.min(pdf.numPages,maxPages);for(let i=1;i<=limit;i++){ocrStatus(type,`PDF halaman ${i}/${limit} — OCR...`,"");const page=await pdf.getPage(i),vp=page.getViewport({scale:1.7}),c=document.createElement("canvas");c.width=Math.ceil(vp.width);c.height=Math.ceil(vp.height);const ctx=c.getContext("2d",{willReadFrequently:true});ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);await page.render({canvasContext:ctx,viewport:vp}).promise;const worker=await ensureOCRWorker(type);await worker.setParameters({tessedit_pageseg_mode:"6"});const ret=await worker.recognize(c),t=String(ret?.data?.text||"").trim();if(t)parts.push(t)}return parts.join("\n")}
+function mergeOCRText(a,b){return ocrUniqueLines([a,b].filter(Boolean).join("\n")).join("\n")}
+async function scanOCR(type){
+ if(ocrBusy)return;const input=$(type+"_photo"),file=input&&input.files&&input.files[0];if(!file){ocrStatus(type,"Pilih foto atau PDF terlebih dahulu.","warn");return}
+ ocrBusy=true;document.querySelectorAll(".ocrScanBtn").forEach(b=>b.disabled=true);ocrStatus(type,"Baca sumber → parser → mapping → validasi...",""); try{
+  if(file.type==="application/pdf"||/\.pdf$/i.test(file.name)){
+   let pdfInfo=null,rawPdf="";try{pdfInfo=await extractPdfText(file,type);rawPdf=pdfInfo.text||""}catch(e){console.warn("PDF text extraction:",e)}
+   let best=rawPdf?{raw:rawPdf,q:ocrQuality(rawPdf,parseOCRText(rawPdf))}:null;
+   if(!best||best.q<5){const scanned=await renderPdfPagesForOCR(file,type,3),fields=parseOCRText(scanned),q=ocrQuality(scanned,fields);if(!best||q>best.q)best={raw:scanned,q,fields}}
+   if(!best||!best.raw.trim()){ocrShowPanel(type,true);ocrSetField(type,"raw","PDF tidak menghasilkan teks yang dapat dipetakan.");ocrStatus(type,"PDF terbaca sebagai file, tetapi isi belum bisa dipetakan. AI Vision/Cloud OCR dapat menjadi fallback berikutnya.","warn");return}
+   const result=Object.assign({version:OCR_VERSION,raw:ocrUniqueLines(best.raw).join("\n")},parseOCRText(best.raw));ocrPopulateReview(type,result);persistOCR(type,result);ocrStatus(type,`PDF selesai — ${OCR_TYPE_LABEL[result.type]||OCR_TYPE_LABEL.unknown}. Parser + mapping aktif. ${pdfInfo?pdfInfo.numPages:1} halaman`,"ok");return;
+  }
+
+  let raw="",best=null;
+  // Pass 1: native detector. Pass 2/3 hanya jika hasil belum cukup; tidak ada 8x/berulang tanpa kebutuhan.
+  for(let pass=0;pass<OCR_MAX_PASSES;pass++){
+   let candidate="";
+   if(pass===0)candidate=await tryNativeTextDetector(await preprocessOCR(file,0));
+   else {const worker=await ensureOCRWorker(type);if(pass===2)await worker.setParameters({tessedit_pageseg_mode:"11"});else await worker.setParameters({tessedit_pageseg_mode:"6"});const image=await preprocessOCR(file,pass===1?1:2);const ret=await worker.recognize(image);candidate=String(ret?.data?.text||"")}
+   if(candidate){const fields=parseOCRText(candidate);const q=ocrQuality(candidate,fields);if(!best||q>best.q)best={raw:candidate,q,fields};if(q>=7)break}
+  }
+  if(!best||!best.raw.trim()){ocrShowPanel(type,true);ocrSetField(type,"raw","");ocrStatus(type,"OCR selesai, tetapi teks tidak terbaca.","warn");return}
+  const result=Object.assign({version:OCR_VERSION,raw:ocrUniqueLines(best.raw).join("\n")},parseOCRText(best.raw));ocrPopulateReview(type,result);persistOCR(type,result);ocrStatus(type,`Selesai — ${OCR_TYPE_LABEL[result.type]||OCR_TYPE_LABEL.unknown}. Fokus: parser + mapping + validasi.`,"ok");
+ }catch(e){console.error(e);ocrStatus(type,"OCR gagal: "+(e&&e.message?e.message:"kesalahan tidak diketahui"),"warn")}finally{ocrBusy=false;document.querySelectorAll(".ocrScanBtn").forEach(b=>b.disabled=false)}
+}
+function syncGroupFromInputs(group,prefix){const d=data[group]||{};Object.keys(d).forEach(k=>{const el=$(prefix+"_"+k);if(el&&!el.disabled)d[k]=el.value})}
+function applyOCRToTransaction(type){
+ const r=ocrReadReview(type);
+ if(type==="bill"){
+  if(r.date)$('bill_date').value=r.date;if(r.idpel||r.customerNumber)$('bill_pel').value=ocrDigits(r.idpel||r.customerNumber);if(r.name)$('bill_name').value=r.name;if(r.service)$('bill_service').value=r.service;if(r.period)$('bill_period').value=r.period;if(r.nominal)$('bill_tagihan').value=ocrDigits(r.nominal);if(r.admin)$('bill_admin').value=ocrDigits(r.admin);if(r.reference)$('bill_ref').value=r.reference;
+ }else if(type==="token"){
+  if(r.date)$('token_date').value=r.date;if(r.idpel||r.customerNumber)$('token_pel').value=ocrDigits(r.idpel||r.customerNumber);if(r.meter)$('token_meter').value=ocrDigits(r.meter);if(r.name)$('token_name').value=r.name;if(r.tariff)$('token_tariff').value=r.tariff;if(r.kwh)$('token_kwh').value=r.kwh;if(r.token)$('token_token').value=formatTokenGroups(r.token);if(r.nominal)$('token_nominal').value=ocrDigits(r.nominal);if(r.admin)$('token_admin').value=ocrDigits(r.admin);if(r.reference)$('token_ref').value=r.reference;
+ }else if(type==="transfer"){
+  if(r.date)$('transfer_date').value=r.date;if(r.reference)$('transfer_ref').value=r.reference;if(r.bank)$('transfer_bank').value=r.bank;if(r.account)$('transfer_account').value=ocrDigits(r.account);if(r.name)$('transfer_receiver').value=r.name;if(r.nominal)$('transfer_nominal').value=ocrDigits(r.nominal);if(r.admin)$('transfer_admin').value=ocrDigits(r.admin);
+ }
+ syncGroupFromInputs(type,type);bindGroup(type,type);if(type==="bill"||type==="token"||type==="transfer")syncAdminFields();renderReceipt(type);persistOCR(type,r);
+ ocrStatus(type,`Mapping ${OCR_TYPE_LABEL[type]} diterapkan. Periksa hasil sebelum cetak.` ,"ok");
+}
+function clearOCRReview(type){data.ocr[type]=null;ocrShowPanel(type,false);document.querySelectorAll(`[id^="${type}_ocr_"]`).forEach(el=>{if(el.tagName==="SELECT")el.value="unknown";else el.value=""});ocrStatus(type,"Review OCR dikosongkan. Pilih sumber lalu jalankan scan.","");try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+function restoreOCRReview(type){const r=data.ocr&&data.ocr[type];if(!r)return;ocrPopulateReview(type,r);ocrStatus(type,`Review tersimpan — ${OCR_TYPE_LABEL[r.type]||OCR_TYPE_LABEL.unknown}.`,"ok")}
+window.addEventListener("beforeunload",()=>{if(ocrWorker)ocrWorker.terminate().catch(()=>{})});
+function initOCRUI(){
+ document.querySelectorAll(".ocrScanBtn").forEach(btn=>btn.onclick=()=>scanOCR(btn.dataset.ocrType));
+ document.querySelectorAll(".ocrApplyBtn").forEach(btn=>btn.onclick=()=>applyOCRToTransaction(btn.dataset.ocrType));
+ document.querySelectorAll(".ocrClearBtn").forEach(btn=>btn.onclick=()=>clearOCRReview(btn.dataset.ocrType));
+ ["bill","token","transfer"].forEach(type=>{const input=$(type+"_photo");if(input)input.addEventListener("change",()=>{ocrStatus(type,"Foto dipilih. Tekan Baca Foto (OCR) untuk memulai.","")});restoreOCRReview(type)})
+}
+initOCRUI();
+/* ======================= END V11 OCR PATCH ======================= */
+
+</script>
+</body>
+</html>

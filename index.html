@@ -1,0 +1,1396 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b5cab">
+<title>RB HOME PRINTER — Right Align 58/80 mm</title>
+<style>
+:root{--blue:#0b5cab;--blue2:#0e78d5;--orange:#f28c28;--orange2:#ffad42;--bg:#eef4fa;--card:#fff;--text:#101820;--muted:#687686;--line:#d7e0e8;--ok:#18864b;--danger:#d94d55;--shadow:0 8px 24px rgba(18,54,84,.09);--r:16px;--legacy:#f6f8fa}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button{touch-action:manipulation}
+.app{max-width:760px;margin:auto;min-height:100vh}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);padding:12px 15px 8px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px}.mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(145deg,var(--blue),#073d78);color:#fff;display:grid;place-items:center;font-weight:950;font-size:16px;border:2px solid #fff;box-shadow:0 3px 10px #0b5cab33;overflow:hidden}.mark img{width:100%;height:100%;object-fit:contain;display:block}
+h1{font-size:17px;letter-spacing:.2px;margin:0}.sub{font-size:10px;color:var(--muted);margin-top:2px;font-weight:700}
+.ticker{margin-top:8px;background:#0d3152;color:#fff;border-radius:7px;padding:6px 10px;overflow:hidden;white-space:nowrap;font-size:10px;font-weight:800;border-left:4px solid var(--orange)}
+.ticker span{display:inline-block;min-width:100%;animation:run 16s linear infinite}@keyframes run{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+main{padding:10px 15px 110px}.page{display:none;animation:fade .15s ease}.page.active{display:block}@keyframes fade{from{opacity:.35;transform:translateY(3px)}to{opacity:1;transform:none}}
+.pageHead{padding:8px 2px 13px}.pageHead h2{font-size:23px;margin:0;letter-spacing:-.3px}.pageHead p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:15px;margin-bottom:13px}.card h3{font-size:14px;margin:0 0 12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.full{grid-column:1/-1}
+label{display:block;font-size:11px;font-weight:850;color:#445364;margin:0 0 6px}
+input,textarea,select{width:100%;border:1px solid #cfd9e2;background:#fbfcfd;border-radius:10px;padding:11px 12px;color:var(--text);outline:none}textarea{min-height:74px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #0b5cab18}
+input:disabled{background:#eef2f5;color:#6c7883}
+.btn{border:0;border-radius:10px;padding:11px 14px;font-weight:850;cursor:pointer}.primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff}.secondary{background:#e9f2fb;color:var(--blue)}.orange{background:linear-gradient(135deg,var(--orange),var(--orange2));color:#fff}.ghost{background:#eef1f4;color:#37424d}.danger{background:#fff0f1;color:var(--danger)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.row .auto{flex:0 0 auto}.divider{border-top:1px dashed var(--line);margin:14px 0}.small{font-size:10px;color:var(--muted)}
+.hero{background:linear-gradient(135deg,#083f78,#0e78d5);color:#fff;border-radius:18px;padding:18px;margin-bottom:13px;box-shadow:0 12px 28px #0b5cab2b;border-bottom:4px solid var(--orange)}.hero .big{font-size:22px;font-weight:950}.hero p{margin:5px 0 0;opacity:.86;font-size:11px}
+.menuGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px}.menuBtn{background:var(--legacy);border:1px solid #cbd6df;border-radius:12px;padding:13px 7px;text-align:center;cursor:pointer;box-shadow:inset 0 1px 0 #fff,0 3px 8px #12344d12}.menuBtn:active{transform:translateY(1px)}
+.menuBtn .ico{width:40px;height:40px;margin:0 auto 7px;border-radius:9px;background:linear-gradient(145deg,#e8f3ff,#fff1df);color:var(--blue);display:grid;place-items:center;border:1px solid #c7d6e4}.menuBtn .ico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.menuBtn b{font-size:11px}.menuBtn span{display:block;font-size:9px;color:var(--muted);margin-top:2px}
+.previewWrap{background:#dfe6ec;border-radius:13px;padding:12px;overflow:auto}.receipt{background:#fff;color:#111;width:100%;max-width:390px;margin:auto;padding:16px 14px;font-family:"Courier New",ui-monospace,monospace;font-size:13px;line-height:1.32;font-weight:800;box-shadow:0 4px 15px #00000012}.receipt.printText{white-space:pre-wrap;text-align:left;overflow-wrap:normal;word-break:normal;tab-size:4}.rlogo{width:var(--logo-width,50%);max-width:100%;height:auto;object-fit:contain;display:block;margin-left:auto;margin-right:auto;margin-bottom:4px;image-rendering:auto}.receiptText{display:block;margin:0;width:100%;white-space:normal;text-align:left;overflow-wrap:normal;word-break:normal;font:var(--thermal-font-size,12px)/1.3 "Courier New",ui-monospace,monospace;color:inherit;overflow:visible}.thermalLine{display:block;white-space:pre;min-height:1.3em;line-height:1.3;overflow:visible}.thermalLine.shopNamePrint{white-space:pre;text-align:center;width:100%;font-weight:900;line-height:1.3;overflow:visible}.thermalLine.shopNamePrint.shop-small{font-size:var(--thermal-font-size,12px)}.thermalLine.shopNamePrint.shop-medium{font-size:var(--thermal-font-size,12px);transform:none;transform-origin:center;line-height:1.3}.thermalLine.shopNamePrint.shop-large{font-size:var(--shop-large-font-size,24px);line-height:1.15}.rcenter{text-align:center}.rbold{font-weight:900}.rsep{border-top:2px solid #111;margin:9px 0}.rdash{border-top:2px dashed #111;margin:9px 0}.rgrid{display:grid;grid-template-columns:1fr auto;gap:4px}.rgrid .val{text-align:right;max-width:62%;overflow-wrap:anywhere}.token{font-size:18px;font-weight:950;letter-spacing:1px;text-align:center;margin:7px 0;line-height:1.45}.tokenPrintLine{display:block;font-size:200%;font-weight:950;line-height:1.05;letter-spacing:0;text-align:center;width:100%;white-space:pre-wrap}.thermalLine.rbold{font-weight:900}.thermalLine.thermalBig{font-size:175%;font-weight:950;line-height:1.15;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;min-height:1.15em;text-align:center}.thermalLine.thermalMedium{transform:none;transform-origin:center;line-height:1.3}.thermalLine.thermalFeed{min-height:1.3em}
+
+.receipt.mode-minimal,.receipt.mode-modern{font-family:"Courier New",ui-monospace,monospace;font-weight:800}
+.receipt.mode-minimal .receiptText,.receipt.mode-modern .receiptText{line-height:1.3}
+.mode-select-card{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.mode-select-card label{margin:0;flex:0 0 auto}
+.mode-select-card select{flex:1;min-width:180px}
+
+.photoDrop{border:2px dashed #b8c8d7;border-radius:12px;padding:14px;text-align:center;background:#f8fafc}.photoDrop .photoIcon{width:42px;height:42px;margin:0 auto 6px;border-radius:10px;background:#e6f0fa;color:var(--blue);display:grid;place-items:center}.photoDrop svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.photoPreview{display:none;width:100%;max-height:250px;object-fit:contain;border-radius:9px;margin-top:10px;border:1px solid var(--line);background:#fff}.photoPreview.show{display:block}.photoMeta{margin-top:7px;font-size:10px;color:var(--muted)}
+.status{padding:9px 11px;border-radius:9px;background:#f0f3f6;font-size:11px;color:#53606d}.status.ok{background:#eaf8ef;color:#167440}.status.warn{background:#fff5e7;color:#8b5a0a}
+.logoBox{border:2px dashed #bdcbd7;border-radius:13px;min-height:115px;display:grid;place-items:center;background:#f8fafc;margin-bottom:9px}.logoBox img{max-width:80%;max-height:100px;object-fit:contain}.fileBtn{display:inline-block;padding:10px 13px;border-radius:10px;background:#e9f2fb;color:var(--blue);font-weight:850;cursor:pointer}.fileBtn input{display:none}
+.checkRow{display:flex;align-items:center;gap:8px;background:#f5f8fa;border:1px solid var(--line);padding:10px;border-radius:10px}.checkRow input{width:18px;height:18px;accent-color:var(--blue)}.checkRow label{margin:0;flex:1}
+.license{text-align:center;border-top:1px dashed var(--line);padding-top:13px;margin-top:7px;color:#52606d;font-size:10px;font-weight:800}
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.98);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:6px max(8px,calc((100vw - 760px)/2 + 8px)) calc(6px + env(safe-area-inset-bottom))}.nav{max-width:744px;margin:auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px}.nav button{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:clip;border:1px solid transparent;background:transparent;color:#6d7781;padding:5px 1px;border-radius:9px;cursor:pointer;font-size:clamp(6px,1.8vw,8px);font-weight:850}.nav button.active{color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue2));border-color:transparent;box-shadow:0 3px 10px #0b5cab2b}.nav svg{display:block;margin:auto auto 3px;width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fab{position:fixed;right:18px;bottom:100px;z-index:25;width:52px;height:52px;border:0;border-radius:13px;background:var(--orange);color:#fff;box-shadow:0 9px 22px #f28c2850;font-size:21px;cursor:pointer}
+.detailHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.detailHead h3{margin:0}.detailActions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.fieldEditBtn{padding:8px 11px;font-size:11px}.clearFieldsBtn{padding:8px 11px;font-size:11px}
+.fieldEditorOverlay{position:fixed;inset:0;z-index:100;background:rgba(5,22,38,.48);backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;padding:12px}
+.receiptHistoryList{display:grid;gap:8px}.receiptHistoryEmpty{padding:12px;border:1px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted);font-size:12px}.receiptHistoryItem{display:flex;align-items:center;gap:9px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#f8fafc}.receiptHistoryInfo{flex:1;min-width:0}.receiptHistoryTitle{font-size:12px;font-weight:900;overflow-wrap:anywhere}.receiptHistorySub{margin-top:3px;font-size:10px;color:var(--muted);overflow-wrap:anywhere}.receiptHistoryItem button{flex:0 0 auto;padding:8px 10px;font-size:11px}.billExtraDetails{display:grid;gap:8px}.billExtraRow{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr) auto;gap:7px;align-items:center;padding:8px;background:#f8fafc;border:1px solid var(--line);border-radius:10px}.billExtraRow input{min-width:0;padding:9px}.billExtraRow .btn{padding:8px;font-size:11px}@media(max-width:560px){.billExtraRow{grid-template-columns:1fr 1fr auto}}.hidden{display:none!important}.fieldEditorSheet{width:min(760px,100%);max-height:min(82vh,720px);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:0 18px 50px #06274645}
+.fieldEditorHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.fieldEditorHead h3{margin:0;font-size:17px}.fieldEditorList{display:grid;gap:9px}.fieldEditRow{display:grid;grid-template-columns:minmax(110px,.8fr) minmax(0,1.2fr);gap:9px;align-items:center;padding:9px;background:#f7f9fb;border:1px solid var(--line);border-radius:11px}.fieldEditRow .small{font-weight:800}.fieldEditInput{margin:0;background:#fff}.fieldEditorSheet .row{position:sticky;bottom:0;background:#fff;padding-top:9px;border-top:1px solid var(--line)}
+@media(max-width:560px){.detailHead{align-items:flex-start}.detailActions{width:100%;justify-content:flex-end}.fieldEditBtn,.clearFieldsBtn{font-size:10px;padding:8px 9px}.fieldEditRow{grid-template-columns:1fr}.fieldEditorOverlay{padding:0}.fieldEditorSheet{max-height:88vh;border-radius:18px 18px 0 0}}
+.hidden{display:none!important}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.menuGrid{grid-template-columns:1fr 1fr}.receipt{max-width:100%}}
+@media print{
+ @page{size:80mm auto;margin:0}
+ html,body{width:var(--print-width,80mm)!important;min-width:0!important;margin:0!important;padding:0!important;background:#fff!important}
+ body{font-family:"Courier New",ui-monospace,monospace!important}
+ .app{width:var(--print-width,80mm)!important;max-width:none!important;margin:0!important}
+ .top,.bottom,.fab,main>.page:not(#page-print){display:none!important}
+ main{padding:0!important;margin:0!important;width:var(--print-width,80mm)!important}
+ #page-print{display:block!important;width:var(--print-width,80mm)!important;margin:0!important;padding:0!important}
+ .previewWrap{padding:0!important;background:#fff!important;border:0!important}
+ .app{min-height:0!important;height:auto!important}
+ body{min-height:0!important;height:auto!important;overflow:visible!important}
+ main{min-height:0!important;height:auto!important}
+ #page-print{min-height:0!important;height:auto!important}
+ .previewWrap{min-height:0!important;height:auto!important;overflow:visible!important}
+ .receipt{box-shadow:none!important;box-sizing:border-box!important;width:var(--print-width,80mm)!important;max-width:none!important;margin:0!important;padding:3mm 0 4mm!important;font-weight:800!important;line-height:1.22!important;break-inside:avoid;page-break-inside:avoid;overflow:visible!important}.receiptText{white-space:pre-wrap!important}.rlogo{max-width:100%!important;max-height:none!important;height:auto!important;object-fit:contain!important;margin:0 auto 2.5mm!important}
+ .rgrid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:2px!important;width:100%!important}
+ .rgrid>div{min-width:0!important;overflow-wrap:break-word!important;word-break:normal!important}
+ .rgrid .val{text-align:right!important;max-width:none!important;white-space:normal!important;overflow-wrap:break-word!important;word-break:normal!important}
+ .shopNamePrint{font-weight:900!important;line-height:1.08!important;display:block!important;width:100%!important;text-align:center!important;margin:0 auto!important;box-sizing:border-box!important;white-space:pre-wrap!important}.shopNamePrint.shop-small{font-size:14px!important}.shopNamePrint.shop-medium{font-size:19px!important}.shopNamePrint.shop-large{font-size:27px!important}.tokenPrintLine{font-size:200%!important;font-weight:950!important;line-height:1.05!important;letter-spacing:0!important;display:block!important;width:100%!important;text-align:center!important;white-space:pre-wrap!important}
+ .rcenter{width:100%!important;text-align:center!important;overflow-wrap:break-word!important;word-break:normal!important}
+ .rsep,.rdash{break-inside:avoid;page-break-inside:avoid}
+ img{break-inside:avoid;page-break-inside:avoid}
+ #printReceipt{box-sizing:border-box!important;width:var(--print-width,80mm)!important;max-width:none!important;margin:0!important;padding:3mm 0 4mm!important;font-family:"Courier New",ui-monospace,monospace!important;font-size:11px!important;font-weight:800!important;line-height:1.22!important;white-space:pre-wrap!important;overflow-wrap:normal!important;word-break:normal!important;text-align:left!important;box-shadow:none!important}
+ #printReceipt.printText{white-space:pre-wrap!important}
+ @page{size:auto;margin:0}
+}
+
+/* V11 PATCH: visual/print regression guards only. Existing formatter remains unchanged. */
+.shopNamePrint{display:block!important;width:100%!important;max-width:100%!important;margin:0 auto!important;box-sizing:border-box!important;text-align:center!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:normal!important;transform:none!important;zoom:1!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}
+.shopNamePrint.shop-small{font-size:14px!important}.shopNamePrint.shop-medium{font-size:19px!important}.shopNamePrint.shop-large{font-size:27px!important}
+.tokenPrintLine{display:block!important;width:100%!important;margin:7px 0!important;font-family:"Courier New",ui-monospace,monospace!important;font-size:26px!important;font-weight:950!important;line-height:1.05!important;letter-spacing:0!important;text-align:center!important;white-space:pre-wrap!important;overflow-wrap:normal!important;word-break:normal!important;transform:none!important;zoom:1!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}
+.ocrTools{margin-top:10px}.ocrPanel{margin-top:10px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fbfcfd}.ocrPanelHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.ocrRaw{min-height:160px;font-family:"Courier New",ui-monospace,monospace;font-size:11px;line-height:1.35;background:#f4f7f9}.ocrScanBtn[disabled],.ocrApplyBtn[disabled]{opacity:.6;cursor:wait}
+@media print{.shopNamePrint{display:block!important;width:100%!important;margin:0 auto!important;box-sizing:border-box!important;text-align:center!important;transform:none!important;zoom:1!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}.tokenPrintLine{font-size:26px!important;display:block!important;width:100%!important;text-align:center!important;transform:none!important;zoom:1!important;-webkit-text-size-adjust:100%!important;text-size-adjust:100%!important}}
+
+/* RB HOME PRINTER — TRFBT-inspired full-screen receipt preview */
+#page-print.rb-full-preview{position:fixed!important;inset:0!important;z-index:90!important;display:flex!important;flex-direction:column!important;width:100vw!important;height:100dvh!important;min-height:0!important;margin:0!important;padding:0!important;background:#edf1f5!important;overflow:hidden!important}
+body.rb-full-preview-mode .top,body.rb-full-preview-mode .bottom,body.rb-full-preview-mode .fab{display:none!important}
+body.rb-full-preview-mode main{padding:0!important;margin:0!important;max-width:none!important}
+body.rb-full-preview-mode .app{max-width:none!important;min-height:0!important}
+.rbFullPreviewTop{flex:none;display:flex;align-items:center;gap:8px;padding:10px 12px;padding-top:max(10px,env(safe-area-inset-top));background:#fff;border-bottom:1px solid #d7e0e8;z-index:2}
+.rbFullPreviewTop strong{flex:1;min-width:0;font-size:14px;text-align:center}.rbFullPreviewTop select{max-width:125px;padding:8px 5px;border:1px solid #d7e0e8;border-radius:9px;background:#fff;font-size:11px}
+.rbFullPreviewScroll{flex:1;min-height:0;overflow:auto;padding:16px 12px 24px;overscroll-behavior:contain}
+#page-print .previewWrap{padding:0;background:transparent;border-radius:0;overflow:visible;min-height:100%}
+#page-print #printReceipt{width:var(--preview-paper-width,80mm)!important;max-width:none!important;box-sizing:border-box!important;margin:0 auto!important;padding:5mm 0!important;box-shadow:0 5px 22px #142b401c!important;min-height:120px;overflow:visible!important}
+.rbFullPreviewActions{flex:none;display:grid;grid-template-columns:1.1fr .7fr 1.2fr;gap:8px;padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));background:#fff;border-top:1px solid #d7e0e8;box-shadow:0 -4px 18px #102d4410;z-index:2}
+.rbFullPreviewActions .btn{min-width:0;padding:12px 7px;font-size:12px;white-space:nowrap}
+.rbReceiptEditOverlay{position:fixed;inset:0;z-index:120;background:#071b2dcc;display:flex;align-items:flex-end;justify-content:center;padding:0}.rbReceiptEditOverlay.hidden{display:none!important}
+.rbReceiptEditSheet{width:min(760px,100%);max-height:90dvh;overflow:auto;background:#fff;border-radius:18px 18px 0 0;padding:15px 14px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -10px 35px #071b2d44}
+.rbReceiptEditHead{display:flex;align-items:center;justify-content:space-between;gap:8px;position:sticky;top:-15px;background:#fff;padding:4px 0 10px;z-index:2;border-bottom:1px solid #e2e8ee}.rbReceiptEditHead h3{margin:0;font-size:16px}
+.rbReceiptValueFields{display:grid;gap:9px;margin:12px 0}.rbReceiptValueRow{display:grid;grid-template-columns:minmax(100px,.8fr) minmax(0,1.2fr);gap:9px;align-items:center;padding:9px;border:1px solid #dce5ed;border-radius:10px;background:#f8fafc}.rbReceiptValueRow label{font-size:12px;font-weight:800;color:#3a4a59;margin:0}.rbReceiptValueRow input,.rbReceiptValueRow textarea{width:100%;min-width:0;margin:0;padding:9px;border:1px solid #cbd7e1;border-radius:8px;background:#fff;font-size:13px}.rbReceiptEditFoot{position:sticky;bottom:-12px;display:flex;gap:8px;padding-top:10px;background:#fff;border-top:1px solid #e2e8ee}.rbReceiptEditFoot .btn{flex:1}
+@media(max-width:420px){.rbFullPreviewTop{gap:5px;padding-left:7px;padding-right:7px}.rbFullPreviewTop .btn{padding:8px 7px;font-size:11px}.rbFullPreviewTop strong{font-size:12px}.rbFullPreviewTop select{max-width:98px;font-size:10px}.rbReceiptValueRow{grid-template-columns:1fr;gap:5px}}
+@media print{body.rb-full-preview-mode .rbFullPreviewTop,body.rb-full-preview-mode .rbFullPreviewActions{display:none!important}body.rb-full-preview-mode #page-print{position:static!important;width:var(--preview-paper-width,80mm)!important;height:auto!important;overflow:visible!important}body.rb-full-preview-mode .rbFullPreviewScroll{overflow:visible!important;padding:0!important}body.rb-full-preview-mode #page-print #printReceipt{width:var(--preview-paper-width,80mm)!important;box-sizing:border-box!important;padding:3mm 0 4mm!important;box-shadow:none!important;max-width:none!important}body.rb-full-preview-mode #page-print #printReceipt .receiptText{width:100%!important}}
+
+</style>
+<style id="rb-thermal-shop-footer-fix">
+/* Mirror ESC/POS shop-size modes in preview: small=normal, medium=double-width, large=double-width+double-height. */
+.thermalLine.shopNamePrint,.shopNamePrint{
+ display:block!important;width:100%!important;max-width:100%!important;box-sizing:border-box!important;
+ margin:0!important;text-align:center!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:normal!important;
+ transform:none!important;zoom:1!important;letter-spacing:0!important;font-family:"Courier New",ui-monospace,monospace!important;
+ font-weight:700!important;text-size-adjust:none!important;-webkit-text-size-adjust:none!important;overflow:visible!important;
+}
+.thermalLine.shopNamePrint .shopNameGlyph,.shopNamePrint .shopNameGlyph{
+ display:inline-block!important;max-width:100%;white-space:pre-wrap!important;font-size:inherit!important;line-height:inherit!important;
+ transform:none!important;transform-origin:center center!important;
+}
+.thermalLine.shopNamePrint.shop-small,.shopNamePrint.shop-small{font-size:100%!important;line-height:1.3!important;}
+.thermalLine.shopNamePrint.shop-medium,.shopNamePrint.shop-medium{font-size:100%!important;line-height:1.3!important;}
+.thermalLine.shopNamePrint.shop-medium .shopNameGlyph,.shopNamePrint.shop-medium .shopNameGlyph{transform:scaleX(2)!important;transform-origin:center center!important;}
+.thermalLine.shopNamePrint.shop-large,.shopNamePrint.shop-large{font-size:200%!important;line-height:1.15!important;}
+.thermalLine.thermalMedium{transform:none!important;zoom:1!important;line-height:1.3!important;}
+.thermalLine.thermalBig{transform:none!important;zoom:1!important;line-height:1.15!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;text-align:center!important;}
+@media print{
+ .thermalLine.shopNamePrint,.shopNamePrint{transform:none!important;text-align:center!important;white-space:pre-wrap!important;}
+ .thermalLine.shopNamePrint.shop-medium .shopNameGlyph,.shopNamePrint.shop-medium .shopNameGlyph{transform:scaleX(2)!important;transform-origin:center center!important;}
+}
+</style>
+<style id="rb-token-alignment-audit-fix">
+.thermalLine.thermalTokenLabel{display:block!important;width:100%!important;text-align:center!important;white-space:pre-wrap!important;overflow-wrap:normal!important;word-break:normal!important;transform:none!important;zoom:1!important;}
+.thermalLine.thermalTokenValue{display:block!important;width:100%!important;text-align:center!important;white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:normal!important;letter-spacing:0!important;transform:none!important;zoom:1!important;font-variant-numeric:tabular-nums;}
+@media print{.thermalLine.thermalTokenLabel,.thermalLine.thermalTokenValue{width:100%!important;text-align:center!important;transform:none!important;zoom:1!important;}}
+</style>
+</head>
+<body>
+<!-- V11: additive OCR offline-first patch on V10; existing print/Bluetooth formatter preserved -->
+<div class="app">
+<header class="top">
+ <div class="brand"><div class="mark" id="appLogoMark">RB</div><div><h1>RB HOME PRINT MEDIA</h1><div class="sub">TRANSAKSI • OCR READY • PRINTER THERMAL</div></div></div>
+ <div class="ticker"><span id="runningTextView">RB HOME PRINT MEDIA • CETAK CEPAT • STRUK THERMAL</span></div>
+</header>
+<main>
+<section class="page active" id="page-home">
+ <div class="pageHead"><h2>Beranda</h2><p>Pusat transaksi dan pencetakan struk.</p></div>
+ <div class="hero"><div class="big">Siap mencetak.</div><p>Pilih transaksi, upload foto sumber bila perlu, edit rincian, lalu cetak.</p></div>
+ <div class="menuGrid">
+  <button class="menuBtn" onclick="go('bill')"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div><b>Tagihan</b><span>Pembayaran</span></button>
+  <button class="menuBtn" onclick="go('token')"><div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 8-11h-6z"/></svg></div><b>Token</b><span>Listrik</span></button>
+  <button class="menuBtn" onclick="go('transfer')"><div class="ico"><svg viewBox="0 0 24 24"><path d="M7 7h10l-3-3M17 17H7l3 3"/><path d="M17 7 14 4M7 17l3 3"/></svg></div><b>Transfer</b><span>Bukti transfer</span></button>
+  <button class="menuBtn" onclick="go('voucher')"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M9 8v2m0 4v2m6-8v2m0 4v2"/></svg></div><b>Voucher Hotspot</b><span>Voucher internet</span></button>
+ </div>
+ <div class="card"><h3>🖨️ Status Printer</h3><div id="homePrinter" class="status">Belum terhubung</div></div>
+ <div class="card"><h3>Identitas Toko</h3><div class="small">Nama toko</div><div id="homeShop" style="font-weight:900;margin-top:4px">—</div><div class="divider"></div><button class="btn secondary" onclick="go('settings')">Buka Pengaturan</button></div>
+ <div class="card" id="receiptHistoryCard"><div class="detailHead"><h3>Riwayat Cetak</h3><button class="btn ghost" type="button" onclick="clearReceiptHistory()">Hapus Riwayat</button></div><div id="receiptHistoryList" class="receiptHistoryList"><div class="small">Belum ada riwayat.</div></div><div class="small" style="margin-top:7px">Menyimpan hingga 30 aktivitas lokal. PDF dicatat saat lembar cetak dibuka; cetak Bluetooth dicatat setelah data berhasil dikirim.</div></div>
+</section>
+
+<section class="page" id="page-bill">
+ <div class="pageHead"><h2>🧾 Pembayaran Tagihan</h2><p>Edit rincian sebelum dicetak.</p></div>
+ <div class="mode-select-card"><label for="bill_mode">Mode Transaksi</label><select id="bill_mode"><option value="standard">Standar</option><option value="ppob">PPOB</option></select></div><div class="mode-select-card"><label for="bill_printStyle">Gaya Struk</label><select id="bill_printStyle"><option value="1">1. Standar</option><option value="2">2. Detail PPOB</option><option value="3">3. Rincian Lengkap</option><option value="4">4. Ringkas</option><option value="5">5. Minimalis</option></select></div>
+ <div class="card"><h3>📷 Foto sumber</h3><div class="photoDrop"><div class="photoIcon"><svg viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div style="font-weight:850;font-size:12px">Upload foto struk / bukti transaksi</div><div class="small" style="margin-top:3px">Siap dijadikan input AI Vision pada tahap berikutnya.</div><label class="fileBtn" style="margin-top:9px">Pilih Foto / PDF<input id="bill_photo" type="file" accept="image/*,.pdf,application/pdf"></label><img id="bill_photo_preview" class="photoPreview"><div id="bill_photo_meta" class="photoMeta"></div></div></div>
+   <div class="ocrTools" data-ocr-type="bill">
+    <div class="row" style="margin-top:10px">
+     <button type="button" class="btn secondary auto ocrScanBtn" data-ocr-type="bill">🔎 Baca Sumber (OCR)</button>
+     <div id="bill_ocr_status" class="status">Siap — OCR dijalankan hanya saat diminta.</div>
+    </div>
+    <div id="bill_ocr_panel" class="ocrPanel hidden">
+     <div class="ocrPanelHead"><div><b>Review Hasil OCR</b><div class="small">OCR adalah bahan bantu. Periksa dan koreksi sebelum diterapkan ke transaksi.</div></div></div>
+     <div class="status warn" style="margin:9px 0">Foto diproses di browser/client. Tidak ada API AI/cloud transaksi yang dipanggil oleh patch ini.</div>
+     <div class="grid">
+      <div><label>Jenis Terbaca</label><select id="bill_ocr_type"><option value="bill">Tagihan</option><option value="token">Token Listrik</option><option value="transfer">Transfer</option><option value="unknown">Belum dikenali</option></select></div>
+      <div><label>Tanggal</label><input id="bill_ocr_date" type="date"></div>
+      <div><label>Waktu</label><input id="bill_ocr_time" type="text" inputmode="numeric" placeholder="HH:MM:SS"></div>
+      <div><label>Nomor Transaksi</label><input id="bill_ocr_tx" type="text"></div>
+      <div><label>Nama</label><input id="bill_ocr_name" type="text"></div>
+      <div><label>IDPEL</label><input id="bill_ocr_idpel" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Meter</label><input id="bill_ocr_meter" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Pelanggan</label><input id="bill_ocr_customer" type="text" inputmode="numeric"></div>
+      <div><label>Nominal</label><input id="bill_ocr_nominal" type="text" inputmode="numeric"></div>
+      <div><label>Admin</label><input id="bill_ocr_admin" type="text" inputmode="numeric"></div>
+      <div><label>Total</label><input id="bill_ocr_total" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Referensi</label><input id="bill_ocr_ref" type="text"></div>
+      <div><label>Bank</label><input id="bill_ocr_bank" type="text"></div>
+      <div><label>No Rekening</label><input id="bill_ocr_account" type="text" inputmode="numeric"></div>
+      <div class="full"><label>Layanan / Produk</label><input id="bill_ocr_service" type="text"></div>
+      <div class="full"><label>Periode</label><input id="bill_ocr_period" type="text"></div>
+      <div><label>Tarif / Daya</label><input id="bill_ocr_tariff" type="text"></div>
+      <div><label>JML KWH</label><input id="bill_ocr_kwh" type="text" inputmode="decimal"></div>
+      <div class="full"><label>Token</label><textarea id="bill_ocr_token" spellcheck="false"></textarea></div>
+      <div class="full"><label>Raw OCR</label><textarea id="bill_ocr_raw" class="ocrRaw" readonly spellcheck="false"></textarea></div>
+     </div>
+     <div class="row" style="margin-top:10px">
+      <button type="button" class="btn primary auto ocrApplyBtn" data-ocr-type="bill">Terapkan ke Transaksi</button>
+      <button type="button" class="btn ghost auto ocrClearBtn" data-ocr-type="bill">Kosongkan Review</button>
+     </div>
+    </div>
+   </div>
+ <div class="card">
+ <div class="card" id="billExtraDetailsCard"><div class="detailHead"><h3>Rincian Tambahan (opsional)</h3><button type="button" class="btn secondary" onclick="addBillDetailRow()">+ Tambah Baris</button></div><div id="billExtraDetails" class="billExtraDetails"></div><div class="small">Baris ini digunakan pada gaya Detail PPOB dan Rincian Lengkap; gaya Ringkas membatasi empat baris.</div></div>
+ <div class="detailHead"><h3>Rincian Transaksi</h3><div class="detailActions"><button type="button" class="btn ghost clearFieldsBtn" onclick="clearTransactionFields('bill')">🧹 Bersihkan</button><button type="button" class="btn secondary fieldEditBtn" onclick="openFieldEditor('bill')">✏️ Edit Field</button></div></div>
+ <div class="grid">
+  <div><label id="label-bill-date">Tanggal</label><input id="bill_date" type="date"></div><div><label id="label-bill-service">Layanan</label><input id="bill_service"></div><div><label id="label-bill-pel">No Pel</label><input id="bill_pel"></div><div><label id="label-bill-name">Nama</label><input id="bill_name"></div><div class="full"><label id="label-bill-period">Periode</label><input id="bill_period"></div><div><label id="label-bill-tagihan">Tagihan</label><input id="bill_tagihan" type="number"></div><div><label id="label-bill-denda">Denda</label><input id="bill_denda" type="number" min="0"></div><div><label id="label-bill-admin">Admin</label><input id="bill_admin" type="number"></div><div><label id="label-bill-ref">REF</label><input id="bill_ref"></div>
+ </div>
+</div>
+ <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>Preview Struk</h3><button class="btn secondary" onclick="openFullPreview('bill')">⛶ Preview Full</button><button class="btn secondary" onclick="exportReceiptPDF('bill')">Export PDF</button><button class="btn orange" onclick="printThermal()">Cetak Thermal</button></div><div class="previewWrap"><div id="receipt-bill" class="receipt"></div></div></div>
+</section>
+
+<section class="page" id="page-token">
+ <div class="pageHead"><h2>⚡ Pembelian Token</h2><p>Edit rincian token listrik sebelum dicetak.</p></div>
+ <div class="mode-select-card"><label for="token_mode">Mode Transaksi</label><select id="token_mode"><option value="token">Token Listrik</option><option value="postpaid">Tagihan Listrik</option></select></div><div class="mode-select-card"><label for="token_printStyle">Gaya Struk</label><select id="token_printStyle"><option value="1">1. Standar</option><option value="2">2. Struk PPOB</option><option value="3">3. Rincian Lengkap</option><option value="4">4. Token Besar</option><option value="5">5. Minimalis</option></select></div>
+ <div class="card"><h3>📷 Foto sumber</h3><div class="photoDrop"><div class="photoIcon"><svg viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div style="font-weight:850;font-size:12px">Upload foto struk / token</div><div class="small" style="margin-top:3px">Foto hanya dipreview di aplikasi untuk sekarang.</div><label class="fileBtn" style="margin-top:9px">Pilih Foto / PDF<input id="token_photo" type="file" accept="image/*,.pdf,application/pdf"></label><img id="token_photo_preview" class="photoPreview"><div id="token_photo_meta" class="photoMeta"></div></div></div>
+   <div class="ocrTools" data-ocr-type="token">
+    <div class="row" style="margin-top:10px">
+     <button type="button" class="btn secondary auto ocrScanBtn" data-ocr-type="token">🔎 Baca Sumber (OCR)</button>
+     <div id="token_ocr_status" class="status">Siap — OCR dijalankan hanya saat diminta.</div>
+    </div>
+    <div id="token_ocr_panel" class="ocrPanel hidden">
+     <div class="ocrPanelHead"><div><b>Review Hasil OCR</b><div class="small">OCR adalah bahan bantu. Periksa dan koreksi sebelum diterapkan ke transaksi.</div></div></div>
+     <div class="status warn" style="margin:9px 0">Foto diproses di browser/client. Tidak ada API AI/cloud transaksi yang dipanggil oleh patch ini.</div>
+     <div class="grid">
+      <div><label>Jenis Terbaca</label><select id="token_ocr_type"><option value="bill">Tagihan</option><option value="token">Token Listrik</option><option value="transfer">Transfer</option><option value="unknown">Belum dikenali</option></select></div>
+      <div><label>Tanggal</label><input id="token_ocr_date" type="date"></div>
+      <div><label>Waktu</label><input id="token_ocr_time" type="text" inputmode="numeric" placeholder="HH:MM:SS"></div>
+      <div><label>Nomor Transaksi</label><input id="token_ocr_tx" type="text"></div>
+      <div><label>Nama</label><input id="token_ocr_name" type="text"></div>
+      <div><label>IDPEL</label><input id="token_ocr_idpel" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Meter</label><input id="token_ocr_meter" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Pelanggan</label><input id="token_ocr_customer" type="text" inputmode="numeric"></div>
+      <div><label>Nominal</label><input id="token_ocr_nominal" type="text" inputmode="numeric"></div>
+      <div><label>Admin</label><input id="token_ocr_admin" type="text" inputmode="numeric"></div>
+      <div><label>Total</label><input id="token_ocr_total" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Referensi</label><input id="token_ocr_ref" type="text"></div>
+      <div><label>Bank</label><input id="token_ocr_bank" type="text"></div>
+      <div><label>No Rekening</label><input id="token_ocr_account" type="text" inputmode="numeric"></div>
+      <div class="full"><label>Layanan / Produk</label><input id="token_ocr_service" type="text"></div>
+      <div class="full"><label>Periode</label><input id="token_ocr_period" type="text"></div>
+      <div><label>Tarif / Daya</label><input id="token_ocr_tariff" type="text"></div>
+      <div><label>JML KWH</label><input id="token_ocr_kwh" type="text" inputmode="decimal"></div>
+      <div class="full"><label>Token</label><textarea id="token_ocr_token" spellcheck="false"></textarea></div>
+      <div class="full"><label>Raw OCR</label><textarea id="token_ocr_raw" class="ocrRaw" readonly spellcheck="false"></textarea></div>
+     </div>
+     <div class="row" style="margin-top:10px">
+      <button type="button" class="btn primary auto ocrApplyBtn" data-ocr-type="token">Terapkan ke Transaksi</button>
+      <button type="button" class="btn ghost auto ocrClearBtn" data-ocr-type="token">Kosongkan Review</button>
+     </div>
+    </div>
+   </div>
+ <div class="card">
+ <div class="detailHead"><h3>Rincian Transaksi</h3><div class="detailActions"><button type="button" class="btn ghost clearFieldsBtn" onclick="clearTransactionFields('token')">🧹 Bersihkan</button><button type="button" class="btn secondary fieldEditBtn" onclick="openFieldEditor('token')">✏️ Edit Field</button></div></div>
+ <div class="grid">
+  <div><label id="label-token-date">Tanggal</label><input id="token_date" type="date"></div><div><label id="label-token-pel">ID Pel</label><input id="token_pel"></div><div><label id="label-token-meter">No Meter</label><input id="token_meter"></div><div><label id="label-token-name">Nama</label><input id="token_name"></div><div><label id="label-token-tariff">Tarif / Daya</label><input id="token_tariff"></div><div><label id="label-token-kwh">JML KWH</label><input id="token_kwh"></div><div class="full"><label id="label-token-token">Token</label><textarea id="token_token"></textarea></div><div><label id="label-token-nominal">Nominal</label><input id="token_nominal" type="number"></div><div><label id="label-token-admin">Admin</label><input id="token_admin" type="number"></div><div><label id="label-token-ref">REF</label><input id="token_ref"></div>
+ </div>
+</div>
+ <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>Preview Struk</h3><button class="btn secondary" onclick="openFullPreview('token')">⛶ Preview Full</button><button class="btn secondary" onclick="exportReceiptPDF('token')">Export PDF</button><button class="btn orange" onclick="printThermal()">Cetak Thermal</button></div><div class="previewWrap"><div id="receipt-token" class="receipt"></div></div></div>
+</section>
+
+<section class="page" id="page-transfer">
+ <div class="pageHead"><h2>💸 Bukti Transfer</h2><p>Buat bukti transfer dengan rincian yang bisa diedit.</p></div>
+ <div class="mode-select-card"><label for="transfer_printStyle">Gaya Struk TRFBT</label><select id="transfer_printStyle"><option value="1">1. Standard</option><option value="2">2. Minimalis</option><option value="3">3. Modern</option><option value="4">4. Bank Style</option><option value="5">5. Compact</option></select></div>
+ <div class="card"><h3>📷 Foto sumber</h3><div class="photoDrop"><div class="photoIcon"><svg viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div style="font-weight:850;font-size:12px">Upload foto bukti transfer</div><div class="small" style="margin-top:3px">Siap dihubungkan ke AI Vision untuk ekstraksi data.</div><label class="fileBtn" style="margin-top:9px">Pilih Foto / PDF<input id="transfer_photo" type="file" accept="image/*,.pdf,application/pdf"></label><img id="transfer_photo_preview" class="photoPreview"><div id="transfer_photo_meta" class="photoMeta"></div></div></div>
+   <div class="ocrTools" data-ocr-type="transfer">
+    <div class="row" style="margin-top:10px">
+     <button type="button" class="btn secondary auto ocrScanBtn" data-ocr-type="transfer">🔎 Baca Sumber (OCR)</button>
+     <div id="transfer_ocr_status" class="status">Siap — OCR dijalankan hanya saat diminta.</div>
+    </div>
+    <div id="transfer_ocr_panel" class="ocrPanel hidden">
+     <div class="ocrPanelHead"><div><b>Review Hasil OCR</b><div class="small">OCR adalah bahan bantu. Periksa dan koreksi sebelum diterapkan ke transaksi.</div></div></div>
+     <div class="status warn" style="margin:9px 0">Foto diproses di browser/client. Tidak ada API AI/cloud transaksi yang dipanggil oleh patch ini.</div>
+     <div class="grid">
+      <div><label>Jenis Terbaca</label><select id="transfer_ocr_type"><option value="bill">Tagihan</option><option value="token">Token Listrik</option><option value="transfer">Transfer</option><option value="unknown">Belum dikenali</option></select></div>
+      <div><label>Tanggal</label><input id="transfer_ocr_date" type="date"></div>
+      <div><label>Waktu</label><input id="transfer_ocr_time" type="text" inputmode="numeric" placeholder="HH:MM:SS"></div>
+      <div><label>Nomor Transaksi</label><input id="transfer_ocr_tx" type="text"></div>
+      <div><label>Nama</label><input id="transfer_ocr_name" type="text"></div>
+      <div><label>IDPEL</label><input id="transfer_ocr_idpel" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Meter</label><input id="transfer_ocr_meter" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Pelanggan</label><input id="transfer_ocr_customer" type="text" inputmode="numeric"></div>
+      <div><label>Nominal</label><input id="transfer_ocr_nominal" type="text" inputmode="numeric"></div>
+      <div><label>Admin</label><input id="transfer_ocr_admin" type="text" inputmode="numeric"></div>
+      <div><label>Total</label><input id="transfer_ocr_total" type="text" inputmode="numeric"></div>
+      <div><label>Nomor Referensi</label><input id="transfer_ocr_ref" type="text"></div>
+      <div><label>Bank</label><input id="transfer_ocr_bank" type="text"></div>
+      <div><label>No Rekening</label><input id="transfer_ocr_account" type="text" inputmode="numeric"></div>
+      <div class="full"><label>Layanan / Produk</label><input id="transfer_ocr_service" type="text"></div>
+      <div class="full"><label>Periode</label><input id="transfer_ocr_period" type="text"></div>
+      <div><label>Tarif / Daya</label><input id="transfer_ocr_tariff" type="text"></div>
+      <div><label>JML KWH</label><input id="transfer_ocr_kwh" type="text" inputmode="decimal"></div>
+      <div class="full"><label>Token</label><textarea id="transfer_ocr_token" spellcheck="false"></textarea></div>
+      <div class="full"><label>Raw OCR</label><textarea id="transfer_ocr_raw" class="ocrRaw" readonly spellcheck="false"></textarea></div>
+     </div>
+     <div class="row" style="margin-top:10px">
+      <button type="button" class="btn primary auto ocrApplyBtn" data-ocr-type="transfer">Terapkan ke Transaksi</button>
+      <button type="button" class="btn ghost auto ocrClearBtn" data-ocr-type="transfer">Kosongkan Review</button>
+     </div>
+    </div>
+   </div>
+ <div class="card">
+ <div class="detailHead"><h3>Rincian Transaksi</h3><div class="detailActions"><button type="button" class="btn ghost clearFieldsBtn" onclick="clearTransactionFields('transfer')">🧹 Bersihkan</button><button type="button" class="btn secondary fieldEditBtn" onclick="openFieldEditor('transfer')">✏️ Edit Field</button></div></div>
+ <div class="grid">
+  <div><label id="label-transfer-date">Tanggal</label><input id="transfer_date" type="date"></div><div><label id="label-transfer-ref">Kode Referensi</label><input id="transfer_ref"></div><div><label id="label-transfer-bank">Bank Tujuan</label><input id="transfer_bank"></div><div><label id="label-transfer-account">No Rekening</label><input id="transfer_account"></div><div><label id="label-transfer-receiver">Penerima</label><input id="transfer_receiver"></div><div><label id="label-transfer-nominal">Nominal</label><input id="transfer_nominal" type="number"></div><div><label id="label-transfer-admin">Admin</label><input id="transfer_admin" type="number"></div><div><label id="label-transfer-s_name">Nama Pengirim (opsional)</label><input id="transfer_s_name"></div><div><label id="label-transfer-s_bank">Bank Pengirim (opsional)</label><input id="transfer_s_bank"></div><div class="full"><label id="label-transfer-s_num">Rekening Pengirim (opsional)</label><input id="transfer_s_num" inputmode="numeric"></div>
+ </div>
+</div>
+ <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>Preview Struk</h3><button class="btn secondary" onclick="openFullPreview('transfer')">⛶ Preview Full</button><button class="btn secondary" onclick="exportReceiptPDF('transfer')">Export PDF</button><button class="btn orange" onclick="printThermal()">Cetak Thermal</button></div><div class="previewWrap"><div id="receipt-transfer" class="receipt"></div></div></div>
+</section>
+
+<section class="page" id="page-voucher">
+ <div class="pageHead"><h2>🎟️ Voucher Hotspot</h2><p>Buat voucher hotspot dengan rincian yang bisa diedit.</p></div>
+ <div class="mode-select-card"><label for="voucher_printStyle">Gaya Struk TRFBT</label><select id="voucher_printStyle"><option value="1">1. Standard</option><option value="2">2. Minimalis</option><option value="3">3. Modern</option><option value="4">4. Bank Style</option><option value="5">5. Compact</option></select></div>
+ <div class="card"><h3>📷 Foto sumber</h3><div class="photoDrop"><div class="photoIcon"><svg viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div style="font-weight:850;font-size:12px">Upload foto voucher hotspot</div><div class="small" style="margin-top:3px">Siap dihubungkan ke AI Vision untuk ekstraksi data.</div><label class="fileBtn" style="margin-top:9px">Pilih Foto / PDF<input id="voucher_photo" type="file" accept="image/*,.pdf,application/pdf"></label><img id="voucher_photo_preview" class="photoPreview"><div id="voucher_photo_meta" class="photoMeta"></div></div></div>
+   <div class="ocrTools" data-ocr-type="voucher">
+    <div class="row" style="margin-top:10px">
+     <button type="button" class="btn secondary auto ocrScanBtn" data-ocr-type="voucher">🔎 Baca Sumber (OCR)</button>
+     <div id="voucher_ocr_status" class="status">Siap — OCR dijalankan hanya saat diminta.</div>
+    </div>
+    <div id="voucher_ocr_panel" class="ocrPanel hidden">
+     <div class="ocrPanelHead"><div><b>Review Hasil OCR</b><div class="small">OCR adalah bahan bantu. Periksa dan koreksi sebelum diterapkan ke transaksi.</div></div></div>
+     <div class="status warn" style="margin:9px 0">Foto diproses di browser/client. Tidak ada API AI/cloud transaksi yang dipanggil oleh patch ini.</div>
+     <div class="grid">
+      <div><label>Jenis Terbaca</label><select id="voucher_ocr_type"><option value="bill">Tagihan</option><option value="token">Token Listrik</option><option value="transfer">Transfer</option><option value="voucher">Voucher Hotspot</option><option value="unknown">Belum dikenali</option></select></div>
+      <div><label>Tanggal</label><input id="voucher_ocr_date" type="date"></div>
+      <div><label>Waktu</label><input id="voucher_ocr_time" type="text" inputmode="numeric" placeholder="HH:MM:SS"></div>
+      <div><label>Nomor Transaksi</label><input id="voucher_ocr_tx" type="text"></div>
+      <div><label>Durasi Voucher</label><input id="voucher_ocr_duration" type="text" placeholder="Contoh: 3 jam / 1 hari"></div>
+      <div><label>Username</label><input id="voucher_ocr_username" type="text"></div>
+      <div><label>Password</label><input id="voucher_ocr_password" type="text"></div>
+      <div><label>Masa Aktif</label><input id="voucher_ocr_masaAktif" type="text" placeholder="Contoh: 12-10-2026"></div>
+      <div><label>Nominal</label><input id="voucher_ocr_nominal" type="text" inputmode="numeric"></div>
+      <div class="full"><label>Kode Referensi (opsional)</label><input id="voucher_ocr_ref" type="text"></div>
+      <div class="full"><label>Raw OCR</label><textarea id="voucher_ocr_raw" class="ocrRaw" readonly spellcheck="false"></textarea></div>
+     </div>
+     <div class="row" style="margin-top:10px">
+      <button type="button" class="btn primary auto ocrApplyBtn" data-ocr-type="voucher">Terapkan ke Transaksi</button>
+      <button type="button" class="btn ghost auto ocrClearBtn" data-ocr-type="voucher">Kosongkan Review</button>
+     </div>
+    </div>
+   </div>
+ <div class="card">
+ <div class="detailHead"><h3>Rincian Transaksi</h3><div class="detailActions"><button type="button" class="btn ghost clearFieldsBtn" onclick="clearTransactionFields('voucher')">🧹 Bersihkan</button><button type="button" class="btn secondary fieldEditBtn" onclick="openFieldEditor('voucher')">✏️ Edit Field</button></div></div>
+ <div class="grid">
+  <div><label id="label-voucher-date">Tanggal</label><input id="voucher_date" type="date"></div><div><label id="label-voucher-ref">Durasi</label><input id="voucher_ref"></div><div><label id="label-voucher-bank">Username</label><input id="voucher_bank"></div><div><label id="label-voucher-account">Password</label><input id="voucher_account"></div><div><label id="label-voucher-receiver">Masa Aktif</label><input id="voucher_receiver"></div><div><label id="label-voucher-nominal">Nominal</label><input id="voucher_nominal" type="number"></div>
+ </div>
+</div>
+ <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3>Preview Struk</h3><button class="btn secondary" onclick="openFullPreview('voucher')">⛶ Preview Full</button><button class="btn orange" onclick="exportReceiptPDF('voucher')">Export PDF</button><button class="btn orange" onclick="printThermal()">Cetak Thermal</button></div><div class="previewWrap"><div id="receipt-voucher" class="receipt"></div></div></div>
+</section>
+
+<div id="fieldEditorOverlay" class="fieldEditorOverlay hidden" aria-hidden="true">
+ <div class="fieldEditorSheet" role="dialog" aria-modal="true" aria-labelledby="fieldEditorTitle">
+  <div class="fieldEditorHead">
+   <div><h3 id="fieldEditorTitle">✏️ Edit Field</h3><div class="small">Ubah label field saja. Isi transaksi tidak akan berubah.</div></div>
+   <button type="button" class="btn ghost auto" onclick="closeFieldEditor()" aria-label="Tutup">✕</button>
+  </div>
+  <div class="status" style="margin:10px 0">Default = label bawaan aplikasi. Kalau label sudah terlalu banyak berubah dan bikin bingung, pakai <b>Kembalikan Default</b>.</div>
+  <div id="fieldEditorList" class="fieldEditorList"></div>
+  <div class="row" style="margin-top:12px">
+   <button type="button" class="btn ghost" onclick="resetFieldLabels()">↺ Kembalikan Default</button>
+   <button type="button" class="btn primary" onclick="applyFieldLabels()">✓ Terapkan</button>
+  </div>
+ </div>
+</div>
+
+<section class="page" id="page-settings">
+ <div class="pageHead"><h2>⚙️ Pengaturan</h2><p>Identitas toko, admin otomatis, running text, dan printer.</p></div>
+ <div class="card"><h3>🏪 Identitas Toko & Struk</h3>
+  <div class="card" style="margin:0 0 10px;padding:12px"><h4 style="margin:0 0 9px;font-size:12px">Logo Aplikasi <span class="small">(berwarna)</span></h4><div class="logoBox"><img id="appLogoPreview" alt="Logo aplikasi"></div><div class="row"><label class="fileBtn auto">Upload Logo Aplikasi<input id="appLogoInput" type="file" accept="image/*"></label><button class="btn danger auto" id="removeAppLogo">Hapus</button></div></div>
+  <div class="card" style="margin:0 0 10px;padding:12px"><h4 style="margin:0 0 9px;font-size:12px">Logo Print <span class="small">(otomatis hitam-putih)</span></h4><div class="logoBox"><img id="printLogoPreview" alt="Logo print hitam putih"></div><div class="row"><label class="fileBtn auto">Upload Logo Print<input id="printLogoInput" type="file" accept="image/*"></label><button class="btn danger auto" id="removePrintLogo">Hapus</button></div><div class="small" style="margin-top:7px">Logo ini yang dipakai di preview dan hasil print. File dikonversi hitam-putih. Ukuran preview dan cetak mengikuti pengaturan lebar logo.</div><div style="margin-top:10px"><label for="logoWidth">Lebar Logo Thermal: <b id="logoWidthValue">50%</b></label><input id="logoWidth" type="range" min="15" max="100" step="5" value="50" aria-describedby="logoWidthHelp"><div id="logoWidthHelp" class="small">Persentase dari lebar cetak efektif. Pengaturan ini berlaku untuk preview dan printer thermal.</div></div></div>
+  <div class="divider"></div>
+  <div class="grid">
+   <div><label>Nama Usaha / Toko</label><input id="shopName"></div><div><label>Ukuran Font Toko</label><select id="shopFont"><option value="small">Kecil</option><option value="medium">Sedang</option><option value="large">Besar</option></select></div>
+   <div class="full"><label>Alamat Toko</label><textarea id="shopAddress"></textarea></div><div><label>Nomor Kontak</label><input id="shopContact" inputmode="tel"></div><div><label>Lebar Struk</label><select id="paperWidth"><option value="58">58 mm</option><option value="80">80 mm</option></select></div>
+   <div class="full"><label>Pesan Footer <span class="small">(masuk ke isi struk, bukan footer lisensi)</span></label><textarea id="receiptFooter"></textarea></div>
+  </div>
+ </div>
+ <div class="card"><h3>💰 Admin Otomatis</h3>
+  <div class="grid"><div class="full"><label for="adminType">Mode Perhitungan Admin</label><select id="adminType"><option value="fixed">Admin Tetap (Satu Harga)</option><option value="tiered">Admin Bertingkat (Otomatis)</option></select></div><div id="fixedAdminWrap"><label>Nilai Admin Default (Rp)</label><input id="adminDefault" type="number" min="0" step="1"></div><div><label>Status</label><div id="adminModeStatus" class="status">Manual</div></div></div>
+  <div id="tieredAdminWrap" class="hidden" style="margin-top:10px"><div class="detailHead"><h3>Aturan Admin Bertingkat</h3><button type="button" class="btn secondary" onclick="addAdminRule()">+ Tambah Aturan</button></div><div id="adminRulesEditor" class="fieldEditorList"></div><div class="small" style="margin-top:6px">Rentang nilai transaksi mencakup nilai minimum dan maksimum. Maksimum kosong berarti tanpa batas atas.</div></div>
+  <div class="checkRow" style="margin-top:10px"><input id="adminAuto" type="checkbox"><label for="adminAuto"><b>Gunakan admin otomatis</b><div class="small">Jika aktif, admin mengikuti mode tetap atau aturan bertingkat. Jika mati, admin dapat diatur per transaksi.</div></label></div>
+ </div>
+ <div class="card"><h3>🧾 Opsi Tampilan Struk</h3>
+  <div class="checkRow"><input id="showAdminFee" type="checkbox"><label for="showAdminFee"><b>Tampilkan biaya admin</b><div class="small">Jika dimatikan, admin tidak dicetak dan total mengikuti nominal transaksi tanpa admin.</div></label></div>
+  <div class="checkRow" style="margin-top:8px"><input id="cutRef" type="checkbox"><label for="cutRef"><b>Ringkas nomor referensi</b><div class="small">Jika aktif, referensi yang lebih dari 8 karakter ditampilkan menggunakan 8 karakter terakhir.</div></label></div>
+  <div class="checkRow" style="margin-top:8px"><input id="showSender" type="checkbox"><label for="showSender"><b>Tampilkan data pengirim pada Transfer</b><div class="small">Data pengirim opsional diisi pada menu Transfer. Data hanya diisi per transaksi; tidak ada direktori pengirim tersimpan.</div></label></div>
+ </div>
+ <div class="card"><h3>📢 Running Text</h3><label>Teks yang berjalan di bagian atas aplikasi</label><textarea id="runningText" placeholder="Contoh: RB HOME PRINT MEDIA • CETAK CEPAT • TERIMA KASIH"></textarea><div class="small" style="margin-top:6px">Animasi ini hanya tampilan aplikasi; tidak ikut tercetak sebagai footer lisensi.</div></div>
+ <button class="btn primary" style="width:100%;margin-bottom:8px" onclick="saveAll()">Simpan Pengaturan</button>
+ <div class="card"><h3>🖨️ Koneksi Printer Bluetooth</h3><div id="btStatus" class="status">Belum terhubung</div><p class="small">Untuk printer thermal Bluetooth BLE yang mendukung Web Bluetooth/ESC-POS. Dukungan bergantung pada browser dan tipe printer.</p><div class="row"><button class="btn primary" id="connectBtn">Cari & Hubungkan</button><button class="btn secondary" id="testBtn">Test Print</button></div><div class="divider"></div><label>Preset Bluetooth</label><select id="blePreset"><option value="auto">Auto / umum</option><option value="18f0">18F0 / 2AF1</option><option value="ffe0">FFE0 / FFE1</option><option value="ff00">FF00 / FF02</option></select><div id="printerName" class="status" style="margin-top:8px">Printer: —</div></div>
+ <div class="license">© 2026 RBHome Media — All Rights Reserved</div>
+</section>
+
+<section class="page" id="page-print">
+ <div class="rbFullPreviewTop"><button class="btn secondary" onclick="closeFullPreview()">‹ Kembali</button><strong id="rbFullPreviewTitle">Preview Struk</strong><select id="rbFullStyle" aria-label="Gaya struk"><option value="1">1. Standar</option><option value="2">2. Minimalis</option><option value="3">3. Modern</option><option value="4">4. Bank Style</option><option value="5">5. Compact</option></select></div>
+ <div class="rbFullPreviewScroll" id="rbFullPreviewScroll"><div id="printReceipt" class="receipt"></div></div>
+ <div class="rbFullPreviewActions"><button class="btn secondary" onclick="openReceiptValueEditor()">✏️ Edit Isi</button><button class="btn secondary" onclick="exportFullPreviewPDF()">PDF</button><button class="btn primary" onclick="printFullPreviewBluetooth()">🔵 Bluetooth</button></div>
+</section>
+<div id="rbReceiptEditOverlay" class="rbReceiptEditOverlay hidden" aria-hidden="true"><div class="rbReceiptEditSheet"><div class="rbReceiptEditHead"><h3 id="rbReceiptEditTitle">Edit Isi Struk</h3><button class="btn secondary" onclick="closeReceiptValueEditor()">Tutup</button></div><p class="small">Ubah nilai transaksi. Preview diperbarui langsung; OCR, parser, dan Edit Field utama tetap milik RB HOME PRINTER.</p><div id="rbReceiptValueFields" class="rbReceiptValueFields"></div><div class="rbReceiptEditFoot"><button class="btn secondary" onclick="closeReceiptValueEditor()">Batal</button><button class="btn primary" onclick="saveReceiptValueEditor()">Simpan Perubahan</button></div></div></div>
+</main>
+<button class="fab" onclick="quickPrint()" title="Cetak">🖨️</button>
+<nav class="bottom"><div class="nav">
+ <button data-page="home" class="active" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Beranda</button>
+ <button data-page="bill" onclick="go('bill')"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>Tagihan</button>
+ <button data-page="token" onclick="go('token')"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 8-11h-6z"/></svg>Token</button>
+ <button data-page="transfer" onclick="go('transfer')"><svg viewBox="0 0 24 24"><path d="M7 7h10l-3-3M17 17H7l3 3"/><path d="M17 7 14 4M7 17l3 3"/></svg>Transfer</button>
+ <button data-page="voucher" onclick="go('voucher')"><svg viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/></svg>Voucher</button>
+ <button data-page="settings" onclick="go('settings')"><svg viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="m19 13 1.2 1-.9 1.7-1.5-.3a6.8 6.8 0 0 1-1.2 1.2l.3 1.5-1.7.9-1-1.2a7 7 0 0 1-1.6.2l-.8 1.3h-2l-.8-1.3a7 7 0 0 1-1.6-.2l-1 1.2-1.7-.9.3-1.5a6.8 6.8 0 0 1-1.2-1.2l-1.5.3-.9-1.7 1.2-1a7 7 0 0 1 0-1.9l-1.2-1 .9-1.7 1.5.3a6.8 6.8 0 0 1 1.2-1.2l-.3-1.5 1.7-.9 1 1.2a7 7 0 0 1 1.6-.2L10 5h2l.8 1.3a7 7 0 0 1 1.6.2l1-1.2 1.7.9-.3 1.5a6.8 6.8 0 0 1 1.2 1.2l1.5-.3.9 1.7-1.2 1a7 7 0 0 1 0 1.9z"/></svg>Pengaturan</button>
+</div></nav>
+</div>
+<script>
+const KEY="rbhome_print_media_v3";
+const today=new Date().toISOString().slice(0,10);
+const defaults={settings:{shopName:"RB HOME MEDIA",shopFont:"large",appLogo:"",printLogo:"",shopAddress:"Wonosari Gg 2 Rt01/10 No. 10",shopContact:"",receiptFooter:"- Terima Kasih -",paperWidth:"80",logoWidth:50,logo:"",adminDefault:"0",adminAuto:true,adminType:"fixed",adminRules:[],showAdminFee:true,cutRef:false,showSender:false,runningText:"RB HOME PRINT MEDIA • CETAK CEPAT • STRUK THERMAL",fieldLabels:{
+ bill:{date:"Tanggal",service:"Layanan",pel:"No Pel",name:"Nama",period:"Periode",tagihan:"Tagihan",denda:"Denda",admin:"Admin",ref:"REF"},
+ token:{date:"Tanggal",pel:"ID Pel",meter:"No Meter",name:"Nama",tariff:"Tarif / Daya",kwh:"JML KWH",token:"Token",nominal:"Nominal",admin:"Admin",ref:"REF"},
+ transfer:{date:"Tanggal",ref:"Kode Referensi",bank:"Bank Tujuan",account:"No Rekening",receiver:"Penerima",nominal:"Nominal",admin:"Admin",s_name:"Nama Pengirim",s_bank:"Bank Pengirim",s_num:"Rekening Pengirim"},voucher:{date:"Tanggal",ref:"Durasi",bank:"Username",account:"Password",receiver:"Masa Aktif",nominal:"Nominal"}
+}},bill:{date:today,service:"RB HOME BASIC",pel:"26000061001",name:"AZKA",period:"19/09/26 - 19/10/26",detail:[],tagihan:"120000",denda:"0",admin:"0",ref:"00006042",mode:"standard",printStyle:1},token:{date:today,pel:"-",meter:"524510781657",name:"ANA LINDAWATI",tariff:"R1/450",kwh:"43.90",token:"6600 0498 1033 6811 5242",nominal:"20000",admin:"0",ref:"00006042",mode:"token",printStyle:1},transfer:{date:today,ref:"00006042",bank:"",account:"",receiver:"AZKA",nominal:"120000",admin:"0",s_name:"",s_bank:"",s_num:"",tid:"",mode:"standard",printStyle:1},voucher:{date:today,ref:"",bank:"",account:"",receiver:"",nominal:"",mode:"standard",printStyle:1}};
+let stored=null;try{stored=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+let data=stored||structuredClone(defaults);if(!Array.isArray(data.history))data.history=[];data.settings=Object.assign({},defaults.settings,data.settings||{});if(!Array.isArray(data.settings.adminRules))data.settings.adminRules=[];if(!["fixed","tiered"].includes(data.settings.adminType))data.settings.adminType="fixed";data.bill=Object.assign({},defaults.bill,data.bill||{});data.bill.detail=Array.isArray(data.bill.detail)?data.bill.detail:[];data.token=Object.assign({},defaults.token,data.token||{});data.transfer=Object.assign({},defaults.transfer,data.transfer||{});data.voucher=Object.assign({},defaults.voucher,data.voucher||{});
+["bill","token","transfer","voucher"].forEach(t=>{
+ if(!data[t].printStyle && (t==="transfer"||t==="voucher"))data[t].printStyle=data[t].mode==="minimal"?2:data[t].mode==="modern"?3:1;
+ data[t].printStyle=String(data[t].printStyle||1);if(!["1","2","3","4","5"].includes(data[t].printStyle))data[t].printStyle="1";
+});
+data.settings.fieldLabels=Object.assign({},defaults.settings.fieldLabels||{},data.settings.fieldLabels||{});
+["bill","token","transfer","voucher"].forEach(t=>{data.settings.fieldLabels[t]=Object.assign({},defaults.settings.fieldLabels[t]||{},data.settings.fieldLabels[t]||{})});
+if(!data.settings.appLogo)data.settings.appLogo="";if(!data.settings.printLogo)data.settings.printLogo="";let current="home",bleDevice=null,bleChar=null;
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>\"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const rp=n=>"Rp "+Number(String(n??0).replace(/\D/g,"")||0).toLocaleString("id-ID");
+let persistenceWarningShown=false;function persistAppState(){try{localStorage.setItem(KEY,JSON.stringify(data));return true}catch(e){if(!persistenceWarningShown){persistenceWarningShown=true;console.warn("Penyimpanan lokal tidak tersedia; perubahan hanya berlaku selama halaman terbuka.",e&&e.name?e.name:"storage error")}return false}}
+function amountInt(value){const digits=String(value??"").replace(/\D/g,"");return digits?Number(digits):0}
+function center(x){x=String(x||"");return x.length>=32?x.slice(0,32):" ".repeat(Math.floor((32-x.length)/2))+x}
+function go(page){current=page;document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+page));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));applyFieldLabelsToUI();if(page==="home")updateHome();window.scrollTo({top:0,behavior:"smooth"})}
+function clearTransactionFields(type){
+ const d=data[type];if(!d)return;
+ Object.keys(d).forEach(k=>{
+  if(k==="mode")return;
+  d[k]=Array.isArray(d[k])?[]:"";
+  const el=$(type+"_"+k);
+  if(el){el.value="";if(k==="admin"&&data.settings.adminAuto){}}
+ });
+ bindGroup(type,type);
+ syncAdminFields();
+ if(type==="bill")renderBillDetailEditor();
+ renderReceipt(type);
+ persistAppState()
+}
+function bindGroup(group,prefix){const d=data[group];Object.keys(d).forEach(k=>{const el=$(prefix+"_"+k);if(!el)return;el.value=d[k]??"";el.oninput=()=>{d[k]=el.value;if(data.settings.adminAuto&&((group==="bill"&&k==="tagihan")||((group==="token"||group==="transfer")&&k==="nominal")))syncAdminFields();renderAllReceiptsOnly();persistAppState()}})}
+function fontPx(){return data.settings.paperWidth==="58"?11.3:12}
+function logoForPrint(){return data.settings.printLogo||data.settings.logo||""}
+function buildTokenParityText(){
+ const d=data.token||{},s=data.settings||{},width=(s.paperWidth==="58"?32:42),style=Number(d.printStyle||1),lines=[],showAdmin=s.showAdminFee!==false;
+ const center=v=>lines.push(...printCenter(String(v??""),width).split("\n"));
+ const left=v=>lines.push(...printWrap(String(v??""),width).split("\n"));
+ const sep=ch=>lines.push(String(ch||"-").repeat(width));
+ const lr=(label,value)=>lines.push(printPair(label,value==null||String(value)===""?"-":String(value),width));
+ const kv=(label,value)=>lines.push(...printRightKeyValue(label,value,width).split("\n"));
+ const money=(label,value)=>lr(label,rp(amountInt(value)));
+ const dateParts=String(d.date||"").split(/\s+/),date=dateParts[0]||"",time=dateParts[1]||"";let ref=String(d.ref||"").trim()||"-";if(s.cutRef===true&&ref.length>8)ref=ref.slice(-8);const finalTotal=amountInt(d.nominal)+(showAdmin?amountInt(d.admin):0);
+ const tokenDigits=String(d.token??"").replace(/\D/g,"");
+ const tokenBlock=()=>{
+  center("STROOM / TOKEN");
+  if(!tokenDigits){center("TOKEN BELUM DIISI");return}
+  const groups=tokenDigits.match(/.{1,4}/g)||[],perLine=width<=32?2:3;
+  for(let i=0;i<groups.length;i+=perLine)center(groups.slice(i,i+perLine).join(" "));
+ };
+ const footer=()=>{sep("-");lines.push(...printWrap(String(s.receiptFooter??"").trim()||"- TERIMA KASIH -",width).split("\n").map(x=>printCenter(x.toUpperCase(),width)))};
+ const note=()=>{const v=String(d.catatan||d.note||"").trim();if(v){sep("-");left("CATATAN:");left(v)}};
+ if(s.shopName)lines.push(...printCenter(String(s.shopName).toUpperCase(),(s.shopFont==="medium"||s.shopFont==="large")?Math.max(8,Math.floor(width/2)):width).split("\n"));
+ if(s.shopAddress)lines.push(...printWrap(String(s.shopAddress).toUpperCase(),width).split("\n").map(x=>printCenter(x,width)));
+ if(s.shopContact)lines.push(...printWrap(String(s.shopContact),width).split("\n").map(x=>printCenter(x,width)));
+ if(d.mode==="postpaid"){
+  // Keep prepaid-token formatting out of postpaid invoices.
+  sep("=");center("STRUK TAGIHAN LISTRIK PLN");sep("=");lr("TANGGAL",date);if(time)lr("WAKTU",time);sep("-");kv("ID PEL",d.pel);kv("NO METER",d.meter);kv("NAMA",d.name);kv("TARIF/DAYA",d.tariff);kv("JML KWH",d.kwh);sep("-");money("TAGIHAN",d.nominal);if(showAdmin)money("ADMIN",d.admin);sep("=");lr("TOTAL BAYAR",rp(finalTotal));lr("REF",ref);note();footer();return lines.join("\n");
+ }
+ if(style===1){
+  sep("=");center("STRUK PEMBELIAN TOKEN LISTRIK");sep("=");lr("TANGGAL",date);if(time)lr("WAKTU",time);sep("-");kv("ID PEL",d.pel);kv("NO METER",d.meter);kv("NAMA",d.name);kv("TARIF/DAYA",d.tariff);kv("JML KWH",d.kwh);sep("-");tokenBlock();sep("-");money("NOMINAL",d.nominal);if(showAdmin)money("ADMIN",d.admin);sep("=");lr("TOTAL",rp(finalTotal));sep("=");kv("REF",ref);note();
+ }else if(style===2){
+  lines.push("");center("PEMBELIAN TOKEN PLN");center(d.date||"");sep("-");kv("METER",d.meter);kv("NAMA",d.name);kv("TRF/DY",d.tariff);kv("KWH",d.kwh);sep("-");tokenBlock();sep("-");money("NOMINAL",d.nominal);if(showAdmin)money("ADMIN",d.admin);sep("-");lr("TOTAL",rp(finalTotal));left("SN: "+ref);note();
+ }else if(style===3){
+  sep("=");center("STRUK PEMBELIAN LISTRIK PRABAYAR");sep("=");lr("TANGGAL",date);if(time)lr("WAKTU",time);sep("-");kv("NO METER",d.meter);kv("IDPEL",d.pel);kv("NAMA",d.name);kv("TARIF/DAYA",d.tariff);kv("NO REF",ref);sep("-");left("RINCIAN PEMBELIAN");money("NOMINAL",d.nominal);if(d.rp_bayar&&amountInt(d.rp_bayar)!==amountInt(d.nominal))money("RP BAYAR",d.rp_bayar);if(d.costs&&typeof d.costs==="object")Object.entries(d.costs).forEach(([k,v])=>{if(v!==""&&v!=null)money(k,v)});lr("JML KWH",d.kwh);sep("-");tokenBlock();sep("-");if(showAdmin)money("ADMIN",d.admin);sep("=");lr("TOTAL BAYAR",rp(finalTotal));sep("=");if(d.info)center(d.info);note();
+ }else if(style===4){
+  sep("-");center("TOKEN LISTRIK PRABAYAR");center(d.date||"");sep("-");lines.push("");tokenBlock();lines.push("");center("MASUKKAN 20 ANGKA DI METERAN");sep("-");kv("NO METER",d.meter);kv("NAMA",d.name);kv("KWH",d.kwh);sep("-");lr("TOTAL",rp(finalTotal));left("REF: "+ref);note();
+ }else{
+  lines.push("");center("TOKEN PLN");center(String(d.name||"").toUpperCase());center(d.meter||"");lines.push("");tokenBlock();lines.push("");if(d.kwh)center(d.kwh+" KWH");money("NOM",d.nominal);if(showAdmin)money("ADM",d.admin);sep("-");lr("TOTAL",rp(finalTotal));center(d.date||"");center("REF "+ref);note();
+ }
+ footer();return lines.join("\n");
+}
+function buildBillParityText(){
+ const d=data.bill||{},s=data.settings||{},width=(s.paperWidth==="58"?32:42),style=Number(d.printStyle||1),lines=[],showAdmin=s.showAdminFee!==false;
+ const center=v=>lines.push(...printCenter(String(v??""),width).split("\n"));
+ const left=v=>lines.push(...printWrap(String(v??""),width).split("\n"));
+ const sep=ch=>lines.push(String(ch||"-").repeat(width));
+ const lr=(label,value)=>lines.push(printPair(label,value==null||String(value)===""?"-":String(value),width));
+ const kv=(label,value,labelWidth)=>lines.push(...printRightKeyValue(label,value,width).split("\n"));
+ const money=(label,value)=>lr(label,rp(amountInt(value)));
+ const dateParts=String(d.date||"").split(/\s+/),date=dateParts[0]||"",time=dateParts[1]||"";
+ const total=amountInt(d.tagihan)+amountInt(d.denda)+(showAdmin?amountInt(d.admin):0),service=String(d.service||"TAGIHAN").trim().toUpperCase();let ref=String(d.ref||"").trim()||"-";if(s.cutRef===true&&ref.length>8)ref=ref.slice(-8);
+ const footer=()=>{sep("-");lines.push(...printWrap(String(s.receiptFooter??"").trim()||"- TERIMA KASIH -",width).split("\n").map(x=>printCenter(x.toUpperCase(),width)))};
+ const note=()=>{const v=String(d.catatan||d.note||"").trim();if(v){left("CATATAN:");left(v)}};
+ const detailLines=(limit=Infinity)=>{(Array.isArray(d.detail)?d.detail:[]).filter(x=>x&&String(x.label||"").trim()&&String(x.value??"").trim()).slice(0,limit).forEach(x=>kv(String(x.label).trim(),String(x.value).trim()))};
+ if(s.shopName)lines.push(...printCenter(String(s.shopName).toUpperCase(),(s.shopFont==="medium"||s.shopFont==="large")?Math.max(8,Math.floor(width/2)):width).split("\n"));
+ if(s.shopAddress)lines.push(...printWrap(String(s.shopAddress).toUpperCase(),width).split("\n").map(x=>printCenter(x,width)));
+ if(s.shopContact)lines.push(...printWrap(String(s.shopContact),width).split("\n").map(x=>printCenter(x,width)));
+ if(style===1){
+  sep("=");center("STRUK PEMBAYARAN TAGIHAN");sep("=");lr("TANGGAL",date);if(time)lr("WAKTU",time);sep("-");kv("JENIS LAYANAN",d.service,15);kv("NOMOR PELANGGAN",d.pel,15);kv("NAMA PELANGGAN",d.name,15);kv("PERIODE",d.period,15);sep("-");money("TAGIHAN",d.tagihan);if(amountInt(d.denda)>0)money("DENDA",d.denda);if(showAdmin)money("ADMIN",d.admin);sep("=");lr("TOTAL",rp(total));sep("=");kv("REF",ref,15);note();
+ }else if(style===2){
+  lines.push("");center("STRUK LUNAS");center(d.date||"");sep("-");kv("JENIS LAYANAN",d.service,15);kv("NOMOR PELANGGAN",d.pel,15);kv("NAMA PELANGGAN",d.name,15);kv("PERIODE",d.period,15);detailLines();sep("-");money("TAGIHAN",d.tagihan);if(amountInt(d.denda)>0)money("DENDA",d.denda);if(showAdmin)money("ADMIN",d.admin);sep("-");lr("TOTAL",rp(total));left("SN: "+ref);note();
+ }else if(style===3){
+  sep("=");center(service==="TAGIHAN"?"STRUK PEMBAYARAN TAGIHAN":"PEMBAYARAN "+service);sep("=");lr("TANGGAL",date);if(time)lr("WAKTU",time);kv("NO REF",ref,13);sep("-");kv("LAYANAN",d.service,13);kv(fieldLabel("bill","pel"),d.pel,13);kv("NAMA",d.name,13);if(d.period)kv("PERIODE",d.period,13);detailLines();sep("-");left("RINCIAN BIAYA");money("TAGIHAN",d.tagihan);if(amountInt(d.denda)>0)money("DENDA",d.denda);if(showAdmin)money("ADMIN",d.admin);sep("=");lr("TOTAL BAYAR",rp(total));sep("=");note();center("SIMPAN STRUK INI SEBAGAI BUKTI PEMBAYARAN");
+ }else if(style===4){
+  sep("-");center(service);center(d.date||"");sep("-");kv("IDPEL",d.pel,11);kv("NAMA",d.name,11);if(d.period)kv("PERIODE",d.period,11);detailLines(4);if(showAdmin)money("ADMIN",d.admin);lr("TOTAL",rp(total));left("REF: "+ref);note();
+ }else{
+  lines.push("");center(service);if(d.service&&service!=="TAGIHAN"&&String(d.service).trim().toUpperCase()!==service)center(d.service);lines.push("");center(String(d.name||"").toUpperCase());center(d.pel||"");if(d.period)center(d.period);lines.push("");center(rp(total));center(d.date||"");center("REF "+ref);note();
+ }
+ footer();return lines.join("\n");
+}
+function buildTRFBTStyleText(type){
+ if(type==="token")return buildTokenParityText();
+ if(type==="bill")return buildBillParityText();
+ const d=data[type]||{},s=data.settings||{},width=(s.paperWidth==="58"?32:42),style=Number(d.printStyle||1),lines=[];
+ const center=(v)=>{lines.push(...printCenter(String(v??""),width).split("\n"));};
+ const left=(v)=>{lines.push(...printWrap(String(v??""),width).split("\n"));};
+ const sep=(ch="-")=>lines.push(ch.repeat(width));
+ const lr=(label,value)=>{if(value===undefined||value===null||String(value)==="")value="-";const l=String(label??"");if(l.length+2>width-8){lines.push(...printWrap(l,width).split("\n"));lines.push(...printWrap(String(value),width-2).split("\n").map(x=>"  "+x));}else lines.push(printPair(l,String(value),width));};
+ const kv=(label,value)=>lines.push(...printRightKeyValue(String(label??"").toUpperCase(),value,width).split("\n"));
+ const minKV=(label,value)=>kv(label,value);
+ const money=(label,value)=>lr(label,rp(value));
+ const title=type==="bill"?(d.mode==="ppob"?"PEMBAYARAN PPOB":"PEMBAYARAN TAGIHAN"):type==="token"?(d.mode==="postpaid"?"TAGIHAN LISTRIK PLN":"TOKEN LISTRIK PLN"):type==="transfer"?"BUKTI TRANSFER":"VOUCHER HOTSPOT";
+ const dateLabel=fieldLabel(type,"date"),refLabel=fieldLabel(type,"ref"),bankLabel=fieldLabel(type,type==="voucher"?"bank":"bank"),accountLabel=fieldLabel(type,"account"),receiverLabel=fieldLabel(type,"receiver");
+ const amount=d.nominal??d.tagihan??"0",admin=Number(String(d.admin??0).replace(/\D/g,""))||0,showAdmin=s.showAdminFee!==false;
+ const baseAmount=type==="bill"?(Number(String(d.tagihan??0).replace(/\D/g,""))||0)+(Number(String(d.denda??0).replace(/\D/g,""))||0):(Number(String(d.nominal??0).replace(/\D/g,""))||0);
+ const total=baseAmount+(showAdmin?admin:0);let displayReference=String(d.ref||"-");if(s.cutRef===true&&displayReference.length>8)displayReference=displayReference.slice(-8);const showSender=type==="transfer"&&s.showSender===true&&(String(d.s_name||"").trim()||String(d.s_bank||"").trim()||String(d.s_num||"").trim());
+ const sender=(minimalis=false)=>{if(!showSender)return;center("DATA PENGIRIM");const pair=minimalis?minKV:lr;if(d.s_name)pair("NAMA PENGIRIM",d.s_name);if(d.s_bank)pair("BANK PENGIRIM",d.s_bank);if(d.s_num)pair("NO REKENING",d.s_num);sep("-")};
+ const recipient=type==="bill"?d.name:type==="token"?d.name:type==="transfer"?d.receiver:d.bank;
+ const reference=displayReference;
+ // Shared store header, following TRFBT's fixed-character receipt builder.
+ const shopWidth=(s.shopFont==="medium"||s.shopFont==="large")?Math.max(8,Math.floor(width/2)):width;
+ if(s.shopName)lines.push(...printCenter(String(s.shopName).toUpperCase(),shopWidth).split("\n"));
+ if(s.shopAddress)lines.push(...printWrap(String(s.shopAddress).toUpperCase(),width).split("\n").map(x=>printCenter(x,width)));
+ if(s.shopContact)lines.push(...printWrap(String(s.shopContact),width).split("\n").map(x=>printCenter(x,width)));
+ const details=()=>{
+  if(type==="bill"){
+   lr(fieldLabel(type,"service"),d.service);lr(fieldLabel(type,"pel"),d.pel);lr(fieldLabel(type,"name"),d.name);lr(fieldLabel(type,"period"),d.period);sep("-");money(fieldLabel(type,"tagihan"),d.tagihan);if(showAdmin)money(fieldLabel(type,"admin"),d.admin);sep("=");lr("TOTAL",rp(total));lr(fieldLabel(type,"ref"),reference);
+  }else if(type==="token"){
+   lr(fieldLabel(type,"pel"),d.pel);lr(fieldLabel(type,"meter"),d.meter);lr(fieldLabel(type,"name"),d.name);lr(fieldLabel(type,"tariff"),d.tariff);lr(fieldLabel(type,"kwh"),d.kwh);sep("-");
+   if(d.mode==="postpaid"){money("TAGIHAN",d.nominal)}else{center(fieldLabel(type,"token").toUpperCase());center(formatTokenGroups(d.token));money(fieldLabel(type,"nominal"),d.nominal)}
+   if(showAdmin)money(fieldLabel(type,"admin"),d.admin);sep("=");lr("TOTAL",rp(total));lr(fieldLabel(type,"ref"),reference);
+  }else if(type==="transfer"){
+   center("DATA PENERIMA");lr(fieldLabel(type,"bank"),d.bank);lr(fieldLabel(type,"account"),d.account);lr(fieldLabel(type,"receiver"),d.receiver);sep("-");money(fieldLabel(type,"nominal"),d.nominal);if(showAdmin)money(fieldLabel(type,"admin"),d.admin);sep("=");lr("TOTAL",rp(total));
+  }else{
+   lr(fieldLabel(type,"bank"),d.bank);lr(fieldLabel(type,"account"),d.account);lr(fieldLabel(type,"receiver"),d.receiver);lr(fieldLabel(type,"ref"),reference);sep("-");money(fieldLabel(type,"nominal"),d.nominal);
+  }
+ };
+ if(style===1){
+  sep("=");center(title);sep("=");lr(dateLabel,d.date);sep("-");center(type==="transfer"?"KODE REFERENSI":type==="voucher"?"PAKET / DURASI":"DETAIL TRANSAKSI");center(reference);sep("-");if(type==="transfer")sender();details();sep("=");
+ }else if(style===2){
+  lines.push("");center(d.date||"");lines.push("");
+  if(type==="bill"){left("LAYANAN:");left(d.service||"-");left("PELANGGAN:");left(d.name||"-");lr(fieldLabel(type,"pel"),d.pel);lr(fieldLabel(type,"period"),d.period);lines.push("");money(fieldLabel(type,"tagihan"),d.tagihan);if(showAdmin)money(fieldLabel(type,"admin"),d.admin);sep("-");lr("TOTAL",rp(total));}
+  else if(type==="token"){left("PELANGGAN:");left(d.name||"-");lr(fieldLabel(type,"pel"),d.pel);lr(fieldLabel(type,"meter"),d.meter);if(d.mode==="postpaid")money("TAGIHAN",d.nominal);else{center(formatTokenGroups(d.token));money(fieldLabel(type,"nominal"),d.nominal)}if(showAdmin)money(fieldLabel(type,"admin"),d.admin);sep("-");lr("TOTAL",rp(total));}
+  else if(type==="transfer"){sender(true);center("PENERIMA:");minKV("BANK",d.bank||"-");minKV("NO REKENING",d.account||"-");minKV("NAMA PENERIMA",d.receiver||"-");lines.push("");money(fieldLabel(type,"nominal"),d.nominal);if(showAdmin)money(fieldLabel(type,"admin"),d.admin);sep("-");lr("TOTAL",rp(total));}
+  else{center("AKUN VOUCHER");minKV("USERNAME",d.bank||"-");minKV("PASSWORD",d.account||"-");minKV("DURASI",reference);minKV("MASA AKTIF",d.receiver);lines.push("");money(fieldLabel(type,"nominal"),d.nominal);}
+ }else if(style===3){
+  lines.push("");sep("=");center(type==="transfer"?"BUKTI TRANSFER":title);sep("=");lr(dateLabel,d.date);lr(refLabel,reference);lines.push("");
+  if(type==="bill"){left("LAYANAN:");left(d.service||"-");lr(fieldLabel(type,"pel"),d.pel);lr(fieldLabel(type,"name"),d.name);lr(fieldLabel(type,"period"),d.period);}
+  else if(type==="token"){lr(fieldLabel(type,"pel"),d.pel);lr(fieldLabel(type,"meter"),d.meter);lr(fieldLabel(type,"name"),d.name);if(d.mode!=="postpaid"){center(fieldLabel(type,"token").toUpperCase());center(formatTokenGroups(d.token));}}
+  else if(type==="transfer"){sender();left("KEPADA:");lr(fieldLabel(type,"receiver"),d.receiver);lr(fieldLabel(type,"bank"),d.bank);lr(fieldLabel(type,"account"),d.account);}
+  else{lr("USERNAME",d.bank);lr("PASSWORD",d.account);lr("DURASI",reference);lr("MASA AKTIF",d.receiver);}
+  lines.push("");center(type==="transfer"?"TOTAL BAYAR":"TOTAL TRANSAKSI");center(rp(total));
+ }else if(style===4){
+  lines.push("");center(type==="transfer"?"BUKTI TRANSAKSI":type==="voucher"?"BUKTI VOUCHER":type==="token"?"BUKTI PEMBAYARAN PLN":"BUKTI PEMBAYARAN");left(d.date||"");kv("NO REF",reference);lines.push("");kv("TRANSAKSI",title);
+  if(type==="bill"){kv("LAYANAN",d.service);kv("ID PELANGGAN",d.pel);kv("NAMA",d.name);kv("PERIODE",d.period);kv("TAGIHAN",rp(d.tagihan));if(showAdmin)kv("BIAYA ADMIN",rp(d.admin));}
+  else if(type==="token"){kv("ID PELANGGAN",d.pel);kv("NO METER",d.meter);kv("NAMA",d.name);kv("TARIF",d.tariff);if(d.mode==="postpaid")kv("TAGIHAN",rp(d.nominal));else{kv("TOKEN",formatTokenGroups(d.token));kv("NOMINAL",rp(d.nominal))}if(showAdmin)kv("BIAYA ADMIN",rp(d.admin));}
+  else if(type==="transfer"){kv("BANK TUJUAN",d.bank);kv("NO REKENING",d.account);kv("PENERIMA",d.receiver);if(showSender&&d.s_name)kv("PENGIRIM",d.s_name);kv("JUMLAH",rp(d.nominal));if(showAdmin)kv("BIAYA ADMIN",rp(d.admin));}
+  else{kv("USERNAME",d.bank);kv("PASSWORD",d.account);kv("MASA AKTIF",d.receiver);kv("DURASI",d.ref);kv("NOMINAL",rp(d.nominal));}
+  sep("=");kv("TOTAL",rp(total));kv("STATUS","BERHASIL");lines.push("");center("TERIMA KASIH");
+ }else{
+  sep("-");lr("TGL",d.date);
+  if(type==="bill"){lr("LAYANAN",d.service);lr("IDPEL",d.pel);lr("NAMA",d.name);lr("PERIODE",d.period);money("TAGIHAN",d.tagihan);if(showAdmin)money("ADM",d.admin);sep("-");lr("TOTAL",rp(total));lr("REF",reference);}
+  else if(type==="token"){lr("IDPEL",d.pel);lr("METER",d.meter);lr("NAMA",d.name);if(d.mode==="postpaid")money("TAGIHAN",d.nominal);else{lr("TOKEN",formatTokenGroups(d.token));money("NOM",d.nominal)}sep("-");lr("TOTAL",rp(total));lr("REF",reference);}
+  else if(type==="transfer"){const destination="TUJUAN: "+(d.bank||"-")+" - "+(d.account||"-");if(destination.length<=width)left(destination);else{kv("TUJUAN",d.bank);kv("NO REK",d.account)}lr("PENERIMA",d.receiver);money("NOMINAL",d.nominal);sep("-");lr("TOTAL",rp(total));left("REF: "+reference);}
+  else{lr("DURASI",reference);lr("USER",d.bank);lr("PASS",d.account);lr("AKTIF",d.receiver);money("NOM",d.nominal);}
+  sep("-");
+ }
+ if(style!==4){lines.push("");sep("-");center("** TRANSAKSI BERHASIL **");}
+ const footerText=String(s.receiptFooter??"").trim()||"- TERIMA KASIH -";
+ // Footer is part of the thermal layout and must be present in both preview and print.
+ sep("-");
+ lines.push(...printWrap(footerText.toUpperCase(),width).split("\n").map(x=>printCenter(x,width)));
+ return lines.join("\n");
+}
+
+function buildPrintText(type){
+ return buildTRFBTStyleText(type);
+ const style=Number(data[type]?.printStyle||1);
+ if(style===1)return buildPrintTextLegacy(type);
+ const d=data[type],s=data.settings,width=(s.paperWidth==="58"?32:42),lines=[];
+ const add=(label,value)=>{if(value!==undefined&&value!==null&&String(value)!=="")lines.push(printPair(label,String(value),width))};
+ const center=(v)=>printCenter(String(v||""),width);
+ const sep=(ch="-")=>lines.push(ch.repeat(width));
+ const date=fieldLabel(type,"date");
+ const shopWrapWidth=((s.shopFont==="medium"||s.shopFont==="large")?Math.max(8,Math.floor(width/2)):width);
+ if(s.shopName)lines.push(...printCenter(s.shopName.toUpperCase(),shopWrapWidth).split("\n"));
+ if(s.shopAddress)lines.push(...printWrap(s.shopAddress.toUpperCase(),width).split("\n").map(x=>printCenter(x,width)));
+ if(s.shopContact)lines.push(printCenter(s.shopContact,width));
+ sep("=");
+ if(style===2){ // Minimalis: whitespace efficient, no decorative sections
+  if(d.date)add(date,d.date);
+  if(type==="bill"){
+   add(fieldLabel(type,"service"),d.service);add(fieldLabel(type,"pel"),d.pel);add(fieldLabel(type,"name"),d.name);add(fieldLabel(type,"period"),d.period);sep();add(fieldLabel(type,"tagihan"),rp(d.tagihan));add(fieldLabel(type,"admin"),rp(d.admin));sep("=");add("TOTAL",rp((+d.tagihan||0)+(+d.admin||0)));add(fieldLabel(type,"ref"),d.ref);
+  }else if(type==="token"){
+   add(fieldLabel(type,"pel"),d.pel);add(fieldLabel(type,"meter"),d.meter);add(fieldLabel(type,"name"),d.name);add(fieldLabel(type,"tariff"),d.tariff);add(fieldLabel(type,"kwh"),d.kwh);sep();if(d.mode==="postpaid"){add("TAGIHAN",rp(d.nominal));}else{lines.push(center(fieldLabel(type,"token").toUpperCase()),center(formatTokenGroups(d.token)));add(fieldLabel(type,"nominal"),rp(d.nominal));}add(fieldLabel(type,"admin"),rp(d.admin));sep("=");add("TOTAL",rp((+d.nominal||0)+(+d.admin||0)));add(fieldLabel(type,"ref"),d.ref);
+  }else if(type==="transfer"){
+   add(fieldLabel(type,"ref"),d.ref);add(fieldLabel(type,"date"),d.date);add(fieldLabel(type,"bank"),d.bank||"—");add(fieldLabel(type,"account"),d.account||"—");add(fieldLabel(type,"receiver"),d.receiver);sep();add(fieldLabel(type,"nominal"),rp(d.nominal));add(fieldLabel(type,"admin"),rp(d.admin));sep("=");add("TOTAL",rp((+d.nominal||0)+(+d.admin||0)));
+  }else{
+   add(fieldLabel(type,"date"),d.date);add(fieldLabel(type,"ref"),d.ref||"—");add(fieldLabel(type,"bank"),d.bank||"—");add(fieldLabel(type,"account"),d.account||"—");add(fieldLabel(type,"receiver"),d.receiver||"—");add(fieldLabel(type,"nominal"),rp(d.nominal));
+  }
+ }else if(style===3){ // Modern: prominent title/status and grouped sections
+  const title=type==="bill"?(d.mode==="ppob"?"PEMBAYARAN PPOB":"PEMBAYARAN TAGIHAN"):type==="token"?(d.mode==="postpaid"?"TAGIHAN LISTRIK PLN":"TOKEN LISTRIK"):type==="transfer"?"BUKTI TRANSFER":"VOUCHER HOTSPOT";
+  sep("=");lines.push(center(title),center("TRANSAKSI BERHASIL"));sep("-");if(d.date)add(date,d.date);
+  if(type==="bill"){add(fieldLabel(type,"service"),d.service);add(fieldLabel(type,"pel"),d.pel);add(fieldLabel(type,"name"),d.name);add(fieldLabel(type,"period"),d.period);sep("-");add(fieldLabel(type,"tagihan"),rp(d.tagihan));add(fieldLabel(type,"admin"),rp(d.admin));sep("=");add("TOTAL",rp((+d.tagihan||0)+(+d.admin||0)));add(fieldLabel(type,"ref"),d.ref)}
+  else if(type==="token"){add(fieldLabel(type,"pel"),d.pel);add(fieldLabel(type,"meter"),d.meter);add(fieldLabel(type,"name"),d.name);add(fieldLabel(type,"tariff"),d.tariff);add(fieldLabel(type,"kwh"),d.kwh);sep("-");if(d.mode==="postpaid")add("TAGIHAN",rp(d.nominal));else{lines.push(center(fieldLabel(type,"token").toUpperCase()),center(formatTokenGroups(d.token)));add(fieldLabel(type,"nominal"),rp(d.nominal))}add(fieldLabel(type,"admin"),rp(d.admin));sep("=");add("TOTAL",rp((+d.nominal||0)+(+d.admin||0)));add(fieldLabel(type,"ref"),d.ref)}
+  else if(type==="transfer"){add(fieldLabel(type,"ref"),d.ref);sep("-");lines.push(center("DATA PENERIMA"));add(fieldLabel(type,"bank"),d.bank||"—");add(fieldLabel(type,"account"),d.account||"—");add(fieldLabel(type,"receiver"),d.receiver);sep("-");add(fieldLabel(type,"nominal"),rp(d.nominal));add(fieldLabel(type,"admin"),rp(d.admin));sep("=");add("TOTAL",rp((+d.nominal||0)+(+d.admin||0)))}
+  else{add(fieldLabel(type,"ref"),d.ref||"—");sep("-");add(fieldLabel(type,"bank"),d.bank||"—");add(fieldLabel(type,"account"),d.account||"—");add(fieldLabel(type,"receiver"),d.receiver||"—");sep("=");add(fieldLabel(type,"nominal"),rp(d.nominal))}
+ }else if(style===4){ // Bank style: formal key-value receipt
+  lines.push(center(type==="transfer"?"BUKTI TRANSAKSI":type==="voucher"?"BUKTI VOUCHER":type==="token"?"BUKTI PEMBAYARAN PLN":"BUKTI PEMBAYARAN"));
+  add(date,d.date);add("TID / REF",d.ref||"-");sep("-");
+  if(type==="bill"){add("LAYANAN",d.service);add("ID PELANGGAN",d.pel);add("NAMA",d.name);add("PERIODE",d.period);sep();add("TAGIHAN",rp(d.tagihan));add("ADMIN",rp(d.admin));sep("=");add("TOTAL",rp((+d.tagihan||0)+(+d.admin||0)))}
+  else if(type==="token"){add("ID PELANGGAN",d.pel);add("NO METER",d.meter);add("NAMA",d.name);add("TARIF",d.tariff);add("KWH",d.kwh);if(d.mode==="postpaid")add("TAGIHAN",rp(d.nominal));else{add("TOKEN",formatTokenGroups(d.token));add("NOMINAL",rp(d.nominal))}add("ADMIN",rp(d.admin));sep("=");add("TOTAL",rp((+d.nominal||0)+(+d.admin||0)))}
+  else if(type==="transfer"){add("BANK TUJUAN",d.bank||"-");add("NO REKENING",d.account||"-");add("PENERIMA",d.receiver);add("JUMLAH",rp(d.nominal));add("BIAYA ADMIN",rp(d.admin));sep("=");add("TOTAL",rp((+d.nominal||0)+(+d.admin||0)))}
+  else{add("USERNAME",d.bank||"-");add("PASSWORD",d.account||"-");add("MASA AKTIF",d.receiver||"-");add("DURASI",d.ref||"-");add("NOMINAL",rp(d.nominal))}
+  sep("-");lines.push(center("STATUS : BERHASIL"));
+ }else{ // Compact: abbreviated labels, minimal separators
+  lines.push(center(type==="bill"?"TAGIHAN":type==="token"?(d.mode==="postpaid"?"PLN PASCABAYAR":"TOKEN PLN"):type==="transfer"?"TRANSFER":"VOUCHER"));
+  if(d.date)add("TGL",d.date);if(type==="bill"){add("LAYANAN",d.service);add("IDPEL",d.pel);add("NAMA",d.name);add("PERIODE",d.period);add("TAGIHAN",rp(d.tagihan));add("ADM",rp(d.admin));add("TOTAL",rp((+d.tagihan||0)+(+d.admin||0)));add("REF",d.ref)}
+  else if(type==="token"){add("IDPEL",d.pel);add("METER",d.meter);add("NAMA",d.name);if(d.mode==="postpaid")add("TAGIHAN",rp(d.nominal));else{add("TOKEN",formatTokenGroups(d.token));add("NOM",rp(d.nominal))}add("ADM",rp(d.admin));add("TOTAL",rp((+d.nominal||0)+(+d.admin||0)));add("REF",d.ref)}
+  else if(type==="transfer"){add("REF",d.ref);add("BANK",d.bank||"-");add("REK",d.account||"-");add("NAMA",d.receiver);add("NOM",rp(d.nominal));add("ADM",rp(d.admin));add("TOTAL",rp((+d.nominal||0)+(+d.admin||0)))}
+  else{add("DURASI",d.ref||"-");add("USER",d.bank||"-");add("PASS",d.account||"-");add("AKTIF",d.receiver||"-");add("NOM",rp(d.nominal))}
+ }
+ if(s.receiptFooter){sep("-");lines.push(...printWrap(s.receiptFooter,width).split("\n").map(x=>printCenter(x,width)))}
+ return lines.join("\n");
+}
+
+/* Shared thermal layout model inspired by TRFBT ReceiptEngine.Builder.
+   The same line objects feed browser preview and ESC/POS output. */
+function buildReceiptLayout(type){
+ const width=(data.settings.paperWidth==="58"?32:42);
+ const text=buildPrintText(type);
+ let rawLines=text.split("\n");
+ const s=data.settings||{}, d=data[type]||{};
+ // Normalize the prepaid PLN token block for every receipt style. Some styles
+ // put TOKEN and its value on one line, while others split them; preview layout
+ // must always render a dedicated, readable token block.
+ if(type==="token" && d.mode!=="postpaid"){
+   const tokenDigits=String(d.token??"").replace(/\D/g,"");
+   const label=fieldLabel("token","token").toUpperCase();
+   const grouped=formatTokenGroups(d.token);
+   const tokenGroups=grouped==="—"?[]:grouped.split(/\s+/).filter(Boolean);
+   const groupsPerLine=(data.settings.paperWidth==="58"?2:3);
+   const canonicalTokenRows=[];
+   for(let gi=0;gi<tokenGroups.length;gi+=groupsPerLine) canonicalTokenRows.push(tokenGroups.slice(gi,gi+groupsPerLine).join(" "));
+   const canonicalTokenRowSet=new Set(canonicalTokenRows);
+   const isTokenValueLine=line=>{
+     const trimmed=String(line||"").trim();
+     const digits=trimmed.replace(/\D/g,"");
+     return (!!tokenDigits && digits===tokenDigits) || canonicalTokenRowSet.has(trimmed);
+   };
+   rawLines=rawLines.filter(line=>{
+     const upper=String(line||"").trim().toUpperCase();
+     if(upper==="STROOM / TOKEN" || upper===label || upper===label+":" || isTokenValueLine(line) || (!tokenDigits && upper==="—")) return false;
+     if(tokenDigits && upper.includes(label) && String(line).replace(/\D/g,"").includes(tokenDigits)) return false;
+     return true;
+   });
+   let insertAt=rawLines.findIndex(line=>/^(?:NOMINAL|NOM|RP BAYAR|ADMIN|ADM|BIAYA ADMIN|TOTAL(?:\b|[ :])|REF(?:\b|[ :])|KODE REF(?:\b|[ :]))/i.test(String(line||"").trim()));
+   if(insertAt<0){const foot=String(data.settings.receiptFooter||"- TERIMA KASIH -").trim().toUpperCase();insertAt=rawLines.findIndex(line=>String(line||"").trim().toUpperCase()===foot);if(insertAt<0)insertAt=rawLines.length;}
+   // TRFBT-style token block: label plus centered groups wrapped to fit paper.
+   const tokenRows=canonicalTokenRows.slice();
+   if(!tokenRows.length) tokenRows.push("TOKEN BELUM DIISI");
+   rawLines.splice(insertAt,0,"STROOM / TOKEN",...tokenRows);
+ }
+ const shopWrapWidth=((s.shopFont==="medium"||s.shopFont==="large")?Math.max(8,Math.floor(width/2)):width);
+ const shopLines=s.shopName?printCenter(s.shopName.toUpperCase(),shopWrapWidth).split("\n").length:0;
+ const style=Number(d.printStyle||1);
+ const tokenLabels=["STROOM / TOKEN",fieldLabel("token","token").toUpperCase(),"TOKEN"];
+ const tokenIndex=type==="token"?rawLines.findIndex((line,i)=>tokenLabels.includes(line.trim().toUpperCase())&&i<rawLines.length-1):-1;
+ let bigIndex=-1;
+ if(style===3){
+   const titleIndex=rawLines.findIndex(x=>x.trim().toUpperCase()==="TOTAL BAYAR");
+   if(titleIndex>=0)bigIndex=titleIndex+1;
+ }
+ const titleWords={bill:["STRUK PEMBAYARAN TAGIHAN","STRUK PEMBAYARAN PPOB","PEMBAYARAN PPOB","PEMBAYARAN TAGIHAN","TAGIHAN","BUKTI PEMBAYARAN"],token:["STRUK TOKEN LISTRIK PLN","STRUK PEMBAYARAN TAGIHAN LISTRIK PLN","TOKEN LISTRIK","TAGIHAN LISTRIK PLN","TOKEN PLN","PLN PASCABAYAR","BUKTI PEMBAYARAN PLN"],transfer:["BUKTI TRANSFER","BUKTI TRANSAKSI","TRANSFER"],voucher:["VOUCHER HOTSPOT","BUKTI VOUCHER","VOUCHER"]}[type]||[];
+ return rawLines.map((raw,i)=>{
+   let line=raw, kind="body", bold=false, size=0;
+   if(i<shopLines){kind="shop";bold=true;}
+   const trimmed=raw.trim(), upper=trimmed.toUpperCase();
+   if(!trimmed){kind="feed";}
+   else if(/^[-=]{3,}$/.test(trimmed)){kind="separator";}
+   else if(upper===String(s.receiptFooter||"- TERIMA KASIH -").trim().toUpperCase()){kind="footer";}
+   else if(titleWords.some(t=>upper===t)){kind="title";bold=true;}
+   if(type==="voucher" && /^(USERNAME|PASSWORD|USER|PASS)(?:\s*:\s*|\s+)/i.test(trimmed)){bold=true;}
+   else if(/^(DATA PENERIMA|DATA PENGIRIM|PENGIRIM:|PENERIMA:|KEPADA:|DARI:|TOTAL BAYAR|STATUS)$/.test(upper)){kind="section";bold=true;}
+   else if(/^(TRANSAKSI BERHASIL|STATUS : BERHASIL|STATUS : LUNAS|\*\* TRANSAKSI BERHASIL \*\*|STATUS : SUKSES)$/.test(upper)){kind="status";bold=true;}
+   else if(/^(TOTAL|TOTAL BAYAR)\b/.test(upper)){kind="total";bold=true;}
+   if(i===bigIndex&&style===3&&type==="transfer"){
+     size=1; const content=trimmed; line=" ".repeat(Math.max(0,Math.floor((Math.floor(width/2)-content.length)/2)))+content;
+   }
+   if(type==="token"&&tokenIndex>=0){
+     let next=tokenIndex+1;while(next<rawLines.length&&!rawLines[next].trim())next++;
+     // Every token group line gets the same large, centered treatment.
+     const isTokenValue=i>=next && i<rawLines.length && /^\d{4}(?:\s+\d{4}){0,3}$/.test(trimmed);
+     if(i===tokenIndex){kind="token-label";bold=true;}
+     else if(isTokenValue){kind="token";bold=true;size=1;line=trimmed;}
+   }
+   const shopFont=s.shopFont||"medium";
+   if(kind==="shop"&&shopFont==="large")size=1; else if(kind==="shop"&&shopFont==="medium")size=2;
+   return {text:line,kind,bold,size,align:(kind==="token-label"||kind==="token")?"center":"left",index:i,width};
+ });
+}
+function buildPrintTextFromLayout(type){return buildReceiptLayout(type).map(line=>line.text).join("\n")}
+
+function receiptMarkup(type){
+ const logo=logoForPrint(),layout=buildReceiptLayout(type),s=data.settings;
+ const width=(s.paperWidth==="58"?32:42);
+ const sliderPct=Math.max(15,Math.min(100,Number(s.logoWidth)||50));
+ // Approximation only: common 203-dpi thermal heads expose 384 dots (58 mm) / 576 dots (80 mm).
+ // Convert the setting, defined as percent of effective printable dots, to percent of CSS paper width.
+ const nominalDots=s.paperWidth==="58"?(58*203/25.4):(80*203/25.4);
+ const effectiveDots=s.paperWidth==="58"?384:576;
+ const shopPct=sliderPct*(effectiveDots/nominalDots);
+ const lines=layout.map(line=>{
+  const cls=["thermalLine",line.kind==="shop"?"shopNamePrint":"",line.kind==="shop"?"shop-"+(s.shopFont||"medium"):"",line.kind==="token-label"?"thermalTokenLabel":"",line.kind==="token"?"thermalTokenValue":"",line.bold?"rbold":"",line.size===1?"thermalBig":(line.size===2?"thermalMedium":""),line.kind==="feed"?"thermalFeed":""].filter(Boolean).join(" ");
+  // Formatter keeps ESC/POS character-cell padding for printer output; visual preview centers the glyph text once.
+  const text=line.kind==="shop"?`<span class="shopNameGlyph">${esc(String(line.text||"").trimStart())}</span>`:(line.text?esc(line.text):" ");
+  return `<div class="${cls}" data-line-kind="${esc(line.kind)}">${text}</div>`;
+ }).join("");
+ return `${logo?`<img class="rlogo" src="${esc(logo)}" alt="Logo print" style="width:${shopPct}%">`:""}<div class="receiptText" data-layout-width="${width}">${lines}</div>`;
+}
+function guardReceiptLogo(container){
+ if(!container)return;
+ container.querySelectorAll(".rlogo").forEach(img=>{
+  img.addEventListener("error",()=>{img.remove()}, {once:true});
+  if(img.complete&&img.naturalWidth===0)img.remove();
+ });
+}
+function setThermalPrintPageSize(mm,receipt){
+ const box=receipt?receipt.getBoundingClientRect():null;
+ const heightPx=box&&box.height?box.height:(receipt?receipt.scrollHeight:0);
+ // Dynamically set both dimensions: @page size:auto/80mm auto otherwise defaults to Letter in Chromium.
+ const heightMm=Math.max(40,Math.ceil((heightPx*25.4/96)+3));
+ let style=$("rbDynamicThermalPage");
+ if(!style){style=document.createElement("style");style.id="rbDynamicThermalPage";document.head.appendChild(style)}
+ style.textContent=`@page{size:${mm} ${heightMm}mm;margin:0}`;
+ return heightMm;
+}
+function setAppLogo(){const el=$("appLogoMark");const src=data.settings.appLogo||"";el.innerHTML=src?`<img src="${src}" alt="RB">`:"RB"}
+
+function rows(obj){return Object.entries(obj).map(([k,v])=>`<div>${esc(k)}</div><div class="val">${esc(v)}</div>`).join("")}
+function renderReceipt(type){
+ const el=$("receipt-"+type);if(!el)return;
+ el.innerHTML=receiptMarkup(type);guardReceiptLogo(el);
+ const mode=((type==="transfer"||type==="voucher")?data[type].mode:type==="token"?data.token.mode:data.bill.mode)||"standard";
+ const printStyle=String(data[type].printStyle||1);
+ el.className="receipt"+(printStyle==="2"?" mode-minimal":printStyle==="3"?" mode-modern":"");
+ el.dataset.mode=mode;el.dataset.printStyle=printStyle;
+ el.style.width=(data.settings.paperWidth==="58"?"58mm":"80mm");
+ el.style.maxWidth=(data.settings.paperWidth==="58"?"58mm":"80mm");
+ el.style.padding="10px 0";
+ el.style.setProperty("--shop-font-size",fontPx()+"px");
+ el.style.setProperty("--logo-width",Math.max(15,Math.min(100,Number(data.settings.logoWidth)||50))+"%");
+ el.style.setProperty("--thermal-font-size",(data.settings.paperWidth==="58"?"11.3px":"12px"));
+ el.style.setProperty("--shop-large-font-size",(fontPx()*2)+"px");
+ setAppLogo()
+}
+function renderAllReceiptsOnly(){["bill","token","transfer","voucher"].forEach(renderReceipt);updateHome()}
+function getTransactionBaseAmount(type){const d=data[type]||{};return amountInt(type==="bill"?d.tagihan:d.nominal)}
+function calculateAdmin(amount){const st=data.settings||{};if(st.adminType!=="tiered")return amountInt(st.adminDefault);const current=amountInt(amount),rules=Array.isArray(st.adminRules)?st.adminRules.slice().sort((a,b)=>amountInt(a.min)-amountInt(b.min)):[];let fee=0;for(const rule of rules){const min=amountInt(rule.min),rawMax=rule.max,max=(rawMax===null||rawMax===undefined||String(rawMax).trim()==="")?null:amountInt(rawMax),candidateFee=amountInt(rule.fee);if(max!==null&&max<=min)continue;if(current>=min&&(max===null||current<=max))fee=candidateFee}return fee}
+function syncAdminFields(){const s=data.settings;["bill","token","transfer"].forEach(t=>{const el=$(t+"_admin");if(!el)return;if(s.adminAuto){data[t].admin=String(calculateAdmin(getTransactionBaseAmount(t)));el.value=data[t].admin;el.disabled=true}else{el.disabled=false}});$('adminModeStatus').textContent=s.adminAuto?(s.adminType==="tiered"?"Otomatis bertingkat":"Otomatis tetap: "+rp(s.adminDefault)):"Manual";$('adminModeStatus').className="status "+(s.adminAuto?"ok":"");const tier=s.adminType==="tiered";$('fixedAdminWrap').classList.toggle('hidden',tier);$('tieredAdminWrap').classList.toggle('hidden',!tier);}
+function renderAdminRulesEditor(){const root=$("adminRulesEditor");if(!root)return;root.replaceChildren();const rules=Array.isArray(data.settings.adminRules)?data.settings.adminRules:[];if(!rules.length){const empty=document.createElement("div");empty.className="receiptHistoryEmpty";empty.textContent="Belum ada aturan admin.";root.appendChild(empty)}rules.forEach((r,i)=>{const row=document.createElement("div");row.className="billExtraRow";const fields=[['min','Minimal transaksi'],['max','Maksimal (opsional)'],['fee','Biaya admin']];fields.forEach(([key,placeholder])=>{const input=document.createElement('input');input.type='number';input.min='0';input.step='1';input.placeholder=placeholder;input.value=r[key]===null||r[key]===undefined?'':String(r[key]);input.setAttribute('aria-label',placeholder+' aturan '+(i+1));input.addEventListener('input',()=>{data.settings.adminRules[i][key]=input.value===''&&key==='max'?null:amountInt(input.value);syncAdminFields();renderAllReceiptsOnly();persistAppState()});row.appendChild(input)});const del=document.createElement('button');del.type='button';del.className='btn danger';del.textContent='×';del.setAttribute('aria-label','Hapus aturan '+(i+1));del.addEventListener('click',()=>{data.settings.adminRules.splice(i,1);renderAdminRulesEditor();syncAdminFields();renderAllReceiptsOnly();persistAppState()});row.appendChild(del);root.appendChild(row)})}
+function addAdminRule(){if(!Array.isArray(data.settings.adminRules))data.settings.adminRules=[];if(data.settings.adminRules.length>=30){alert('Maksimal 30 aturan admin.');return}data.settings.adminRules.push({min:0,max:null,fee:0});data.settings.adminType='tiered';$('adminType').value='tiered';renderAdminRulesEditor();syncAdminFields();renderAllReceiptsOnly();persistAppState()}
+
+function bindSettings(){["shopName","shopFont","shopAddress","shopContact","paperWidth","receiptFooter","adminDefault","runningText"].forEach(id=>{const el=$(id);if(!el)return;el.value=data.settings[id]??"";el.oninput=()=>{data.settings[id]=el.value;renderAllReceiptsOnly();if(id==="runningText")$('runningTextView').textContent=el.value||"RB HOME PRINT MEDIA";if(id==="adminDefault")syncAdminFields();persistAppState()}});const adminTypeSelect=$("adminType");if(adminTypeSelect){adminTypeSelect.value=data.settings.adminType||"fixed";adminTypeSelect.onchange=()=>{data.settings.adminType=adminTypeSelect.value;syncAdminFields();renderAdminRulesEditor();renderAllReceiptsOnly();persistAppState()}}renderAdminRulesEditor();["showAdminFee","cutRef","showSender"].forEach(id=>{const el=$(id);if(!el)return;el.checked=id==="showAdminFee"?data.settings[id]!==false:!!data.settings[id];el.onchange=()=>{data.settings[id]=el.checked;renderAllReceiptsOnly();persistAppState()}});const logoWidth=$("logoWidth");if(logoWidth){logoWidth.value=String(Math.max(15,Math.min(100,Number(data.settings.logoWidth)||50)));data.settings.logoWidth=Number(logoWidth.value);$("logoWidthValue").textContent=logoWidth.value+"%";logoWidth.oninput=()=>{data.settings.logoWidth=Math.max(15,Math.min(100,Number(logoWidth.value)||50));$("logoWidthValue").textContent=data.settings.logoWidth+"%";const lp=$("printLogoPreview");if(lp){lp.style.width=data.settings.logoWidth+"%";lp.style.maxWidth="100%";lp.style.height="auto"}renderAllReceiptsOnly();persistAppState()}}$('adminAuto').checked=!!data.settings.adminAuto;$('adminAuto').onchange=()=>{data.settings.adminAuto=$('adminAuto').checked;syncAdminFields();renderAllReceiptsOnly();persistAppState()};$('appLogoPreview').src=data.settings.appLogo||"";$('appLogoPreview').style.display=data.settings.appLogo?"block":"none";$('printLogoPreview').src=logoForPrint();$('printLogoPreview').style.display=logoForPrint()?"block":"none";$('printLogoPreview').style.width=(Math.max(15,Math.min(100,Number(data.settings.logoWidth)||50)))+"%";$('printLogoPreview').style.maxWidth="100%";$('printLogoPreview').style.height="auto";$('runningTextView').textContent=data.settings.runningText||"RB HOME PRINT MEDIA";setAppLogo();syncAdminFields()}
+function renderBillDetailEditor(){const root=$("billExtraDetails");if(!root)return;root.replaceChildren();const items=Array.isArray(data.bill.detail)?data.bill.detail:[];items.forEach((item,index)=>{const row=document.createElement("div");row.className="billExtraRow";const label=document.createElement("input");label.type="text";label.placeholder="Label rincian";label.value=String(item.label||"");label.setAttribute("aria-label","Label rincian "+(index+1));label.addEventListener("input",()=>{data.bill.detail[index].label=label.value;renderReceipt("bill");persistAppState()});const value=document.createElement("input");value.type="text";value.placeholder="Nilai rincian";value.value=String(item.value||"");value.setAttribute("aria-label","Nilai rincian "+(index+1));value.addEventListener("input",()=>{data.bill.detail[index].value=value.value;renderReceipt("bill");persistAppState()});const remove=document.createElement("button");remove.type="button";remove.className="btn danger";remove.textContent="×";remove.setAttribute("aria-label","Hapus rincian "+(index+1));remove.addEventListener("click",()=>{data.bill.detail.splice(index,1);renderBillDetailEditor();renderReceipt("bill");persistAppState()});row.append(label,value,remove);root.appendChild(row)});if(!items.length){const empty=document.createElement("div");empty.className="receiptHistoryEmpty";empty.textContent="Belum ada rincian tambahan.";root.appendChild(empty)}}
+function addBillDetailRow(){if(!Array.isArray(data.bill.detail))data.bill.detail=[];if(data.bill.detail.length>=20){alert("Maksimal 20 rincian tambahan.");return}data.bill.detail.push({label:"",value:""});renderBillDetailEditor();renderReceipt("bill");persistAppState()}
+function historyTypeLabel(type){return ({bill:"Tagihan",token:"Token PLN",transfer:"Transfer",voucher:"Voucher Hotspot"})[type]||type||"Transaksi"}
+function historySummary(type,snapshot){const d=snapshot||{};if(type==="token")return [d.name,d.meter||d.pel,formatTokenGroups(d.token)].filter(Boolean).join(" • ");if(type==="bill")return [d.service,d.name,d.pel].filter(Boolean).join(" • ");if(type==="transfer")return [d.bank,d.receiver,d.ref].filter(Boolean).join(" • ");return [d.bank,d.receiver,d.ref].filter(Boolean).join(" • ")}
+function recordReceiptHistory(type,channel){
+ if(!["bill","token","transfer","voucher"].includes(type)||!data[type])return null;
+ const snapshot=JSON.parse(JSON.stringify(data[type]));
+ const showAdmin=data.settings.showAdminFee!==false;const total=type==="bill"?amountInt(snapshot.tagihan)+amountInt(snapshot.denda)+(showAdmin?amountInt(snapshot.admin):0):type==="token"?amountInt(snapshot.nominal)+(showAdmin?amountInt(snapshot.admin):0):amountInt(snapshot.nominal)+(showAdmin?amountInt(snapshot.admin):0);
+ const entry={id:String(Date.now())+"-"+Math.random().toString(36).slice(2,8),type,channel:String(channel||"Aktivitas"),createdAt:new Date().toISOString(),snapshot,total,summary:historySummary(type,snapshot)};
+ data.history=Array.isArray(data.history)?data.history:[];data.history.unshift(entry);data.history=data.history.slice(0,30);persistAppState();renderReceiptHistory();return entry;
+}
+function renderReceiptHistory(){
+ const list=$("receiptHistoryList");if(!list)return;list.replaceChildren();const items=Array.isArray(data.history)?data.history.slice(0,5):[];
+ if(!items.length){const empty=document.createElement("div");empty.className="receiptHistoryEmpty";empty.textContent="Belum ada aktivitas cetak.";list.appendChild(empty);return}
+ for(const item of items){const card=document.createElement("div");card.className="receiptHistoryItem";const info=document.createElement("div");info.className="receiptHistoryInfo";const title=document.createElement("div");title.className="receiptHistoryTitle";title.textContent=historyTypeLabel(item.type)+" — "+rp(item.total);const sub=document.createElement("div");sub.className="receiptHistorySub";let stamp="";try{stamp=new Date(item.createdAt).toLocaleString("id-ID")}catch(e){}sub.textContent=[stamp,item.channel,item.summary].filter(Boolean).join(" • ");info.append(title,sub);const btn=document.createElement("button");btn.className="btn secondary";btn.type="button";btn.textContent="Buka";btn.addEventListener("click",()=>restoreReceiptHistory(item.id));card.append(info,btn);list.appendChild(card)}
+}
+function restoreReceiptHistory(id){const item=(data.history||[]).find(x=>String(x.id)===String(id));if(!item||!data[item.type]||!item.snapshot)return;data[item.type]=Object.assign({},data[item.type],JSON.parse(JSON.stringify(item.snapshot)));if($(item.type+"_mode"))$(item.type+"_mode").value=data[item.type].mode||"standard";if($(item.type+"_printStyle"))$(item.type+"_printStyle").value=String(data[item.type].printStyle||1);bindGroup(item.type,item.type);syncAdminFields();if(item.type==="bill")renderBillDetailEditor();renderReceipt(item.type);persistAppState();openFullPreview(item.type)}
+function clearReceiptHistory(){if(!Array.isArray(data.history)||!data.history.length){renderReceiptHistory();return}if(!confirm("Hapus semua riwayat cetak lokal?"))return;data.history=[];persistAppState();renderReceiptHistory()}
+function updateHome(){$('homeShop').textContent=data.settings.shopName||"—";const connected=!!bleChar;$('homePrinter').textContent=connected?"Terhubung ke printer BLE":"Belum terhubung";$('homePrinter').className="status "+(connected?"ok":"")}
+function saveAll(){const saved=persistAppState();renderAllReceiptsOnly();alert(saved?"Pengaturan tersimpan di perangkat.":"Pengaturan aktif selama halaman terbuka, tetapi penyimpanan lokal diblokir browser.")}
+function readImageData(file,done){const r=new FileReader();r.onload=()=>done(r.result);r.readAsDataURL(file)}
+function toBlackWhite(dataUrl,done){const img=new Image();img.onload=()=>{const c=document.createElement("canvas"),ctx=c.getContext("2d",{willReadFrequently:true});c.width=img.naturalWidth;c.height=img.naturalHeight;ctx.drawImage(img,0,0);const im=ctx.getImageData(0,0,c.width,c.height),d=im.data;for(let i=0;i<d.length;i+=4){const a=d[i+3],lum=(0.299*d[i]+0.587*d[i+1]+0.114*d[i+2]);const v=lum>=185?255:0;d[i]=d[i+1]=d[i+2]=v;d[i+3]=a}ctx.putImageData(im,0,0);done(c.toDataURL("image/png"))};img.src=dataUrl}
+$('appLogoInput').onchange=e=>{const f=e.target.files[0];if(!f)return;if(!f.type.startsWith("image/") && f.type!=="application/pdf" && !/\.pdf$/i.test(f.name)){alert("Pilih foto atau PDF.");return}readImageData(f,src=>{data.settings.appLogo=src;bindSettings();renderAllReceiptsOnly()})};
+$('removeAppLogo').onclick=()=>{data.settings.appLogo="";bindSettings();renderAllReceiptsOnly()};
+$('printLogoInput').onchange=e=>{const f=e.target.files[0];if(!f)return;if(!f.type.startsWith("image/") && f.type!=="application/pdf" && !/\.pdf$/i.test(f.name)){alert("Pilih foto atau PDF.");return}readImageData(f,src=>toBlackWhite(src,bw=>{data.settings.printLogo=bw;bindSettings();renderAllReceiptsOnly()}))};
+$('removePrintLogo').onclick=()=>{data.settings.printLogo="";bindSettings();renderAllReceiptsOnly()};
+function setupPhoto(type){const input=$(type+"_photo"),preview=$(type+"_photo_preview"),meta=$(type+"_photo_meta");input.onchange=()=>{const f=input.files[0];if(!f)return;if(!f.type.startsWith("image/")&&f.type!=="application/pdf"&&!/\.pdf$/i.test(f.name)){alert("Pilih foto atau PDF.");input.value="";return}if(f.type==="application/pdf"||/\.pdf$/i.test(f.name)){preview.removeAttribute("src");preview.classList.remove("show");meta.textContent=f.name+" • "+Math.round(f.size/1024)+" KB • PDF";return}const url=URL.createObjectURL(f);preview.src=url;preview.classList.add("show");meta.textContent=f.name+" • "+Math.round(f.size/1024)+" KB • Foto"}}
+function printWrap(text,width){const out=[];String(text??"").split(/\r?\n/).forEach(line=>{let x=line.trimEnd();if(!x){out.push("");return}while(x.length>width){let cut=x.lastIndexOf(" ",width);if(cut<1)cut=width;out.push(x.slice(0,cut).trimEnd());x=x.slice(cut).trimStart()}out.push(x)});return out.join("\n")}
+function printCenter(text,width){return printWrap(text,width).split("\n").map(x=>{if(x.length>=width)return x.slice(0,width);return " ".repeat(Math.floor((width-x.length)/2))+x}).join("\n")}
+function printPair(label,value,width){const l=String(label??""),v=String(value??"—"),gap=2;const room=Math.max(8,width-l.length-gap);const words=printWrap(v,room).split("\n");const first=words.shift()||"";const line=l+" ".repeat(Math.max(1,width-l.length-first.length))+first;return [line,...words.map(w=>" ".repeat(Math.min(width-1,l.length+gap))+w)].join("\n")}
+function printRightKeyValue(label,value,width){
+ const W=Math.max(8,Math.floor(Number(width)||32));
+ const labelText=String(label??"").trim().replace(/:+$/g,"");
+ const valueText=(value===undefined||value===null||String(value)==="")?"-":String(value).trim();
+ const prefix=labelText+":";
+ const room=W-prefix.length-1;
+ const rightAlign=line=>" ".repeat(Math.max(0,W-String(line).length))+String(line);
+ // Long labels get their own line; values remain intact and right-aligned.
+ if(room<6){
+  const labelLines=printWrap(prefix,W).split("\n");
+  const valueLines=printWrap(valueText,W).split("\n").map(rightAlign);
+  return [...labelLines,...valueLines].join("\n");
+ }
+ const wrapped=printWrap(valueText,room).split("\n");
+ return wrapped.map((chunk,index)=>{
+  if(index===0)return prefix+" ".repeat(Math.max(1,W-prefix.length-chunk.length))+chunk;
+  const indent=prefix.length+1,available=Math.max(1,W-indent);
+  return " ".repeat(indent+Math.max(0,available-chunk.length))+chunk;
+ }).join("\n");
+}
+function formatTokenGroups(value){
+ const raw=String(value??"").replace(/\D/g,"");
+ if(!raw)return "—";
+ const groups=raw.match(/.{1,4}/g)||[];
+ return groups.join(" ");
+}
+function fieldLabel(type,key){return String((data.settings.fieldLabels&&data.settings.fieldLabels[type]&&data.settings.fieldLabels[type][key])||defaults.settings.fieldLabels[type][key]||key).trim()||defaults.settings.fieldLabels[type][key]||key}
+function applyFieldLabelsToUI(){
+ ["bill","token","transfer","voucher"].forEach(type=>{
+  const labels=data.settings.fieldLabels[type]||{};
+  Object.keys(defaults.settings.fieldLabels[type]||{}).forEach(key=>{
+   const el=$(`label-${type}-${key}`);if(el)el.textContent=labels[key]||defaults.settings.fieldLabels[type][key];
+  });
+ });
+}
+let fieldEditorType=null;
+function openFieldEditor(type){
+ fieldEditorType=type;
+ const overlay=$("fieldEditorOverlay"),list=$("fieldEditorList");
+ if(!overlay||!list)return;
+ const defs=defaults.settings.fieldLabels[type]||{},cur=data.settings.fieldLabels[type]||{};
+ $("fieldEditorTitle").textContent=`✏️ Edit Field — ${type==="bill"?"Tagihan":type==="token"?"Token":type==="voucher"?"Voucher Hotspot":"Transfer"}`;
+ list.innerHTML=Object.keys(defs).map(key=>`<div class="fieldEditRow"><div><div class="small">Default</div><b>${esc(defs[key])}</b></div><input class="fieldEditInput" data-field-key="${esc(key)}" value="${esc(cur[key]||defs[key])}" maxlength="40" placeholder="${esc(defs[key])}"></div>`).join("");
+ overlay.classList.remove("hidden");overlay.setAttribute("aria-hidden","false");
+}
+function closeFieldEditor(){const overlay=$("fieldEditorOverlay");if(!overlay)return;overlay.classList.add("hidden");overlay.setAttribute("aria-hidden","true");fieldEditorType=null}
+function applyFieldLabels(){
+ if(!fieldEditorType)return;
+ const type=fieldEditorType,defs=defaults.settings.fieldLabels[type]||{};
+ const next={};
+ document.querySelectorAll("#fieldEditorList .fieldEditInput").forEach(el=>{const key=el.dataset.fieldKey;const value=String(el.value||"").trim();next[key]=value||defs[key]});
+ data.settings.fieldLabels[type]=Object.assign({},defs,next);
+ applyFieldLabelsToUI();renderAllReceiptsOnly();persistAppState();closeFieldEditor();
+}
+function resetFieldLabels(){
+ if(!fieldEditorType)return;
+ const type=fieldEditorType;
+ data.settings.fieldLabels[type]=structuredClone(defaults.settings.fieldLabels[type]);
+ applyFieldLabelsToUI();
+ openFieldEditor(type);
+ renderAllReceiptsOnly();
+ persistAppState();
+}
+function buildPrintTextLegacy(type){
+ const d=data[type],s=data.settings,width=(s.paperWidth==="58"?32:42),lines=[];
+ const shopWrapWidth=((s.shopFont==="medium"||s.shopFont==="large")?Math.max(8,Math.floor(width/2)):width);
+ if(s.shopName)lines.push(...printCenter(s.shopName.toUpperCase(),shopWrapWidth).split("\n"));
+ if(s.shopAddress)lines.push(...printWrap(s.shopAddress.toUpperCase(),width).split("\n").map(x=>printCenter(x,width)));
+ if(s.shopContact)lines.push(printCenter(s.shopContact,width));
+ lines.push("=".repeat(width));
+
+ if(type==="bill"){
+  if(d.mode==="ppob"){
+   lines.push(
+    printCenter("STRUK PEMBAYARAN PPOB",width),
+    "=".repeat(width),
+    printPair(fieldLabel(type,"date"),d.date,width),
+    printPair(fieldLabel(type,"service"),d.service||"PPOB",width),
+    printPair(fieldLabel(type,"pel"),d.pel,width),
+    printPair(fieldLabel(type,"name"),d.name,width),
+    printPair(fieldLabel(type,"period"),d.period,width),
+    "-".repeat(width),
+    printPair(fieldLabel(type,"tagihan"),rp(d.tagihan),width),
+    printPair(fieldLabel(type,"admin"),rp(d.admin),width),
+    "=".repeat(width),
+    printPair("TOTAL",rp(+d.tagihan+(+d.admin||0)),width),
+    "=".repeat(width),
+    printPair(fieldLabel(type,"ref"),d.ref,width),
+    printCenter("STATUS : LUNAS",width)
+   );
+  }else{
+   lines.push(printCenter("STRUK PEMBAYARAN TAGIHAN",width),"=".repeat(width),printPair(fieldLabel(type,"date"),d.date,width),"-".repeat(width),printPair(fieldLabel(type,"service"),d.service,width),printPair(fieldLabel(type,"pel"),d.pel,width),printPair(fieldLabel(type,"name"),d.name,width),printPair(fieldLabel(type,"period"),d.period,width),"-".repeat(width),printPair(fieldLabel(type,"tagihan"),rp(d.tagihan),width),printPair(fieldLabel(type,"admin"),rp(d.admin),width),"=".repeat(width),printPair("TOTAL",rp(+d.tagihan+(+d.admin||0)),width),"=".repeat(width),printPair(fieldLabel(type,"ref"),d.ref,width),printCenter("** TRANSAKSI BERHASIL **",width));
+  }
+ }else if(type==="token"){
+  if(d.mode==="postpaid"){
+   lines.push(
+    printCenter("STRUK PEMBAYARAN TAGIHAN",width),
+    printCenter("LISTRIK PLN",width),
+    "=".repeat(width),
+    printPair(fieldLabel(type,"date"),d.date,width),
+    "-".repeat(width),
+    printPair(fieldLabel(type,"pel"),d.pel,width),
+    printPair(fieldLabel(type,"meter"),d.meter,width),
+    printPair(fieldLabel(type,"name"),d.name,width),
+    printPair(fieldLabel(type,"tariff"),d.tariff,width),
+    printPair(fieldLabel(type,"kwh"),d.kwh,width),
+    "-".repeat(width),
+    printPair("TAGIHAN",rp(d.nominal),width),
+    printPair(fieldLabel(type,"admin"),rp(d.admin),width),
+    "=".repeat(width),
+    printPair("TOTAL BAYAR",rp(+d.nominal+(+d.admin||0)),width),
+    "=".repeat(width),
+    printPair(fieldLabel(type,"ref"),d.ref,width),
+    printCenter("STATUS : LUNAS",width)
+   );
+  }else{
+   lines.push(printCenter("STRUK PEMBELIAN TOKEN LISTRIK",width),"=".repeat(width),printPair(fieldLabel(type,"date"),d.date,width),"-".repeat(width),printPair(fieldLabel(type,"pel"),d.pel,width),printPair(fieldLabel(type,"meter"),d.meter,width),printPair(fieldLabel(type,"name"),d.name,width),printPair(fieldLabel(type,"tariff"),d.tariff,width),printPair(fieldLabel(type,"kwh"),d.kwh,width),"-".repeat(width),printCenter(fieldLabel(type,"token").toUpperCase(),width),"",printCenter(formatTokenGroups(d.token),width),"-".repeat(width),printPair(fieldLabel(type,"nominal"),rp(d.nominal),width),printPair(fieldLabel(type,"admin"),rp(d.admin),width),"=".repeat(width),printPair("TOTAL",rp(+d.nominal+(+d.admin||0)),width),"=".repeat(width),printPair(fieldLabel(type,"ref"),d.ref,width));
+  }
+ }else if(type==="voucher"){
+  lines.push(printCenter("VOUCHER HOTSPOT",width),"=".repeat(width),printPair(fieldLabel(type,"date"),d.date,width),"-".repeat(width),printCenter(fieldLabel(type,"ref").toUpperCase(),width),printCenter(d.ref||"—",width),"-".repeat(width),printPair(fieldLabel(type,"bank"),d.bank||"—",width),printPair(fieldLabel(type,"account"),d.account||"—",width),printPair(fieldLabel(type,"receiver"),d.receiver||"—",width),"-".repeat(width),printPair(fieldLabel(type,"nominal"),rp(d.nominal),width),"=".repeat(width));
+ }else{
+  if(d.mode==="minimal"){
+   lines.push(
+    printCenter("BUKTI TRANSFER",width),
+    "-".repeat(width),
+    printPair(fieldLabel(type,"date"),d.date,width),
+    printPair(fieldLabel(type,"ref"),d.ref,width),
+    "",
+    printPair(fieldLabel(type,"bank"),d.bank||"—",width),
+    printPair(fieldLabel(type,"account"),d.account||"—",width),
+    printPair(fieldLabel(type,"receiver"),d.receiver,width),
+    "",
+    printPair(fieldLabel(type,"nominal"),rp(d.nominal),width),
+    printPair(fieldLabel(type,"admin"),rp(d.admin),width),
+    "=".repeat(width),
+    printPair("TOTAL",rp(+d.nominal+(+d.admin||0)),width)
+   );
+  }else if(d.mode==="modern"){
+   lines.push(
+    printCenter("BUKTI TRANSFER",width),
+    "=".repeat(width),
+    printCenter("TRANSAKSI BERHASIL",width),
+    "-".repeat(width),
+    printPair(fieldLabel(type,"date"),d.date,width),
+    printPair(fieldLabel(type,"ref"),d.ref,width),
+    "-".repeat(width),
+    printCenter("DATA PENERIMA",width),
+    printPair(fieldLabel(type,"bank"),d.bank||"—",width),
+    printPair(fieldLabel(type,"account"),d.account||"—",width),
+    printPair(fieldLabel(type,"receiver"),d.receiver,width),
+    "-".repeat(width),
+    printPair(fieldLabel(type,"nominal"),rp(d.nominal),width),
+    printPair(fieldLabel(type,"admin"),rp(d.admin),width),
+    "=".repeat(width),
+    printPair("TOTAL",rp(+d.nominal+(+d.admin||0)),width)
+   );
+  }else{
+   lines.push(printCenter("BUKTI TRANSFER",width),"=".repeat(width),printPair(fieldLabel(type,"date"),d.date,width),"-".repeat(width),printCenter("KODE REFERENSI",width),printCenter(d.ref,width),"-".repeat(width),printCenter("DATA PENERIMA",width),printPair(fieldLabel(type,"bank"),d.bank||"—",width),printPair(fieldLabel(type,"account"),d.account||"—",width),printPair(fieldLabel(type,"receiver"),d.receiver,width),"-".repeat(width),printPair(fieldLabel(type,"nominal"),rp(d.nominal),width),printPair(fieldLabel(type,"admin"),rp(d.admin),width),"=".repeat(width),printPair("TOTAL",rp(+d.nominal+(+d.admin||0)),width),"=".repeat(width));
+  }
+ }
+ if(s.receiptFooter)lines.push("=".repeat(width),...printWrap(s.receiptFooter,width).split("\n").map(x=>printCenter(x,width)));
+ return lines.join("\n");
+}
+
+function printBrowser(){
+ const type=current;
+ if(!["bill","token","transfer","voucher"].includes(type))return;
+ const pr=$("printReceipt");
+ pr.innerHTML=receiptMarkup(type);guardReceiptLogo(pr);
+ const printStyle=String(data[type].printStyle||1);pr.className="receipt"+(printStyle==="2"?" mode-minimal":printStyle==="3"?" mode-modern":"");
+ pr.style.setProperty("--shop-font-size",fontPx()+"px");
+ pr.style.setProperty("--thermal-font-size",data.settings.paperWidth==="58"?"11.3px":"12px");
+ pr.style.setProperty("--shop-large-font-size",(fontPx()*2)+"px");
+ pr.style.setProperty("--logo-width",Math.max(15,Math.min(100,Number(data.settings.logoWidth)||50))+"%");
+ const mm=data.settings.paperWidth==="58"?"58mm":"80mm";
+ pr.style.width=mm;
+ document.documentElement.style.setProperty("--print-width",mm);
+ document.documentElement.style.setProperty("--preview-paper-width",mm);
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ $("page-print").classList.add("active","rb-full-preview");
+ document.body.classList.add("rb-full-preview-mode");
+ const rollHeightMm=setThermalPrintPageSize(mm,pr);
+ recordReceiptHistory(type,"Cetak browser dibuka");
+ window.print();
+ setTimeout(()=>{document.body.classList.remove("rb-full-preview-mode");$("page-print").classList.remove("rb-full-preview");go(type)},700);
+}
+async function printThermal(){
+ const type=current;
+ if(!["bill","token","transfer","voucher"].includes(type))return;
+ try{
+  if(!bleChar){alert("Hubungkan printer Bluetooth terlebih dahulu di Pengaturan.");return}
+  const bytes=await escposReceipt(type);
+  await writeChunks(bytes);recordReceiptHistory(type,"Cetak Bluetooth");showToast("Struk berhasil dikirim ke printer");
+ }catch(e){alert("Gagal mencetak ke printer thermal.\n\n"+e.message)}
+}
+function exportReceiptPDF(type=current){
+ if(!["bill","token","transfer","voucher"].includes(type))return;
+ const d=data[type]||{},st=data.settings||{},style=Number(d.printStyle||1);
+ const escPdf=v=>String(v==null?"":v).replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+ const amount=v=>amountInt(v), money=v=>rp(amount(v));
+ const showAdmin=st.showAdminFee!==false;
+ const dispRef=(v)=>{let x=String(v??"").trim()||"-";if(st.cutRef===true&&x.length>8)x=x.slice(-8);return x};
+ const total=(base,admin)=>amount(base)+(showAdmin?amount(admin):0);
+ const rows=[];
+ const add=(label,value,kind="")=>{if(value===null||value===undefined||String(value).trim()==="")return;rows.push([String(label||""),String(value),kind]);};
+ const pair=(label,value)=>add(label,(value===null||value===undefined||String(value)==="")?"-":value);
+ const centered=(value,kind="center")=>add("",value,kind);
+ const sep=()=>add("","────────────────────────────────", "separator");
+ const dateParts=String(d.date||"").split(/\s+/),date=dateParts[0]||"",time=dateParts[1]||"";
+ const note=()=>{const n=String(d.catatan??d.note??"").trim();if(n)add("Catatan",n);};
+ const status=(v="BERHASIL")=>pair("Status",v);
+ const details=(max=Infinity)=>{(Array.isArray(d.detail)?d.detail:[]).filter(x=>x&&String(x.label||"").trim()&&String(x.value??"").trim()).slice(0,max).forEach(x=>pair(String(x.label).trim(),String(x.value).trim()));};
+ const showSender=type==="transfer"&&st.showSender===true&&(String(d.s_name||"").trim()||String(d.s_bank||"").trim()||String(d.s_num||"").trim());
+ const senderRows=()=>{if(!showSender)return;centered("DATA PENGIRIM");if(d.s_name)pair("Nama Pengirim",d.s_name);if(d.s_bank)pair("Bank Pengirim",d.s_bank);if(d.s_num)pair("Rekening Pengirim",d.s_num);};
+ const brand=st.shopName||"RB HOME MEDIA",addr=st.shopAddress||"",contact=st.shopContact||"",logo=st.printLogo||st.logo||"",foot=String(st.receiptFooter||"- TERIMA KASIH -");
+ const title={bill:d.mode==="ppob"?"STRUK PEMBAYARAN PPOB":"STRUK PEMBAYARAN TAGIHAN",token:d.mode==="postpaid"?"STRUK PEMBAYARAN TAGIHAN LISTRIK PLN":"STRUK TOKEN LISTRIK",transfer:"BUKTI TRANSFER",voucher:"VOUCHER HOTSPOT"}[type];
+ if(type==="token"){
+  if(d.mode==="postpaid"){
+   centered("STRUK PEMBAYARAN TAGIHAN LISTRIK PLN");pair("Tanggal",date);if(time)pair("Waktu",time);pair("ID Pel",d.pel);pair("No Meter",d.meter);pair("Nama",d.name);pair("Tarif / Daya",d.tariff);pair("JML KWH",d.kwh);pair("Tagihan",money(d.nominal));if(showAdmin)pair("Admin",money(d.admin));pair("TOTAL BAYAR",money(total(d.nominal,d.admin)));pair("REF",dispRef(d.ref));status("LUNAS");
+  }else if(style===1){
+   centered("STRUK PEMBELIAN TOKEN LISTRIK");pair("Tanggal",date);if(time)pair("Waktu",time);pair("ID Pel",d.pel);pair("No Meter",d.meter);pair("Nama",d.name);pair("Tarif / Daya",d.tariff);pair("JML KWH",d.kwh);centered("STROOM / TOKEN");centered(formatTokenGroups(d.token),"tokenRow");pair("Nominal",money(d.nominal));if(showAdmin)pair("Admin",money(d.admin));pair("TOTAL",money(total(d.nominal,d.admin)));pair("REF",dispRef(d.ref));status();
+  }else if(style===2){
+   centered("PEMBELIAN TOKEN PLN");pair("Tanggal",d.date);pair("Meter",d.meter);pair("Nama",d.name);pair("Tarif / Daya",d.tariff);pair("KWH",d.kwh);centered(formatTokenGroups(d.token),"tokenRow");pair("Nominal",money(d.nominal));if(showAdmin)pair("Admin",money(d.admin));pair("TOTAL",money(total(d.nominal,d.admin)));pair("SN",dispRef(d.ref));note();
+  }else if(style===3){
+   centered("STRUK PEMBELIAN LISTRIK PRABAYAR");pair("Tanggal",date);if(time)pair("Waktu",time);pair("No Meter",d.meter);pair("IDPEL",d.pel);pair("Nama",d.name);pair("Tarif / Daya",d.tariff);pair("No REF",dispRef(d.ref));centered("RINCIAN PEMBELIAN");pair("Nominal",money(d.nominal));if(d.rp_bayar&&amount(d.rp_bayar)!==amount(d.nominal))pair("RP BAYAR",money(d.rp_bayar));if(d.costs&&typeof d.costs==="object")Object.entries(d.costs).forEach(([k,v])=>{if(v!==""&&v!=null)pair(k,money(v))});pair("JML KWH",d.kwh);centered("STROOM / TOKEN");centered(formatTokenGroups(d.token),"tokenRow");if(showAdmin)pair("Admin",money(d.admin));pair("TOTAL BAYAR",money(total(d.nominal,d.admin)));if(d.info)centered(d.info);note();
+  }else if(style===4){
+   centered("TOKEN LISTRIK PRABAYAR");pair("Tanggal",d.date);centered(formatTokenGroups(d.token),"tokenRow");centered("MASUKKAN 20 ANGKA DI METERAN");pair("No Meter",d.meter);pair("Nama",d.name);pair("KWH",d.kwh);pair("TOTAL",money(total(d.nominal,d.admin)));pair("REF",dispRef(d.ref));note();
+  }else{
+   centered("TOKEN PLN");centered(String(d.name||"").toUpperCase());centered(d.meter||"");centered("STROOM / TOKEN");centered(formatTokenGroups(d.token),"tokenRow");if(d.kwh)centered(d.kwh+" KWH");centered(money(total(d.nominal,d.admin)));centered(d.date||"");centered("REF "+dispRef(d.ref));note();
+  }
+ }else if(type==="bill"){
+  const totalBill=amount(d.tagihan)+amount(d.denda)+(showAdmin?amount(d.admin):0);
+  if(style===1){centered(title);pair("Tanggal",date);if(time)pair("Waktu",time);pair("Jenis Layanan",d.service);pair("Nomor Pelanggan",d.pel);pair("Nama Pelanggan",d.name);pair("Periode",d.period);pair("Tagihan",money(d.tagihan));if(amount(d.denda)>0)pair("DENDA",money(d.denda));if(showAdmin)pair("Admin",money(d.admin));pair("TOTAL",money(totalBill));pair("REF",dispRef(d.ref));note();status();
+  }else if(style===2){centered("STRUK LUNAS");pair("Tanggal",d.date);pair("Jenis Layanan",d.service);pair("Nomor Pelanggan",d.pel);pair("Nama Pelanggan",d.name);pair("Periode",d.period);details();pair("Tagihan",money(d.tagihan));if(amount(d.denda)>0)pair("DENDA",money(d.denda));if(showAdmin)pair("Admin",money(d.admin));pair("TOTAL",money(totalBill));pair("SN",dispRef(d.ref));note();
+  }else if(style===3){centered(String(d.service||"").trim().toUpperCase()==="TAGIHAN"?"STRUK PEMBAYARAN TAGIHAN":"PEMBAYARAN "+String(d.service||""));pair("Tanggal",date);if(time)pair("Waktu",time);pair("No REF",dispRef(d.ref));pair("Layanan",d.service);pair(fieldLabel("bill","pel"),d.pel);pair("Nama",d.name);if(d.period)pair("Periode",d.period);details();centered("RINCIAN BIAYA");pair("Tagihan",money(d.tagihan));if(amount(d.denda)>0)pair("DENDA",money(d.denda));if(showAdmin)pair("Admin",money(d.admin));pair("TOTAL BAYAR",money(totalBill));note();centered("SIMPAN STRUK INI SEBAGAI BUKTI PEMBAYARAN");
+  }else if(style===4){centered(String(d.service||"TAGIHAN").toUpperCase());pair("Tanggal",d.date);pair("IDPEL",d.pel);pair("Nama",d.name);if(d.period)pair("Periode",d.period);details(4);if(showAdmin)pair("Admin",money(d.admin));pair("TOTAL",money(totalBill));pair("REF",dispRef(d.ref));note();
+  }else{centered(String(d.service||"TAGIHAN").toUpperCase());centered(String(d.name||"").toUpperCase());centered(d.pel||"");if(d.period)centered(d.period);centered(money(totalBill));centered(d.date||"");centered("REF "+dispRef(d.ref));note();}
+ }else if(type==="transfer"){
+  const totalTransfer=total(d.nominal,d.admin);
+  if(style===1){centered("BUKTI TRANSFER");pair("Tanggal",date);if(time)pair("Waktu",time);centered("KODE REFERENSI");centered(dispRef(d.ref));senderRows();centered("DATA PENERIMA");pair("BANK TUJUAN",d.bank);pair("NO REKENING",d.account);pair("PENERIMA",d.receiver);pair("NOMINAL",money(d.nominal));if(showAdmin)pair("ADMIN",money(d.admin));pair("TOTAL",money(totalTransfer));
+  }else if(style===2){centered(d.date||"");senderRows();centered("PENERIMA");centered(d.receiver||"-");if(d.bank||d.account)pair("BANK / REKENING",[d.bank,d.account].filter(Boolean).join(" "));pair("NOMINAL",money(d.nominal));if(showAdmin)pair("ADMIN",money(d.admin));pair("TOTAL",money(totalTransfer));
+  }else if(style===3){centered("BUKTI TRANSFER");pair("Tanggal",date);if(time)pair("Waktu",time);pair("REF",dispRef(d.ref));senderRows();centered("KEPADA");pair("PENERIMA",d.receiver);pair("BANK",d.bank);pair("NO REKENING",d.account);centered("TOTAL BAYAR");centered(money(totalTransfer));
+  }else if(style===4){centered("BUKTI TRANSAKSI");pair("Tanggal",d.date);pair("TID TERMINAL",d.tid||"-");pair("NO REF",dispRef(d.ref));pair("TRANSAKSI","TRANSFER BANK");pair("BANK TUJUAN",d.bank);pair("NO REKENING",d.account);pair("PENERIMA",d.receiver);if(showSender&&d.s_name)pair("PENGIRIM",d.s_name);pair("JUMLAH",money(d.nominal));if(showAdmin)pair("BIAYA ADMIN",money(d.admin));pair("TOTAL",money(totalTransfer));status();centered("TERIMA KASIH");
+  }else{pair("TGL",date);pair("TUJUAN",[d.bank,d.account].filter(Boolean).join(" - "));pair("PENERIMA",d.receiver);pair("NOMINAL",money(d.nominal));pair("TOTAL",money(totalTransfer));pair("REF",dispRef(d.ref));note();}
+ }else{
+  if(style===1){centered("VOUCHER HOTSPOT");pair("Tanggal",date);centered("PAKET / DURASI");centered(dispRef(d.ref));pair("Username",d.bank);pair("Password",d.account);pair("Masa Aktif",d.receiver);pair("Nominal",money(d.nominal));}
+  else if(style===2){pair("Tanggal",d.date);pair("Username",d.bank);pair("Password",d.account);pair("Durasi",d.ref);pair("Masa Aktif",d.receiver);pair("Nominal",money(d.nominal));}
+  else if(style===3){centered("VOUCHER HOTSPOT");pair("Tanggal",d.date);pair("Durasi",d.ref);pair("Username",d.bank);pair("Password",d.account);pair("Masa Aktif",d.receiver);pair("Nominal",money(d.nominal));status();}
+  else if(style===4){centered("BUKTI VOUCHER");pair("Tanggal",d.date);pair("NO REF",dispRef(d.ref));pair("Username",d.bank);pair("Password",d.account);pair("Masa Aktif",d.receiver);pair("Durasi",d.ref);pair("Nominal",money(d.nominal));}
+  else{centered("VOUCHER");pair("Durasi",d.ref);pair("USER",d.bank);pair("PASS",d.account);pair("AKTIF",d.receiver);pair("NOMINAL",money(d.nominal));}
+ }
+ // Reflow all rows within the PDF; thermal-specific layouts are represented as data rows.
+ const w=window.open("","_blank");if(!w){alert("Popup diblokir. Izinkan popup untuk export PDF.");return;}w.document.open();
+ w.document.write(`<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escPdf(title)}</title><style>
+ @page{size:A5 portrait;margin:12mm}*{box-sizing:border-box}html,body{margin:0;padding:0;color:#17212b;background:#fff;font-family:Arial,Helvetica,sans-serif;font-size:11pt;line-height:1.4}.sheet{max-width:148mm;margin:auto;border:1px solid #d6dee7;border-radius:8px;overflow:hidden}.head{display:flex;align-items:center;gap:14px;padding:16px 18px;background:#103858;color:white;overflow-wrap:anywhere}.logo{width:60px;height:60px;object-fit:contain;background:white;border-radius:8px;padding:4px;flex:none}.brand{font-size:16pt;font-weight:700;overflow-wrap:anywhere}.sub{font-size:9pt;margin-top:4px;white-space:pre-wrap;overflow-wrap:anywhere}.title{text-align:center;padding:16px 18px 8px}.title h1{font-size:17pt;margin:0 0 5px;overflow-wrap:anywhere}.rule{height:3px;background:#f49a2c;margin:0 18px 12px}.rows{padding:0 18px 18px}.row{display:flex;align-items:flex-start;gap:14px;padding:3px 0;border-bottom:1px solid #e5eaf0;break-inside:avoid;page-break-inside:avoid;overflow-wrap:anywhere}.label{flex:0 0 38%;color:#596777;overflow-wrap:anywhere}.value{flex:1;min-width:0;text-align:right;font-weight:700;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}.centerRow{justify-content:center;text-align:center;background:#fbfcfd}.centerRow .label{display:none}.centerRow .value{width:100%;text-align:center;flex:1 1 100%;font-family:'Courier New',monospace}.tokenRow .value{font-size:14pt;font-weight:900;letter-spacing:1px}.separatorRow{display:none}.foot{text-align:center;padding:14px 18px;background:#f5f8fb;border-top:1px solid #d6dee7;white-space:pre-wrap;overflow-wrap:anywhere}.toolbar{text-align:center;margin:14px}.toolbar button{padding:10px 16px;border:0;border-radius:8px;background:#f49a2c;color:white;font-weight:700}@media print{.toolbar{display:none}.head{-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style></head><body><div class="toolbar"><button onclick="window.print()">Cetak / Simpan sebagai PDF</button></div><article class="sheet"><header class="head">${logo?`<img class="logo" src="${escPdf(logo)}" alt="Logo">`:""}<div><div class="brand">${escPdf(brand)}</div>${addr?`<div class="sub">${escPdf(addr)}</div>`:""}${contact?`<div class="sub">${escPdf(contact)}</div>`:""}</div></header><section class="title"><h1>${escPdf(title)}</h1><div>Gaya Struk ${style}</div></section><div class="rule"></div><section class="rows">${rows.map(([k,v,kind])=>`<div class="row ${kind==="center"?"centerRow":kind==="tokenRow"?"centerRow tokenRow":kind==="separator"?"separatorRow":""}">${kind==="center"?`<div class="value">${escPdf(v)}</div>`:kind==="tokenRow"?`<div class="value">${escPdf(v)}</div>`:`<div class="label">${escPdf(k)}</div><div class="value">${escPdf(v)}</div>`}</div>`).join("")}</section><footer class="foot">${escPdf(foot)}</footer></article></body></html>`);w.document.close();recordReceiptHistory(type,"PDF / lembar cetak dibuka");
+}
+
+
+/* RB HOME PRINTER — full-screen preview and transaction-value editor */
+let fullPreviewType=null;
+const rbReceiptFieldLabels={date:'Tanggal',service:'Layanan',pel:'ID Pelanggan',idpel:'ID Pelanggan',meter:'Nomor Meter',name:'Nama Pelanggan',period:'Periode',tagihan:'Tagihan',nominal:'Nominal',admin:'Biaya Admin',ref:'Nomor Referensi',token:'Nomor Token',tariff:'Tarif / Daya',kwh:'Jumlah kWh',bank:'Bank / Username',account:'Nomor Rekening / Password',receiver:'Penerima / Masa Aktif',mode:'Jenis Transaksi',printStyle:'Gaya Struk',tx:'Nomor Transaksi',customer:'Pelanggan',status:'Status',note:'Catatan'};
+function rbReceiptLabel(key,type){return (data.settings.fieldLabels&&data.settings.fieldLabels[type]&&data.settings.fieldLabels[type][key])||rbReceiptFieldLabels[key]||String(key).replace(/([A-Z])/g,' $1').replace(/^./,c=>c.toUpperCase())}
+function openFullPreview(type){if(!['bill','token','transfer','voucher'].includes(type))return;fullPreviewType=type;const styleSelect=$('rbFullStyle');const styleLabels=['1. Standard','2. Minimalis','3. Modern','4. Bank Style','5. Compact'];Array.from(styleSelect.options).forEach((o,i)=>{if(styleLabels[i])o.textContent=styleLabels[i]});renderReceipt(type);const source=$('receipt-'+type),target=$('printReceipt');target.innerHTML=receiptMarkup(type);guardReceiptLogo(target);const style=String(data[type].printStyle||1);target.className='receipt'+(style==='2'?' mode-minimal':style==='3'?' mode-modern':'');target.style.width=data.settings.paperWidth==='58'?'58mm':'80mm';target.style.maxWidth='none';target.style.padding='5mm 0';target.style.setProperty('--shop-font-size',fontPx()+'px');target.style.setProperty('--thermal-font-size',data.settings.paperWidth==='58'?'11.3px':'12px');target.style.setProperty('--shop-large-font-size',(fontPx()*2)+'px');target.style.setProperty('--logo-width',Math.max(15,Math.min(100,Number(data.settings.logoWidth)||50))+'%');document.documentElement.style.setProperty('--preview-paper-width',data.settings.paperWidth==='58'?'58mm':'80mm');$('rbFullPreviewTitle').textContent=({bill:'Preview Tagihan',token:'Preview Token PLN',transfer:'Preview Transfer',voucher:'Preview Voucher Hotspot'})[type];$('rbFullStyle').value=style;document.body.classList.add('rb-full-preview-mode');$('page-print').classList.add('rb-full-preview');go('print');$('page-print').classList.add('rb-full-preview');setThermalPrintPageSize(data.settings.paperWidth==='58'?'58mm':'80mm',target);$('rbFullPreviewScroll').scrollTop=0;}
+function closeFullPreview(){const t=fullPreviewType;document.body.classList.remove('rb-full-preview-mode');$('page-print').classList.remove('rb-full-preview');fullPreviewType=null;go(t||'home');}
+$('rbFullStyle').onchange=()=>{if(!fullPreviewType)return;data[fullPreviewType].printStyle=String($('rbFullStyle').value||1);persistAppState();openFullPreview(fullPreviewType)};
+function refreshFullPreview(){if(!fullPreviewType)return;const type=fullPreviewType;renderReceipt(type);const target=$('printReceipt');target.innerHTML=receiptMarkup(type);guardReceiptLogo(target);const style=String(data[type].printStyle||1);target.className='receipt'+(style==='2'?' mode-minimal':style==='3'?' mode-modern':'');target.style.width=data.settings.paperWidth==='58'?'58mm':'80mm';target.style.maxWidth='none';target.style.padding='5mm 0';target.style.setProperty('--shop-font-size',fontPx()+'px');target.style.setProperty('--thermal-font-size',data.settings.paperWidth==='58'?'11.3px':'12px');target.style.setProperty('--shop-large-font-size',(fontPx()*2)+'px');target.style.setProperty('--logo-width',Math.max(15,Math.min(100,Number(data.settings.logoWidth)||50))+'%');document.documentElement.style.setProperty('--preview-paper-width',data.settings.paperWidth==='58'?'58mm':'80mm');setThermalPrintPageSize(data.settings.paperWidth==='58'?'58mm':'80mm',target)}
+function openReceiptValueEditor(){const type=fullPreviewType;if(!type)return;const d=data[type]||{},list=$('rbReceiptValueFields');$('rbReceiptEditTitle').textContent='Edit Isi — '+({bill:'Tagihan',token:'Token PLN',transfer:'Transfer',voucher:'Voucher Hotspot'})[type];list.innerHTML=Object.keys(d).filter(k=>k!=='printStyle'&&(d[k]===null||typeof d[k]!=='object')).map(k=>{const val=d[k]==null?'':String(d[k]);const multi=['token','note','description','detail'].includes(k)||val.length>70;return `<div class="rbReceiptValueRow"><label for="rbValue_${esc(k)}">${esc(rbReceiptLabel(k,type))}</label>${multi?`<textarea id="rbValue_${esc(k)}" data-key="${esc(k)}" rows="${val.length>70?3:2}">${esc(val)}</textarea>`:`<input id="rbValue_${esc(k)}" data-key="${esc(k)}" value="${esc(val)}" ${['nominal','admin','tagihan'].includes(k)?'inputmode="numeric"':''}>`}</div>`}).join('')+(type==='bill'&&Array.isArray(d.detail)?d.detail.map((item,index)=>`<div class="rbReceiptValueRow"><label>Rincian ${index+1} — Label</label><input data-detail-index="${index}" data-detail-key="label" value="${esc(item.label||'')}"></div><div class="rbReceiptValueRow"><label>Rincian ${index+1} — Nilai</label><input data-detail-index="${index}" data-detail-key="value" value="${esc(item.value||'')}"></div>`).join(''):'');list.querySelectorAll('[data-key]').forEach(el=>el.addEventListener('input',()=>{const key=el.dataset.key;data[type][key]=el.value;const form=$(type+'_'+key);if(form)form.value=el.value;refreshFullPreview()}));list.querySelectorAll('[data-detail-index]').forEach(el=>el.addEventListener('input',()=>{const ix=Number(el.dataset.detailIndex),key=el.dataset.detailKey;if(data[type].detail&&data[type].detail[ix]){data[type].detail[ix][key]=el.value;renderReceipt(type);refreshFullPreview();persistAppState()}}));$('rbReceiptEditOverlay').classList.remove('hidden');$('rbReceiptEditOverlay').setAttribute('aria-hidden','false')}
+function saveReceiptValueEditor(){if(!fullPreviewType)return;persistAppState();renderReceipt(fullPreviewType);refreshFullPreview();closeReceiptValueEditor()}
+function closeReceiptValueEditor(){$('rbReceiptEditOverlay').classList.add('hidden');$('rbReceiptEditOverlay').setAttribute('aria-hidden','true');if(fullPreviewType){persistAppState();refreshFullPreview()}}
+function exportFullPreviewPDF(){if(fullPreviewType)exportReceiptPDF(fullPreviewType)}
+async function printFullPreviewBluetooth(){const type=fullPreviewType;if(!type)return;try{if(!bleChar){alert('Hubungkan printer Bluetooth terlebih dahulu di Pengaturan.');return}const bytes=await escposReceipt(type);await writeChunks(bytes);recordReceiptHistory(type,"Cetak Bluetooth");showToast('Struk berhasil dikirim ke printer')}catch(e){alert('Gagal mencetak melalui Bluetooth.\n\n'+e.message)}}
+
+function quickPrint(){if(["bill","token","transfer","voucher"].includes(current))printThermal();else go("bill")}
+function presets(){const p=$('blePreset').value;if(p==="18f0")return [["000018f0-0000-1000-8000-00805f9b34fb","00002af1-0000-1000-8000-00805f9b34fb"]];if(p==="ffe0")return [["0000ffe0-0000-1000-8000-00805f9b34fb","0000ffe1-0000-1000-8000-00805f9b34fb"]];if(p==="ff00")return [["0000ff00-0000-1000-8000-00805f9b34fb","0000ff02-0000-1000-8000-00805f9b34fb"]];return [["000018f0-0000-1000-8000-00805f9b34fb","00002af1-0000-1000-8000-00805f9b34fb"],["0000ffe0-0000-1000-8000-00805f9b34fb","0000ffe1-0000-1000-8000-00805f9b34fb"],["0000ff00-0000-1000-8000-00805f9b34fb","0000ff02-0000-1000-8000-00805f9b34fb"]]}
+async function connectBluetooth(){if(!navigator.bluetooth){alert("Browser ini belum mendukung Web Bluetooth. Coba Chrome Android/desktop yang mendukung Web Bluetooth.");return}try{bleDevice=await navigator.bluetooth.requestDevice({acceptAllDevices:true,optionalServices:presets().map(x=>x[0])});$('printerName').textContent="Printer: "+(bleDevice.name||"Tanpa nama");const server=await bleDevice.gatt.connect();let found=null;for(const [svc,chr] of presets()){try{const service=await server.getPrimaryService(svc);found=await service.getCharacteristic(chr);break}catch(e){}}if(!found)throw Error("Service/characteristic printer tidak ditemukan.");bleChar=found;$('btStatus').textContent="Terhubung";$('btStatus').className="status ok";updateHome();bleDevice.addEventListener('gattserverdisconnected',()=>{bleChar=null;$('btStatus').textContent="Terputus";$('btStatus').className="status warn";updateHome()})}catch(e){$('btStatus').textContent="Gagal / batal";$('btStatus').className="status warn";alert("Printer belum terhubung.\n\n"+e.message)}}
+function escposText(type=current){
+ const layout=buildReceiptLayout(type);
+ // ESC/POS commands are generated from the exact same line model rendered in preview.
+ const out=[0x1b,0x40];
+ const pushText=(text)=>{const bytes=new TextEncoder().encode(text);for(const b of bytes)out.push(b)};
+ for(const line of layout){
+  if(line.kind==="feed"){pushText("\n");continue}
+  out.push(0x1b,0x61,line.align==="center"?0x01:0x00); // Explicit center alignment for the token block.
+  out.push(0x1b,0x45,line.bold?0x01:0x00);
+  out.push(0x1b,0x21,line.size===1?0x30:(line.size===2?0x20:0x00));
+  pushText(line.text);
+  pushText("\n");
+  out.push(0x1b,0x21,0x00,0x1b,0x45,0x00);
+ }
+ out.push(0x1b,0x45,0x00,0x1b,0x61,0x00);
+ pushText("\n\n");
+ return new Uint8Array(out);
+}
+async function escposLogo(){
+ const src=logoForPrint();if(!src)return new Uint8Array();
+ const img=await new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(Error("Logo print gagal dimuat."));i.src=src});
+ // Nominal full-width dot count is 384 (58 mm) / 576 (80 mm); slider applies to both preview and print.
+ const fullDots=data.settings.paperWidth==="58"?384:576; // Common 203-dpi raster widths; physical head spec must still be confirmed.
+ const pct=Math.max(15,Math.min(100,Number(data.settings.logoWidth)||50));
+ const target=Math.max(8,Math.floor((fullDots*pct/100)/8)*8);
+ const scale=target/img.naturalWidth;const w=target;const h=Math.max(1,Math.round(img.naturalHeight*scale));
+ const c=document.createElement("canvas"),ctx=c.getContext("2d",{willReadFrequently:true});c.width=w;c.height=h;ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);
+ const im=ctx.getImageData(0,0,w,h).data,bytesPerRow=w/8,out=new Uint8Array(11+w*h/8+3);
+ out.set([0x1b,0x61,0x01,0x1d,0x76,0x30,0x00,bytesPerRow&255,(bytesPerRow>>8)&255,h&255,(h>>8)&255],0);
+ let p=11;for(let y=0;y<h;y++){for(let x=0;x<w;x+=8){let b=0;for(let bit=0;bit<8;bit++){const i=((y*w)+(x+bit))*4,lum=0.299*im[i]+0.587*im[i+1]+0.114*im[i+2],a=im[i+3];if(a>30&&lum<185)b|=(0x80>>bit)}out[p++]=b}}
+ out[p++]=0x1b;out[p++]=0x61;out[p++]=0x00;return out;
+}
+async function escposReceipt(type=current){const logo=await escposLogo(),text=escposText(type);const gap=logo.length?new Uint8Array([0x0a]):new Uint8Array();const out=new Uint8Array(logo.length+gap.length+text.length);out.set(logo,0);out.set(gap,logo.length);out.set(text,logo.length+gap.length);return out}
+async function writeChunks(bytes){if(!bleChar)throw Error("Printer belum terhubung.");for(let i=0;i<bytes.length;i+=180){await bleChar.writeValue(bytes.slice(i,i+180));await new Promise(r=>setTimeout(r,25))}}
+$('connectBtn').onclick=connectBluetooth;$('testBtn').onclick=async()=>{try{if(!bleChar)await connectBluetooth();if(bleChar){const width=data.settings.paperWidth==="58"?32:42,shopWidth=(data.settings.shopFont==="medium"||data.settings.shopFont==="large")?Math.max(8,Math.floor(width/2)):width,shopLines=printCenter(data.settings.shopName||"RB HOME MEDIA",shopWidth).split("\n"),size=data.settings.shopFont==="large"?"\x1b\x21\x30":data.settings.shopFont==="medium"?"\x1b\x21\x20":"\x1b\x21\x00";const t="\x1b\x40\x1b\x45\x01"+shopLines.map(x=>"\x1b\x61\x01"+size+x.trim()+"\x1b\x21\x00\x1b\x61\x00").join("\n")+"\n"+printCenter("TEST PRINT BERHASIL",width)+"\n\x1b\x45\x00\n\n\n";await writeChunks(new TextEncoder().encode(t))}}catch(e){alert(e.message)}};
+["bill","token","transfer","voucher"].forEach(setupPhoto);
+renderAllReceiptsOnly();
+bindGroup("bill","bill");
+bindGroup("token","token");
+bindGroup("transfer","transfer");bindGroup("voucher","voucher");
+["bill","token","transfer","voucher"].forEach(t=>{const m=$(t+"_mode");if(m)m.value=data[t].mode||"standard"});
+["bill","token","transfer","voucher"].forEach(t=>{const el=$(t+"_printStyle");if(!el)return;el.value=String(data[t].printStyle||1);el.onchange=()=>{data[t].printStyle=String(el.value||1);renderReceipt(t);persistAppState()}});
+bindSettings();
+
+/* ========================= V12 PARSER / MAPPING PATCH ========================= */
+const OCR_VERSION="V13-PDF-TokenParser-1";
+const OCR_MAX_PASSES=3; // OCR sengaja dibatasi: parser/mapping adalah fokus utama.
+const OCR_FIELDS=["name","idpel","meter","customerNumber","nominal","admin","total","token","reference","date","time","transactionNumber","bank","account","service","period","tariff","kwh","username","password","duration","masaAktif"];
+const OCR_TYPE_LABEL={bill:"Tagihan",token:"Token Listrik",transfer:"Transfer",voucher:"Voucher Hotspot",unknown:"Belum dikenali"};
+const OCR_CDN={script:"https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js",worker:"https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/worker.min.js",core:"https://cdn.jsdelivr.net/npm/tesseract.js-core@7.0.0",lang:"https://cdn.jsdelivr.net/npm/@tesseract.js-data/eng@1.0.0/4.0.0_best_int"};
+let ocrWorker=null,ocrWorkerPromise=null,ocrBusy=false;
+if(!data.ocr)data.ocr={bill:null,token:null,transfer:null,voucher:null};
+function ocrStatus(type,text,kind=""){const el=$(type+"_ocr_status");if(!el)return;el.textContent=text;el.className="status"+(kind?" "+kind:"")}
+const OCR_INPUT_ALIASES={transactionNumber:"tx",reference:"ref",customerNumber:"customer"};
+function ocrInput(type,key){return $(type+"_ocr_"+(OCR_INPUT_ALIASES[key]||key))}
+function ocrSetField(type,key,value){const el=ocrInput(type,key);if(el)el.value=value??""}
+function ocrGetField(type,key){const el=ocrInput(type,key);return el?String(el.value??"").trim():""}
+function ocrShowPanel(type,show=true){const p=$(type+"_ocr_panel");if(p)p.classList.toggle("hidden",!show)}
+function ocrKnown(v){return v!==null&&v!==undefined&&String(v).trim()!==""}
+function ocrClean(s){return String(s??"").replace(/[\u0000-\u001f]+/g," ").replace(/[ \t]+/g," ").trim()}
+function ocrDigits(s){return String(s??"").replace(/\D/g,"")}
+function ocrNormLine(s){return ocrClean(String(s??"").replace(/[|¦]/g," ").replace(/[“”]/g,'"').replace(/[‘’]/g,"'"))}
+function ocrUniqueLines(raw){
+ const src=String(raw??"").replace(/\r/g,"\n").replace(/[\u00a0]/g," ").split(/\n+/).map(ocrNormLine).filter(Boolean);
+ const out=[],seen=new Set();
+ for(const line of src){
+  const key=line.toUpperCase().replace(/\s+/g," ").trim();
+  if(!key||seen.has(key))continue;
+  // buang duplikasi ringan akibat beberapa pass OCR, tetapi jangan menghapus baris yang hanya mirip.
+  if(out.some(x=>x.toUpperCase().replace(/\s+/g," ").trim()===key))continue;
+  seen.add(key);out.push(line);
+ }
+ return out;
+}
+function ocrAfterLabel(lines,regex){for(const raw of lines){const line=raw.trim();const m=line.match(regex);if(m&&ocrKnown(m[1]))return ocrClean(m[1])}return ""}
+function ocrAfterLabelValue(lines,labelPattern){
+ const reStart=new RegExp("^(?:"+labelPattern+")\\s*(?:[:=\\-]\\s*)?(.+)$","i");
+ const reAnywhere=new RegExp("(?:^|\\s)(?:"+labelPattern+")\\s*(?:[:=\\-]\\s*)?(.+)$","i");
+ for(const line of lines){let m=line.match(reStart)||line.match(reAnywhere);if(m&&ocrKnown(m[1]))return ocrClean(m[1])}return "";
+}
+function ocrNormalizeMoneyToken(raw){
+ let s=String(raw??"").replace(/[^0-9.,]/g,"");if(!s)return"";
+ const dots=(s.match(/\./g)||[]).length,commas=(s.match(/,/g)||[]).length;
+ if(dots&&commas){const lastDot=s.lastIndexOf("."),lastComma=s.lastIndexOf(",");const dec=lastDot>lastComma?".":",";const thou=dec==="."?",":".";s=s.replace(new RegExp("\\"+thou,"g"),"");s=s.split(dec)[0]}
+ else if(dots||commas){const sep=dots?".":",";const parts=s.split(sep);if(parts.length>2)s=parts.join("");else if(parts.length===2){if(parts[1].length===3)s=parts.join("");else s=parts[0]}}
+ return s.replace(/\D/g,"");
+}
+function ocrMoneyCandidates(value){
+ const s=String(value??"");const out=[];const re=/(?:Rp\s*|IDR\s*)?([0-9][0-9.,]*)/gi;let m;
+ while((m=re.exec(s))){const raw=m[1];const digits=ocrNormalizeMoneyToken(raw);if(digits)out.push(digits)}
+ return out;
+}
+function ocrBestMoney(value){
+ const c=ocrMoneyCandidates(value); if(!c.length)return "";
+ // nominal/tagihan/admin harus angka rupiah bulat; abaikan angka desimal kecil di belakang koma.
+ return c.sort((a,b)=>Number(b)-Number(a))[0];
+}
+function ocrToISODate(value){
+ const s=ocrClean(value).replace(/\./g,"/");
+ let m=s.match(/\b(\d{4})[-\/]?(\d{2})[-\/]?(\d{2})\b/);if(m)return `${m[1]}-${m[2]}-${m[3]}`;
+ m=s.match(/\b(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2}|\d{4})\b/);if(m){let y=m[3];if(y.length===2)y="20"+y;return `${y}-${m[2].padStart(2,"0")}-${m[1].padStart(2,"0")}`}
+ return "";
+}
+function ocrDateCandidates(text){return (String(text??"").match(/\b(?:\d{4}[-\/]\d{1,2}[-\/]\d{1,2}|\d{1,2}[\/\-.]\d{1,2}[\/\-.](?:\d{2}|\d{4}))\b/g)||[]).map(ocrToISODate).filter(Boolean)}
+function ocrFindDate(text,lines,type){
+ const labeled=[];
+ for(const line of lines){if(/\b(TANGGAL|DATE|TGL|TRANSACTION DATE|PAID DATE)\b/i.test(line)){const d=ocrToISODate(line);if(d)labeled.push(d)}}
+ if(labeled[0])return labeled[0];
+ if(type==="bill"){for(const line of lines){if(/\bTEMPO\b|\bDUE DATE\b/i.test(line)){const d=ocrToISODate(line);if(d)return d}}}
+ return ocrDateCandidates(text)[0]||"";
+}
+function ocrFindTime(text,lines){for(const line of lines){if(/\b(WAKTU|TIME|JAM)\b/i.test(line)){const m=line.match(/\b([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?\b/);if(m)return m[3]?`${m[1].padStart(2,"0")}:${m[2]}:${m[3]}`:`${m[1].padStart(2,"0")}:${m[2]}`}}const m=String(text).match(/\b([01]?\d|2[0-3]):([0-5]\d)(?::([0-5]\d))?\b/);return m?(m[3]?`${m[1].padStart(2,"0")}:${m[2]}:${m[3]}`:`${m[1].padStart(2,"0")}:${m[2]}`):""}
+function ocrFindToken(text,lines){
+ const candidates=[]; for(const line of lines){if(/TOKEN|STROOM|VOUCHER/i.test(line)||/\bPLN\b/i.test(line)){const m=line.match(/(?:\d[\s-]?){16,24}/g)||[];m.forEach(x=>candidates.push(x))}}
+ const all=String(text).match(/\b(?:\d[\s-]?){16,24}\b/g)||[];candidates.push(...all);
+ for(const c of candidates){const d=ocrDigits(c);if(d.length>=16&&d.length<=24)return formatTokenGroups(d)} return "";
+}
+function ocrFindLabeledMoney(lines,labelPattern){
+ for(const line of lines){if(new RegExp(labelPattern,"i").test(line)){const m=ocrBestMoney(line);if(m)return m}}
+ return "";
+}
+function ocrFindReference(lines){return ocrAfterLabelValue(lines,"NO\\s*REF(?:ERENSI)?|REF(?:ERENCE)?|KODE\\s*REFERENSI|REFERENSI")}
+function ocrFindTransactionNumber(lines){return ocrAfterLabelValue(lines,"NO\\s*TRANSAKSI|NOMOR\\s*TRANSAKSI|TRANSACTION\\s*ID|ID\\s*TRANSAKSI")}
+function ocrFindBank(lines){
+ let v=ocrAfterLabelValue(lines,"BANK(?:\\s+TUJUAN)?|BANK TUJUAN|BANK PENERIMA");
+ if(v)return v.replace(/\s+(?:NO|NOMOR)\s+(?:REK|REKENING).*$/i,"").trim();
+ const known=/\b(BCA|BRI|BNI|MANDIRI|CIMB|DANAMON|PERMATA|BSI|BTN|SEABANK|BANK JAGO|OVO|DANA|GOPAY|GO-PAY|SHOPEEPAY|LINKAJA|QRIS|DOKU)\b/i;
+ for(const line of lines){const m=line.match(known);if(m)return m[1]}
+ return "";
+}
+function ocrFindAccount(lines,text){
+ const patterns=["NO\\s*REK(?:ENING)?","NOMOR\\s*REK(?:ENING)?","REKENING","ACCOUNT(?:\\s+NUMBER)?","VIRTUAL\\s*ACCOUNT","VA\\s*NUMBER","NOMOR\\s*TUJUAN","NO\\.?\\s*TUJUAN","NO\\.?\\s*HP","NOMOR\\s*HP","NO\\.?\\s*KARTU","NOMOR\\s*KARTU","ID\\s*PELANGGAN"];
+ for(const line of lines){if(patterns.some(p=>new RegExp("(?:^|\\b)"+p+"\\b","i").test(line))){const digits=(line.match(/(?:\\+?62|0)[0-9\\s-]{7,18}|[0-9][0-9\\s-]{7,20}/)||[])[0];if(digits)return ocrDigits(digits)}}
+ // E-wallet/kartu sering hanya menampilkan nomor tanpa label; cari baris yang jelas menyebut provider/tujuan.
+ for(const line of lines){if(/DANA|GOPAY|GO-PAY|OVO|SHOPEEPAY|LINKAJA|QRIS|E-?WALLET|KARTU|CARD/i.test(line)){const digits=(line.match(/(?:\\+?62|0)[0-9\\s-]{7,18}|[0-9][0-9\\s-]{7,20}/)||[])[0];if(digits)return ocrDigits(digits)}}
+ return "";
+}
+function ocrFindName(lines,type){
+ if(type==="bill"){
+  const i=lines.findIndex(x=>/TAGIHAN\s+KEPADA/i.test(x)); if(i>=0){for(let j=i+1;j<Math.min(lines.length,i+5);j++){const x=lines[j];if(/^(?:DETAIL|ID\s*:|NO\s*:|PERIODE|TEMPO|\+?62|08\d)/i.test(x))continue;if(/[A-Za-z]{2,}/.test(x)&&!/(JALAN|JL\.?|ALAMAT|DESKRIPSI|INTERNET|TOTAL|TAGIHAN)/i.test(x)){return ocrClean(x.split(/\b(?:Periode|Tempo)\s*:/i)[0])}}}
+ }
+ for(const line of lines){const v=ocrAfterLabel([line],/^(?:NAMA(?:\s+PELANGGAN)?|CUSTOMER\s+NAME|NAMA\s+PEMILIK|PENERIMA|ATAS\s+NAMA)\s*(?:[:=\-]\s*)?(.+)$/i);if(v)return v}
+ return "";
+}
+function ocrFindIdpel(lines){const v=ocrAfterLabelValue(lines,"ID\s*PEL(?:ANGGAN)?|IDPEL|ID\s*PEL");const m=String(v).match(/\d{6,20}/);return m?m[0]:ocrDigits(v)}
+function ocrFindMeter(lines){const v=ocrAfterLabelValue(lines,"NO\.?\s*METER|NOMOR\s*METER|METER\s*(?:NO|NUMBER)?");const m=String(v).match(/\d{10,15}/);return m?m[0]:ocrDigits(v)}
+function ocrFindCustomer(lines){const v=ocrAfterLabelValue(lines,"NO\s*PELANGGAN|NOMOR\s*PELANGGAN|CUSTOMER\s*NUMBER|CUSTOMER\s*NO");const m=String(v).match(/\d{6,20}/);return m?m[0]:ocrDigits(v)}
+function ocrFindService(lines,type){
+ if(type==="bill"){
+  const i=lines.findIndex(x=>/DESKRIPSI/i.test(x));
+  if(i>=0){for(let j=i+1;j<Math.min(lines.length,i+7);j++){const x=lines[j];if(/TOTAL|SUDAH DIBAYAR|SISA TAGIHAN|HARGA SUDAH/i.test(x))continue;if(/INTERNET|PAKET|BROADBAND|PRODUK|LAYANAN/i.test(x)){return x.replace(/\s*(?:Rp|IDR)\s*[0-9.,]+.*$/i,"").trim()}}}
+  for(const x of lines){if(/INTERNET|PAKET|BROADBAND/i.test(x)&&/(?:Rp|IDR)\s*[0-9]/i.test(x))return x.replace(/\s*(?:Rp|IDR)\s*[0-9.,]+.*$/i,"").trim()}
+ }
+ return ocrAfterLabelValue(lines,"LAYANAN|SERVICE|PRODUK|PRODUCT")
+}
+function ocrFindPeriod(lines){return ocrAfterLabelValue(lines,"PERIODE|PERIOD|BULAN")}
+function ocrFindTariff(lines){return ocrAfterLabelValue(lines,"TARIF\\s*(?:/\\s*DAYA)?|DAYA")}
+function ocrFindKwh(lines){return ocrAfterLabelValue(lines,"JML\\s*KWH|JUMLAH\\s*KWH|KWH")}
+function ocrFindNominal(lines,type){
+ if(type==="bill"){
+  for(const line of lines){if(/TOTAL\s+TAGIHAN/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+  for(const line of lines){if(/(?:Rp|IDR)\s*[0-9]/i.test(line)&&/INTERNET|PAKET|PRODUK|LAYANAN|HARGA/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+  return ocrFindLabeledMoney(lines,"NOMINAL|JUMLAH|TAGIHAN|BAYAR");
+ }
+ if(type==="token"){
+  for(const line of lines){if(/(?:HARGA|NOMINAL|SUB\s*TOTAL|TOTAL)\b/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+  for(const line of lines){if(/TOKEN\s+(?:LISTRIK|PLN)|TOKEN\b/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+  return ocrFindLabeledMoney(lines,"NOMINAL|JUMLAH|HARGA|BAYAR");
+ }
+ // transfer: prioritaskan label nominal/jumlah transfer, bukan angka desimal seperti 43.90.
+ for(const line of lines){if(/\b(NOMINAL|JUMLAH|AMOUNT|TOTAL\s+TRANSFER|TRANSFER)\b/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+ return "";
+}
+function ocrFindAdmin(lines){return ocrFindLabeledMoney(lines,"ADMIN|BIAYA ADMIN|FEE|SERVICE FEE")}
+function ocrFindTotal(lines,type){
+ // Prefer payable/grand total over a subtotal line like "TOTAL TAGIHAN".
+ const priority=[
+  /\bGRAND\s*TOTAL\b/i,
+  /\bTOTAL\s+(?:TRANSAKSI|BAYAR|PEMBAYARAN|TRANSFER|PAYMENT|PAID)\b/i,
+  /\bJUMLAH\s+(?:BAYAR|PEMBAYARAN|TRANSFER)\b/i,
+  /^\s*TOTAL\s*(?:[:=\-]\s*)?(?:RP\.?|IDR|\d)/i
+ ];
+ for(const pattern of priority){for(const line of lines){if(pattern.test(line)){const m=ocrBestMoney(line);if(m)return m}}}
+ // Fallback only when the source contains no explicit payable-total label.
+ for(const line of lines){if(/\bTOTAL\s*(?:TAGIHAN|BAYAR|PAYMENT|TRANSFER)?\b/i.test(line)){const m=ocrBestMoney(line);if(m)return m}}
+ return type==="transfer"?ocrFindLabeledMoney(lines,"TOTAL"):"";
+}
+function ocrDetectType(text,fields){
+ const u=text.toUpperCase();
+ const tokenScore=(fields.token?5:0)+[/TOKEN|STROOM/.test(u),/NO\s*METER|METER\b/.test(u),/KWH|PLN/.test(u)].filter(Boolean).length;
+ const transferScore=(fields.account?2:0)+[/BI[\s-]?FAST|TRANSFER|TRANFER|MOBILE BANKING|M?BANKING/.test(u),/PENERIMA|ATAS\s+NAMA/.test(u),/NO\s*REK|REKENING|VIRTUAL ACCOUNT|E-?WALLET|QRIS/.test(u)].filter(Boolean).length;
+ const billScore=(fields.idpel?2:0)+[/TAGIHAN|PEMBAYARAN|PEMBAYAR/.test(u),/PERIODE|TEMPO/.test(u),/TOTAL TAGIHAN/.test(u)].filter(Boolean).length;
+ if(tokenScore>=3)return "token";if(transferScore>=3&&tokenScore<3)return "transfer";if(billScore>=3&&tokenScore<3&&transferScore<3)return "bill";return "unknown";
+}
+function parseOCRText(raw){
+ const lines=ocrUniqueLines(raw),text=lines.join("\n");
+ // Dua tahap: deteksi kasar dulu, lalu field yang formatnya tergantung jenis.
+ const rough={token:ocrFindToken(text,lines),idpel:ocrFindIdpel(lines),account:ocrFindAccount(lines,text),total:ocrFindTotal(lines,"unknown")};
+ const type=ocrDetectType(text,rough);
+ const voucherLike=/(?:HOTSPOT|USERNAME|USER\s*NAME|PASSWORD|MASA\s*AKTIF|DURASI|VOUCHER.{0,24}(?:HOTSPOT|INTERNET|LOGIN)|(?:HOTSPOT|INTERNET|LOGIN).{0,24}VOUCHER)/i.test(text);
+ const voucherUsername=()=>{const v=ocrAfterLabelValue(lines,"USERNAME|USER\s*NAME|USER\s*ID|LOGIN");return v||""};
+ const voucherPassword=()=>{const v=ocrAfterLabelValue(lines,"PASSWORD|PASS\s*CODE|KATA\s*SANDI|SANDI");return v||""};
+ const voucherDuration=()=>{const v=ocrAfterLabelValue(lines,"DURASI|PAKET|PACKAGE|MASA\s*PAKAI");return v||""};
+ const voucherActive=()=>{const v=ocrAfterLabelValue(lines,"MASA\s*AKTIF|AKTIF\s*HINGGA|VALID\s*FOR|VALIDITAS");return v||""};
+ const f={type:voucherLike?"voucher":type,name:ocrFindName(lines,type),idpel:ocrFindIdpel(lines),meter:ocrFindMeter(lines),customerNumber:ocrFindCustomer(lines),nominal:ocrFindNominal(lines,type),admin:ocrFindAdmin(lines),total:ocrFindTotal(lines,type),token:ocrFindToken(text,lines),reference:ocrFindReference(lines),date:ocrFindDate(text,lines,type),time:ocrFindTime(text,lines),transactionNumber:ocrFindTransactionNumber(lines),bank:ocrFindBank(lines),account:ocrFindAccount(lines,text),service:ocrFindService(lines,type),period:ocrFindPeriod(lines),tariff:ocrFindTariff(lines),kwh:ocrFindKwh(lines),username:voucherUsername(),password:voucherPassword(),duration:voucherDuration(),masaAktif:voucherActive()};
+ if(type==="bill"){if(!f.idpel){const m=text.match(/\bID\s*[:=]?\s*(\d{6,20})\b/i);if(m)f.idpel=m[1]}if(!f.reference){const m=text.match(/\bNo\s*[:=]\s*(RB[-A-Z0-9]+)/i);if(m)f.reference=m[1]}}
+ // Mapping/validasi lintas-field.
+ if(type==="bill"&&f.total&&!f.nominal)f.nominal=f.total;
+ if(type==="bill"&&f.idpel&&!/^\d{6,20}$/.test(ocrDigits(f.idpel)))f.idpel="";
+ if(type==="token"){
+  // Token PLN: TOKEN/NAMA/R1/000000450/43.90
+  const meterLine=lines.find(x=>/(?:NO\.?\s*METER|NOMOR\s*METER|ID\s*PEL(?:ANGGAN)?|IDPEL)/i.test(x))||"";
+  const nums=(meterLine.match(/\b\d{10,15}\b/g)||[]);if(nums[0]&&!f.meter)f.meter=nums[0];if(nums[0]&&!f.idpel)f.idpel=nums[0];
+  const catatan=lines.find(x=>/CATATAN/i.test(x))||"";
+  const tokenTupleSource=catatan || lines.find(x=>/\b(?:\d[\s-]?){16,24}\s*\/\s*[A-Z][A-Z .'-]{2,}\s*\/\s*R\d?\s*\//i.test(x)) || "";
+  if(tokenTupleSource){
+   const body=tokenTupleSource.replace(/^.*?CATATAN\s*[:=-]?\s*/i,"").trim();
+   const tm=body.match(/(?:^|\s)((?:\d[\s-]?){16,24})\s*\/\s*([^\/]+?)\s*\/\s*(R\d?\s*\/\s*\d{2,9})\s*\/\s*(\d+(?:[.,]\d+)?)/i);
+   if(tm){const tok=ocrDigits(tm[1]);if(!f.token&&tok.length>=16&&tok.length<=24)f.token=formatTokenGroups(tok);if(!f.name)f.name=ocrClean(tm[2]);if(!f.tariff)f.tariff=tm[3].replace(/\s+/g,"");if(!f.kwh)f.kwh=tm[4].replace(",",".")}
+   else{
+    if(!f.name){const nm=body.match(/(?:^|\s)(?:\d[\d\s-]*\/)?\s*([^\/]+?)\s*\/\s*R\d?\s*\//i);if(nm)f.name=ocrClean(nm[1])}
+    if(!f.tariff){const tr=body.match(/\b(R\d?\s*\/\s*\d{2,9})\b/i);if(tr)f.tariff=tr[1].replace(/\s+/g,"")}
+    if(!f.kwh){const kw=body.match(/\b(\d+(?:[.,]\d+)?)\s*$/);if(kw)f.kwh=kw[1].replace(",",".")}
+   }
+  }
+  if(!f.name){const nm=ocrAfterLabelValue(lines,"NAMA(?:\s+PELANGGAN)?|NAMA\s+PEMILIK|PELANGGAN");if(nm)f.name=nm}
+  if(!f.tariff){const tr=ocrAfterLabelValue(lines,"TARIF\s*(?:/\s*DAYA)?|DAYA");if(tr){const m=tr.match(/\bR\d?\s*\/\s*\d{2,9}\b/i);f.tariff=(m?m[0]:tr).replace(/\s+/g,"")}}
+  if(!f.kwh){const kw=ocrAfterLabelValue(lines,"JML\s*KWH|JUMLAH\s*KWH|KWH");if(kw){const m=kw.match(/\d+(?:[.,]\d+)?/);if(m)f.kwh=m[0].replace(",",".")}}
+  if(!f.idpel&&f.customerNumber)f.idpel=f.customerNumber;if(f.token)f.token=formatTokenGroups(f.token)
+ }
+ if(type==="transfer"&&f.total&&!f.nominal)f.nominal=f.total;
+ return f;
+}
+function ocrPopulateReview(type,result){ocrShowPanel(type,true);ocrSetField(type,"type",result.type||"unknown");for(const k of OCR_FIELDS)ocrSetField(type,k,result[k]||"");ocrSetField(type,"raw",result.raw||"")}
+function ocrReadReview(type){const result={version:OCR_VERSION,type:ocrGetField(type,"type")||"unknown",raw:ocrGetField(type,"raw")};OCR_FIELDS.forEach(k=>result[k]=ocrGetField(type,k));return result}
+function persistOCR(type,result){data.ocr[type]=result;persistAppState()}
+function loadExternalScript(url){return new Promise((resolve,reject)=>{if(window.Tesseract)return resolve();const s=document.createElement("script");s.src=url;s.async=true;s.onload=()=>resolve();s.onerror=()=>reject(Error("Engine OCR gagal dimuat dari sumber pertama."));document.head.appendChild(s)})}
+async function tryNativeTextDetector(image){if(typeof TextDetector!=="function")return "";try{const detector=new TextDetector();const items=await detector.detect(image);return (items||[]).map(x=>String(x.rawValue||x.text||"").trim()).filter(Boolean).join("\n")}catch(e){return ""}}
+async function ensureOCRWorker(type){
+ if(ocrWorker)return ocrWorker;
+ if(!ocrWorkerPromise){ocrWorkerPromise=(async()=>{if(!window.Tesseract){try{await loadExternalScript(OCR_CDN.script)}catch(e){throw Error("Engine OCR belum tersedia di perangkat. Hubungkan internet sekali untuk memuat engine, lalu coba scan lagi.")}}
+  const worker=await Tesseract.createWorker("eng",1,{workerPath:OCR_CDN.worker,corePath:OCR_CDN.core,langPath:OCR_CDN.lang,logger:m=>{if(m&&m.status){const pct=typeof m.progress==="number"?Math.round(m.progress*100):null;ocrStatus(type,pct!==null?`${m.status} ${pct}%`:m.status,pct!==null&&pct>=100?"ok":"")}}});
+  await worker.setParameters({preserve_interword_spaces:"1",user_defined_dpi:"260",tessedit_pageseg_mode:"6"});ocrWorker=worker;return worker;})().catch(e=>{ocrWorkerPromise=null;throw e})}
+ return ocrWorkerPromise;
+}
+function preprocessOCR(file,mode=0){return new Promise((resolve,reject)=>{const fr=new FileReader();fr.onerror=()=>reject(Error("Foto tidak dapat dibaca."));fr.onload=()=>{const img=new Image();img.onerror=()=>reject(Error("Format foto tidak dapat diproses."));img.onload=()=>{try{const max=1900,scale=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));const c=document.createElement("canvas");c.width=Math.max(1,Math.round(img.naturalWidth*scale));c.height=Math.max(1,Math.round(img.naturalHeight*scale));const ctx=c.getContext("2d",{willReadFrequently:true});ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,c.width,c.height);if(mode>0){const im=ctx.getImageData(0,0,c.width,c.height),d=im.data;for(let i=0;i<d.length;i+=4){const lum=.299*d[i]+.587*d[i+1]+.114*d[i+2];let v=mode===1?Math.max(0,Math.min(255,Math.round((lum-128)*1.25+128))):(lum<150?0:255);d[i]=d[i+1]=d[i+2]=v}ctx.putImageData(im,0,0)}resolve(c)}catch(e){reject(e)}};img.src=fr.result};fr.readAsDataURL(file)})}
+function ocrQuality(raw,fields){let s=0;if(raw.length>80)s+=1;if(fields.date)s+=2;if(fields.name)s+=1;if(fields.total||fields.nominal)s+=2;if(fields.idpel||fields.meter||fields.account)s+=1;if(fields.token)s+=2;if(fields.service)s+=1;if(fields.tariff)s+=1;if(fields.kwh)s+=1;return s}
+function loadPdfJs(){return new Promise((resolve,reject)=>{if(window.pdfjsLib)return resolve(window.pdfjsLib);const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";s.async=true;s.onload=()=>window.pdfjsLib?resolve(window.pdfjsLib):reject(Error("PDF engine belum siap."));s.onerror=()=>reject(Error("Engine PDF gagal dimuat. Hubungkan internet lalu coba lagi."));document.head.appendChild(s)})}
+async function extractPdfText(file,type){
+ const pdfjs=await loadPdfJs();if(pdfjs.GlobalWorkerOptions)pdfjs.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";const buf=await file.arrayBuffer(),pdf=await pdfjs.getDocument({data:buf}).promise,pages=[];
+ for(let i=1;i<=pdf.numPages;i++){
+  const page=await pdf.getPage(i),content=await page.getTextContent(),items=(content.items||[]).filter(x=>String(x.str||"").trim());const rows=[];
+  for(const item of items){const y=Number(item.transform&&item.transform[5]||0),x=Number(item.transform&&item.transform[4]||0),str=String(item.str||"").trim();let row=rows.find(r=>Math.abs(r.y-y)<=3);if(!row){row={y,items:[]};rows.push(row)}row.items.push({x,str})}
+  rows.sort((a,b)=>b.y-a.y);const lines=rows.map(r=>r.items.sort((a,b)=>a.x-b.x).map(x=>x.str).join(" ").replace(/\s{2,}/g," ").trim()).filter(Boolean);if(lines.length)pages.push(lines.join("\n"));
+ }
+ return {text:pages.join("\n"),numPages:pdf.numPages}
+}
+async function renderPdfPagesForOCR(file,type,maxPages=3){const pdfjs=await loadPdfJs();if(pdfjs.GlobalWorkerOptions)pdfjs.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";const buf=await file.arrayBuffer(),pdf=await pdfjs.getDocument({data:buf}).promise,parts=[],limit=Math.min(pdf.numPages,maxPages);for(let i=1;i<=limit;i++){ocrStatus(type,`PDF halaman ${i}/${limit} — OCR...`,"");const page=await pdf.getPage(i),vp=page.getViewport({scale:1.7}),c=document.createElement("canvas");c.width=Math.ceil(vp.width);c.height=Math.ceil(vp.height);const ctx=c.getContext("2d",{willReadFrequently:true});ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);await page.render({canvasContext:ctx,viewport:vp}).promise;const worker=await ensureOCRWorker(type);await worker.setParameters({tessedit_pageseg_mode:"6"});const ret=await worker.recognize(c),t=String(ret?.data?.text||"").trim();if(t)parts.push(t)}return parts.join("\n")}
+function mergeOCRText(a,b){return ocrUniqueLines([a,b].filter(Boolean).join("\n")).join("\n")}
+async function scanOCR(type){
+ if(ocrBusy)return;const input=$(type+"_photo"),file=input&&input.files&&input.files[0];if(!file){ocrStatus(type,"Pilih foto atau PDF terlebih dahulu.","warn");return}
+ ocrBusy=true;document.querySelectorAll(".ocrScanBtn").forEach(b=>b.disabled=true);ocrStatus(type,"Baca sumber → parser → mapping → validasi...",""); try{
+  if(file.type==="application/pdf"||/\.pdf$/i.test(file.name)){
+   let pdfInfo=null,rawPdf="";try{pdfInfo=await extractPdfText(file,type);rawPdf=pdfInfo.text||""}catch(e){console.warn("PDF text extraction:",e)}
+   let best=rawPdf?{raw:rawPdf,q:ocrQuality(rawPdf,parseOCRText(rawPdf))}:null;
+   if(!best||best.q<5){const scanned=await renderPdfPagesForOCR(file,type,3),fields=parseOCRText(scanned),q=ocrQuality(scanned,fields);if(!best||q>best.q)best={raw:scanned,q,fields}}
+   if(!best||!best.raw.trim()){ocrShowPanel(type,true);ocrSetField(type,"raw","PDF tidak menghasilkan teks yang dapat dipetakan.");ocrStatus(type,"PDF terbaca sebagai file, tetapi isi belum bisa dipetakan. AI Vision/Cloud OCR dapat menjadi fallback berikutnya.","warn");return}
+   const result=Object.assign({version:OCR_VERSION,raw:ocrUniqueLines(best.raw).join("\n")},parseOCRText(best.raw));ocrPopulateReview(type,result);persistOCR(type,result);ocrStatus(type,`PDF selesai — ${OCR_TYPE_LABEL[result.type]||OCR_TYPE_LABEL.unknown}. Parser + mapping aktif. ${pdfInfo?pdfInfo.numPages:1} halaman`,"ok");return;
+  }
+
+  let raw="",best=null;
+  // Pass 1: native detector. Pass 2/3 hanya jika hasil belum cukup; tidak ada 8x/berulang tanpa kebutuhan.
+  for(let pass=0;pass<OCR_MAX_PASSES;pass++){
+   let candidate="";
+   if(pass===0)candidate=await tryNativeTextDetector(await preprocessOCR(file,0));
+   else {const worker=await ensureOCRWorker(type);if(pass===2)await worker.setParameters({tessedit_pageseg_mode:"11"});else await worker.setParameters({tessedit_pageseg_mode:"6"});const image=await preprocessOCR(file,pass===1?1:2);const ret=await worker.recognize(image);candidate=String(ret?.data?.text||"")}
+   if(candidate){const fields=parseOCRText(candidate);const q=ocrQuality(candidate,fields);if(!best||q>best.q)best={raw:candidate,q,fields};if(q>=7)break}
+  }
+  if(!best||!best.raw.trim()){ocrShowPanel(type,true);ocrSetField(type,"raw","");ocrStatus(type,"OCR selesai, tetapi teks tidak terbaca.","warn");return}
+  const result=Object.assign({version:OCR_VERSION,raw:ocrUniqueLines(best.raw).join("\n")},parseOCRText(best.raw));ocrPopulateReview(type,result);persistOCR(type,result);ocrStatus(type,`Selesai — ${OCR_TYPE_LABEL[result.type]||OCR_TYPE_LABEL.unknown}. Fokus: parser + mapping + validasi.`,"ok");
+ }catch(e){console.error(e);ocrStatus(type,"OCR gagal: "+(e&&e.message?e.message:"kesalahan tidak diketahui"),"warn")}finally{ocrBusy=false;document.querySelectorAll(".ocrScanBtn").forEach(b=>b.disabled=false)}
+}
+function syncGroupFromInputs(group,prefix){const d=data[group]||{};Object.keys(d).forEach(k=>{const el=$(prefix+"_"+k);if(el&&!el.disabled)d[k]=el.value})}
+function applyOCRToTransaction(type){
+ const r=ocrReadReview(type);
+ if(type==="bill"){
+  if(r.date)$('bill_date').value=r.date;if(r.idpel||r.customerNumber)$('bill_pel').value=ocrDigits(r.idpel||r.customerNumber);if(r.name)$('bill_name').value=r.name;if(r.service)$('bill_service').value=r.service;if(r.period)$('bill_period').value=r.period;if(r.nominal)$('bill_tagihan').value=ocrDigits(r.nominal);if(r.admin)$('bill_admin').value=ocrDigits(r.admin);if(r.reference)$('bill_ref').value=r.reference;
+ }else if(type==="token"){
+  if(r.date)$('token_date').value=r.date;if(r.idpel||r.customerNumber)$('token_pel').value=ocrDigits(r.idpel||r.customerNumber);if(r.meter)$('token_meter').value=ocrDigits(r.meter);if(r.name)$('token_name').value=r.name;if(r.tariff)$('token_tariff').value=r.tariff;if(r.kwh)$('token_kwh').value=r.kwh;if(r.token)$('token_token').value=formatTokenGroups(r.token);if(r.nominal)$('token_nominal').value=ocrDigits(r.nominal);if(r.admin)$('token_admin').value=ocrDigits(r.admin);if(r.reference)$('token_ref').value=r.reference;
+ }else if(type==="transfer"){
+  if(r.date)$('transfer_date').value=r.date;if(r.reference)$('transfer_ref').value=r.reference;if(r.bank)$('transfer_bank').value=r.bank;if(r.account)$('transfer_account').value=ocrDigits(r.account);if(r.name)$('transfer_receiver').value=r.name;if(r.nominal)$('transfer_nominal').value=ocrDigits(r.nominal);if(r.admin)$('transfer_admin').value=ocrDigits(r.admin);
+ }else if(type==="voucher"){
+  if(r.date)$('voucher_date').value=r.date;if(r.duration||r.reference)$('voucher_ref').value=r.duration||r.reference;if(r.username||r.bank)$('voucher_bank').value=r.username||r.bank;if(r.password||r.account)$('voucher_account').value=r.password||r.account;if(r.masaAktif)$('voucher_receiver').value=r.masaAktif;if(r.nominal)$('voucher_nominal').value=ocrDigits(r.nominal);
+ }
+ syncGroupFromInputs(type,type);bindGroup(type,type);if(type==="bill"||type==="token"||type==="transfer")syncAdminFields();renderReceipt(type);persistOCR(type,r);
+ ocrStatus(type,`Mapping ${OCR_TYPE_LABEL[type]} diterapkan. Periksa hasil sebelum cetak.` ,"ok");
+}
+function clearOCRReview(type){data.ocr[type]=null;ocrShowPanel(type,false);document.querySelectorAll(`[id^="${type}_ocr_"]`).forEach(el=>{if(el.tagName==="SELECT")el.value="unknown";else el.value=""});ocrStatus(type,"Review OCR dikosongkan. Pilih sumber lalu jalankan scan.","");persistAppState()}
+function restoreOCRReview(type){const r=data.ocr&&data.ocr[type];if(!r)return;ocrPopulateReview(type,r);ocrStatus(type,`Review tersimpan — ${OCR_TYPE_LABEL[r.type]||OCR_TYPE_LABEL.unknown}.`,"ok")}
+window.addEventListener("beforeunload",()=>{if(ocrWorker)ocrWorker.terminate().catch(()=>{})});
+function initOCRUI(){
+ document.querySelectorAll(".ocrScanBtn").forEach(btn=>btn.onclick=()=>scanOCR(btn.dataset.ocrType));
+ document.querySelectorAll(".ocrApplyBtn").forEach(btn=>btn.onclick=()=>applyOCRToTransaction(btn.dataset.ocrType));
+ document.querySelectorAll(".ocrClearBtn").forEach(btn=>btn.onclick=()=>clearOCRReview(btn.dataset.ocrType));
+ ["bill","token","transfer","voucher"].forEach(type=>{const input=$(type+"_photo");if(input)input.addEventListener("change",()=>{ocrStatus(type,"Foto dipilih. Tekan Baca Foto (OCR) untuk memulai.","")});restoreOCRReview(type)})
+}
+applyFieldLabelsToUI();
+initOCRUI();
+renderBillDetailEditor();
+renderReceiptHistory();
+/* ======================= END V11 OCR PATCH ======================= */
+
+</script>
+</body>
+</html>
